@@ -1,19 +1,163 @@
-import React from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
-import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor } from '../styles';
+import React, { useState } from 'react'
+import { Pressable, TextInput, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
+import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius } from '../styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Signup = ({ navigation }) => {
-	
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+
+	const emailChangeHandle = (email) => {
+		setEmail(email);
+	}
+
+	const passwordChangeHandle = (password) => {
+		setPassword(password);
+	}
+
+	const confirmPasswordChangeHandle = (confirmPassword) => {
+		setConfirmPassword(confirmPassword);
+	}
+
+	const signupHandler = () => {
+		if(email != '' && password != '' && confirmPassword != ''){
+			const user = {
+				email: email,
+				password: password,
+				confirmPassword: confirmPassword
+			}
+			console.log("Signup", user);
+		}
+	}
 	const loginHandler = () => {
 		navigation.replace("Login")
 	}
 
   return (
-    <View>
-			<Text>Signup</Text>
-			<Button title="Login" onPress={loginHandler}/>
-		</View>
+    <ImageBackground
+      source={require('../assets/login_image.jpeg')}
+      style={backGroundImage}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Trail Finder</Text>
+					<View style={styles.inputContainer}>
+						<Icon name="envelope" size={20} color="#777" style={{ marginRight: 10, color: '#CD853F' }} />
+						<TextInput
+							placeholder="Email Address"
+							placeholderTextColor={themeTintColor}
+							style={styles.input}
+							onChangeText={emailChangeHandle}
+						/>
+					</View>
+					<View style={styles.inputContainer}>
+						<Icon name="key" size={20} color="#777" style={{ marginRight: 10, color: '#CD853F' }} />
+						<TextInput
+							placeholder="Password"
+							placeholderTextColor={themeTintColor}
+							style={styles.input}
+							onChangeText={passwordChangeHandle}
+						/>
+					</View>
+					<View style={styles.inputContainer}>
+						<Icon name="key" size={20} color="#777" style={{ marginRight: 10, color: '#CD853F' }} />
+						<TextInput
+							placeholder="Confirm Password"
+							placeholderTextColor={themeTintColor}
+							style={styles.input}
+							onChangeText={confirmPasswordChangeHandle}
+						/>
+					</View>
+        <View style={styles.buttonContainer}>
+					<Pressable
+						style={({ pressed }) => [
+							{ backgroundColor: pressed ? buttonInactiveColor : themeBackgroundColor },
+							styles.button,
+						]}
+						onPress={signupHandler}
+					>
+						{({ pressed }) => (
+							<Text 
+								style={[styles.buttonText, 
+								{ color: pressed ? buttonInactiveColor : themeTintColor }]}
+							>
+								Signup
+							</Text>
+						)}
+					</Pressable>
+					<Pressable
+						style={({ pressed }) => [
+							{ color: pressed ? buttonInactiveColor : themeBackgroundColor },
+							styles.buttonText,
+						]}
+						onPress={loginHandler}
+					>
+						{({ pressed }) => (
+							<Text 
+								style={[styles.buttonText, 
+								{ color: pressed ? buttonInactiveColor : themeTintColor }]}
+							>
+								Already have account? Login
+							</Text>
+						)}
+					</Pressable>
+        </View>
+        
+      </View>
+    </ImageBackground>
   )
 }
+
+const styles = StyleSheet.create({
+	container: {
+    backgroundColor: 'rgba(255,255,255,0)', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 45,
+    color: themeTintColor,
+    fontWeight: 'bold'
+  },
+  inputContainer: {
+    flexDirection: 'row', 
+		alignItems: 'center', 
+		borderWidth: 1, 
+		borderColor: 'gray', 
+		borderRadius: 5, 
+		padding: 5,
+		marginTop: 20,
+		marginHorizontal: 25
+  },
+  input: {
+		height: 20, 
+    flex: 1, 
+    fontSize: 18,
+    textAlign: 'left',
+    marginVertical: 5,
+    padding: 0,
+		color: themeTintColor
+  },
+  buttonContainer:{
+		marginLeft: 40,
+    marginTop: 40
+  },
+	button: {
+		backgroundColor: 'rgba(255,255,255,0)', 
+		margin: 20,
+		padding: 10,
+		width: 200,
+		borderWidth: 2, // Add border width
+    borderColor: themeTintColor, // Add border color
+    borderRadius: buttonborderRadius,
+	},
+	buttonText: {
+		color: themeTintColor,
+		fontSize: 20,
+		fontWeight: 'bold',
+		textAlign: 'center',
+	}
+})
 
 export default Signup
