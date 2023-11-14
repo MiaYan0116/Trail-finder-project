@@ -35,8 +35,6 @@ const styles = StyleSheet.create({
 	button: {
 		backgroundColor: themeBackgroundColor, 
 		borderRadius: buttonborderRadius,
-		margin: 20,
-		padding: 10,
 		width: 150
 	},
 	buttonText: {
@@ -46,4 +44,4 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	}
 })
-export default SingleButton
+export default SingleButton;

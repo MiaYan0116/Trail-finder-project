@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Alert, Pressable, TextInput, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
-import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius } from '../styles';
+import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius, container } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseSetup';
@@ -53,7 +53,7 @@ const Signup = ({ navigation }) => {
       source={require('../assets/login_image.jpeg')}
       style={backGroundImage}
     >
-      <View style={styles.container}>
+      <View style={container}>
         <Text style={styles.title}>Trail Finder</Text>
 					<View style={styles.inputContainer}>
 						<Icon name="envelope" size={20} color="#777" style={{ marginRight: 10, color: '#CD853F' }} />
@@ -125,12 +125,7 @@ const Signup = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-	container: {
-    backgroundColor: 'rgba(255,255,255,0)', 
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	
   title: {
     fontSize: 45,
     color: themeTintColor,
