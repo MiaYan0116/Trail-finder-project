@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Pressable, TextInput, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
-import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius } from '../styles';
+import { Alert, Pressable, TextInput, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
+import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius, container } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebaseSetup';
 
 const Signup = ({ navigation }) => {
 	const [email, setEmail] = useState("");
@@ -20,16 +22,28 @@ const Signup = ({ navigation }) => {
 		setConfirmPassword(confirmPassword);
 	}
 
-	const signupHandler = () => {
-		if(email != '' && password != '' && confirmPassword != ''){
-			const user = {
-				email: email,
-				password: password,
-				confirmPassword: confirmPassword
+	const signupHandler = async () => {
+		if(email == '' || password == '' || confirmPassword == ''){
+			Alert.alert("All fields should not be empty")
+			return;
+		}
+		if(password != confirmPassword){
+			Alert.alert("The password should match the confirm password")
+			return;
+		}
+		try {
+			const userCred = await createUserWithEmailAndPassword(auth, email, password);
+			console.log(userCred);
+		} catch (error) {
+			console.log("signup err", error.code)
+			if(error.code === 'auth/invalid-email'){
+				Alert.alert("email is invalid")
+			}else if(error.code === 'auth/weak-password'){
+				Alert.alert("Password should be at least 6 characters")
 			}
-			console.log("Signup", user);
 		}
 	}
+
 	const loginHandler = () => {
 		navigation.replace("Login")
 	}
@@ -39,7 +53,7 @@ const Signup = ({ navigation }) => {
       source={require('../assets/login_image.jpeg')}
       style={backGroundImage}
     >
-      <View style={styles.container}>
+      <View style={container}>
         <Text style={styles.title}>Trail Finder</Text>
 					<View style={styles.inputContainer}>
 						<Icon name="envelope" size={20} color="#777" style={{ marginRight: 10, color: '#CD853F' }} />
@@ -57,6 +71,7 @@ const Signup = ({ navigation }) => {
 							placeholderTextColor={themeTintColor}
 							style={styles.input}
 							onChangeText={passwordChangeHandle}
+							secureTextEntry={true}
 						/>
 					</View>
 					<View style={styles.inputContainer}>
@@ -66,6 +81,7 @@ const Signup = ({ navigation }) => {
 							placeholderTextColor={themeTintColor}
 							style={styles.input}
 							onChangeText={confirmPasswordChangeHandle}
+							secureTextEntry={true}
 						/>
 					</View>
         <View style={styles.buttonContainer}>
@@ -109,12 +125,7 @@ const Signup = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-	container: {
-    backgroundColor: 'rgba(255,255,255,0)', 
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	
   title: {
     fontSize: 45,
     color: themeTintColor,

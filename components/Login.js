@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Pressable, TextInput, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
-import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius } from '../styles';
+import { Alert, Pressable, TextInput, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
+import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor, buttonFontSize, backGroundImage, buttonborderRadius, container } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebaseSetup'
 
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState("");
@@ -15,13 +17,20 @@ const Login = ({ navigation }) => {
 		setPassword(password);
 	}
 
-	const loginHandler = () => {
-		if(email != '' && password != ''){
-			const user = {
-				email: email,
-				password: password
+	const loginHandler = async () => {
+		console.log("login user: ", email, password);
+		if(!email || !password){
+			Alert.alert("fields should all be filled")
+			return;
+		}
+		try {
+			await signInWithEmailAndPassword(auth, email, password)
+		} catch (error) {
+			if(error.code === 'auth/invalid-email'){
+				Alert.alert("invalid email")
+			}else if(error.code === 'auth/invalid-login-credentials'){
+				Alert.alert('invalid username or password')
 			}
-			console.log("login", user);
 		}
 	}
 
@@ -34,7 +43,7 @@ const Login = ({ navigation }) => {
       source={require('../assets/login_image.jpeg')}
       style={backGroundImage}
     >
-      <View style={styles.container}>
+      <View style={container}>
         <Text style={styles.title}>Trail Finder</Text>
 					<View style={styles.inputContainer}>
 						<Icon name="envelope" size={20} color="#777" style={{ marginRight: 10, color: '#CD853F' }} />
@@ -52,6 +61,7 @@ const Login = ({ navigation }) => {
 							placeholderTextColor={themeTintColor}
 							style={styles.input}
 							onChangeText={passwordChangeHandle}
+							secureTextEntry={true}
 						/>
 				</View>
         <View style={styles.buttonContainer}>
@@ -95,12 +105,7 @@ const Login = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-	container: {
-    backgroundColor: 'rgba(255,255,255,0)', 
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	
   title: {
     fontSize: 45,
     color: themeTintColor,
