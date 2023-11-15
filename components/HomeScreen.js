@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Pressable, FlatList, Image, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
 import { backGroundImage } from '../styles';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TopTrailsItem from './TopTrailsItem';
+import { db } from '../firebase/firebaseSetup'
+import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
@@ -14,6 +16,19 @@ const HomeScreen = ({ navigation, route }) => {
     {name: "Quarry Rock", rate: 4.5, imageUri: 'https://images.dailyhive.com/20170825082201/north-vancouver-quarry-rock-hiking-deep-cove.jpg'},
     {name: "Tunnel Bluffs", rate: 4.7, imageUri: 'https://cdn-assets.alltrails.com/uploads/photo/image/62578510/b7c02601ffc90c343f6449758f7676f8.jpg'}
   ]
+
+  const [topTrails, setTopTrails] = useState([]);
+
+  useEffect(() => {
+    const fetchTopTrails = async () => {
+      const trailsRef = collection(db, 'traillist');
+      const q = query(trailsRef, orderBy('rating', 'desc'), limit(5))
+      const querySnapshot = await getDocs(q);
+      const documents = querySnapshot.docs.map(doc => doc.data());
+      console.log(documents);
+    };
+    fetchTopTrails();
+  }, []);
 
   const detailsHandler = (pressedItem) => {
 		navigation.navigate('Details', {pressedItem});
