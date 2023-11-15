@@ -15,11 +15,7 @@ import { db } from "./firebaseSetup";
 
 export async function addInitialDataToFirestore(data) {
   try {
-    const trailsRef = collection(db, 'traillist');
-    const existingTrail = await trailsRef.doc(data.trailTitle).get();
-    if (!existingTrail.exists) {
-      await addDoc(collection(db, "traillist"), data);
-    }
+    await addDoc(collection(db, "traillist"), data);
   } catch (err) {
     logError(err);
   }
