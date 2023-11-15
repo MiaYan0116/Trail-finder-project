@@ -1,631 +1,732 @@
 [
   {
+    "id": "eb0e29ef149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.33,
-    "trailTitle": "Abby Grind"
+    "trailTitle": "Abby Grind",
+    "imageUri": ""
   },
   {
+    "id": "eb0ee930149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.5,
-    "trailTitle": "Admiralty Point"
+    "trailTitle": "Admiralty Point",
+    "imageUri": ""
   },
   {
+    "id": "eb0f4019149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4.25,
-    "trailTitle": "Al's Habrich Ridge Trail"
+    "trailTitle": "Al's Habrich Ridge Trail",
+    "imageUri": ""
   },
   {
+    "id": "eb0f6fde149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.44,
-    "trailTitle": "Aldergrove Regional Park"
+    "trailTitle": "Aldergrove Regional Park",
+    "imageUri": ""
   },
   {
+    "id": "eb0f9a64149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.5,
-    "trailTitle": "Alexandra Bridge"
+    "trailTitle": "Alexandra Bridge",
+    "imageUri": ""
   },
   {
+    "id": "eb0fce55149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 4.1,
-    "trailTitle": "Alice Lake"
+    "trailTitle": "Alice Lake",
+    "imageUri": ""
   },
   {
+    "id": "eb1003ea149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.24,
-    "trailTitle": "Ancient Cedars Trail"
+    "trailTitle": "Ancient Cedars Trail",
+    "imageUri": ""
   },
   {
+    "id": "eb102c12149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4.5,
-    "trailTitle": "Ascent Trail"
+    "trailTitle": "Ascent Trail",
+    "imageUri": ""
   },
   {
+    "id": "eb105a58149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.1,
-    "trailTitle": "Baden Powell Deep Cove to Lynn Canyon"
+    "trailTitle": "Baden Powell Deep Cove to Lynn Canyon",
+    "imageUri": ""
   },
   {
+    "id": "eb1089cc149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.9,
-    "trailTitle": "Baden Powell Lynn Canyon to Grouse"
+    "trailTitle": "Baden Powell Lynn Canyon to Grouse",
+    "imageUri": ""
   },
   {
+    "id": "eb10b2e5149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 3.86,
-    "trailTitle": "BCMC Trail"
+    "trailTitle": "BCMC Trail",
+    "imageUri": ""
   },
   {
+    "id": "eb10dda0149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.71,
-    "trailTitle": "Belcarra Bluffs"
+    "trailTitle": "Belcarra Bluffs",
+    "imageUri": ""
   },
   {
+    "id": "eb11066f149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.67,
-    "trailTitle": "Bert Flinn Park"
+    "trailTitle": "Bert Flinn Park",
+    "imageUri": ""
   },
   {
+    "id": "eb112ef6149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.06,
-    "trailTitle": "Big Cedar and Kennedy Falls Trail"
+    "trailTitle": "Big Cedar and Kennedy Falls Trail",
+    "imageUri": ""
   },
   {
+    "id": "eb1164b9149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "TRUE",
     "rating": 4.79,
-    "trailTitle": "Black Tusk"
+    "trailTitle": "Black Tusk",
+    "imageUri": ""
   },
   {
+    "id": "eb119005149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4,
-    "trailTitle": "Blackcomb Meadows"
+    "trailTitle": "Blackcomb Meadows",
+    "imageUri": ""
   },
   {
+    "id": "eb11b643149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.27,
-    "trailTitle": "Bosumarne Falls"
+    "trailTitle": "Bosumarne Falls",
+    "imageUri": ""
   },
   {
+    "id": "eb11da6d149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.14,
-    "trailTitle": "Boundary Bay Regional Park"
+    "trailTitle": "Boundary Bay Regional Park",
+    "imageUri": ""
   },
   {
+    "id": "eb11fe90149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.4,
-    "trailTitle": "Bowen Lookout"
+    "trailTitle": "Bowen Lookout",
+    "imageUri": ""
   },
   {
+    "id": "eb129821149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 3,
-    "trailTitle": "Brae Island Regional Park"
+    "trailTitle": "Brae Island Regional Park",
+    "imageUri": ""
   },
   {
+    "id": "eb12f898149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4,
-    "trailTitle": "Brandywine Falls"
+    "trailTitle": "Brandywine Falls",
+    "imageUri": ""
   },
   {
+    "id": "eb133b0d149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 4.15,
-    "trailTitle": "Brandywine Meadows"
+    "trailTitle": "Brandywine Meadows",
+    "imageUri": ""
   },
   {
+    "id": "eb13769f149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 3.25,
-    "trailTitle": "Bridal Veil Falls"
+    "trailTitle": "Bridal Veil Falls",
+    "imageUri": ""
   },
   {
+    "id": "eb13d43a149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 3.67,
-    "trailTitle": "Brohm Lake"
+    "trailTitle": "Brohm Lake",
+    "imageUri": ""
   },
   {
+    "id": "eb1415d2149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.1,
-    "trailTitle": "Brothers Creek Loop"
+    "trailTitle": "Brothers Creek Loop",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1479a6149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.7,
-    "trailTitle": "Brunswick Point"
+    "trailTitle": "Brunswick Point",
+    "imageUri": ""
   },
   {
- 
+    "id": "eb14a3d0149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.76,
-    "trailTitle": "Buntzen Lake"
+    "trailTitle": "Buntzen Lake",
+    "imageUri": ""
   },
   {
-
+    "id": "eb14d0f4149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.41,
-    "trailTitle": "Burnaby Lake"
+    "trailTitle": "Burnaby Lake",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1504b5149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.83,
-    "trailTitle": "Burnaby Mountain"
+    "trailTitle": "Burnaby Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb152d93149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 5,
-    "trailTitle": "Burnett Falls"
+    "trailTitle": "Burnett Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb155246149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4,
-    "trailTitle": "Burns Bog Delta Nature Reserve"
+    "trailTitle": "Burns Bog Delta Nature Reserve",
+    "imageUri": ""
   },
   {
-
+    "id": "eb157af5149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 3.9,
-    "trailTitle": "Campbell Valley Regional Park"
+    "trailTitle": "Campbell Valley Regional Park",
+    "imageUri": ""
   },
   {
-
+    "id": "eb15abf5149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.6,
-    "trailTitle": "Capilano Canyon"
+    "trailTitle": "Capilano Canyon",
+    "imageUri": ""
   },
   {
-
+    "id": "eb15d6b8149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.89,
-    "trailTitle": "Capilano Pacific Trail"
+    "trailTitle": "Capilano Pacific Trail",
+    "imageUri": ""
   },
   {
-
+    "id": "eb15fce8149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.36,
-    "trailTitle": "Cascade Falls"
+    "trailTitle": "Cascade Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb16288b149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 1,
-    "trailTitle": "Chapman Falls"
+    "trailTitle": "Chapman Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1683dd149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "TRUE",
     "rating": 4.13,
-    "trailTitle": "Cheakamus Lake"
+    "trailTitle": "Cheakamus Lake",
+    "imageUri": ""
   },
   {
-
+    "id": "eb16b3dc149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 3.67,
-    "trailTitle": "Cheam Lake Wetlands"
+    "trailTitle": "Cheam Lake Wetlands",
+    "imageUri": ""
   },
   {
-
+    "id": "eb16dcde149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 2.67,
-    "trailTitle": "Chilliwack Community Forest"
+    "trailTitle": "Chilliwack Community Forest",
+    "imageUri": ""
   },
   {
-
+    "id": "eb17061b149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 5,
-    "trailTitle": "Cliff Gilker Park"
+    "trailTitle": "Cliff Gilker Park",
+    "imageUri": ""
   },
   {
-
+    "id": "eb172cc6149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.4,
-    "trailTitle": "Coliseum Mountain"
+    "trailTitle": "Coliseum Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1751f1149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3,
-    "trailTitle": "Colony Farm Regional Park"
+    "trailTitle": "Colony Farm Regional Park",
+    "imageUri": ""
   },
   {
-
+    "id": "eb17790a149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 3.75,
-    "trailTitle": "Conflict Lake"
+    "trailTitle": "Conflict Lake",
+    "imageUri": ""
   },
   {
-
+    "id": "eb179f42149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.67,
-    "trailTitle": "Cool Creek Canyon"
+    "trailTitle": "Cool Creek Canyon",
+    "imageUri": ""
   },
   {
-
+    "id": "eb17c44f149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.67,
-    "trailTitle": "Coquitlam Crunch"
+    "trailTitle": "Coquitlam Crunch",
+    "imageUri": ""
   },
   {
-
+    "id": "eb17e861149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.67,
-    "trailTitle": "Crater Rim Trail"
+    "trailTitle": "Crater Rim Trail",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1836d6149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.08,
-    "trailTitle": "Crooked Falls"
+    "trailTitle": "Crooked Falls",
+    "imageUri": ""
   },
   {
-    
+    "id": "eb185d36149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4.69,
-    "trailTitle": "Crown Mountain"
+    "trailTitle": "Crown Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1883a1149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.36,
-    "trailTitle": "Crystal Falls"
+    "trailTitle": "Crystal Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb18aa97149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.65,
-    "trailTitle": "Cypress Falls"
+    "trailTitle": "Cypress Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb18d15a149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 2.75,
-    "trailTitle": "Dam Mountain"
+    "trailTitle": "Dam Mountain",
+    "imageUri": ""
   },
   {
+    "id": "eb18f99c149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.45,
-    "trailTitle": "Deas Island Regional Park"
+    "trailTitle": "Deas Island Regional Park",
+    "imageUri": ""
   },
   {
+    "id": "eb197570149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4,
-    "trailTitle": "Demon Ridge"
+    "trailTitle": "Demon Ridge",
+    "imageUri": ""
   },
   {
+    "id": "eb19ae69149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 3.22,
-    "trailTitle": "Derby Reach Regional Park"
+    "trailTitle": "Derby Reach Regional Park",
+    "imageUri": ""
   },
   {
-
+    "id": "eb19d77b149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4.23,
-    "trailTitle": "Dilly Dally Loop"
+    "trailTitle": "Dilly Dally Loop",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1a0149149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.77,
-    "trailTitle": "Dog Mountain"
+    "trailTitle": "Dog Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1a2b7c149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.67,
-    "trailTitle": "Dorman Point"
+    "trailTitle": "Dorman Point",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1a54de149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.67,
-    "trailTitle": "Downes Bowl Trail"
+    "trailTitle": "Downes Bowl Trail",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1a7e55149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.38,
-    "trailTitle": "Eagle Bluffs"
+    "trailTitle": "Eagle Bluffs",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1acdba149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "TRUE",
     "rating": 4.49,
-    "trailTitle": "Elfin Lakes"
+    "trailTitle": "Elfin Lakes",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1af32f149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4.63,
-    "trailTitle": "Elk Mountain"
+    "trailTitle": "Elk Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1b19de149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 5,
-    "trailTitle": "Falls Lake"
+    "trailTitle": "Falls Lake",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1b40b8149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 3.2,
-    "trailTitle": "Fisherman's Trail"
+    "trailTitle": "Fisherman's Trail",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1b645c149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 4,
-    "trailTitle": "Flood Falls"
+    "trailTitle": "Flood Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1b8aa1149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 3.7,
-    "trailTitle": "Foreshore Trail"
+    "trailTitle": "Foreshore Trail",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1c195f149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 4.33,
-    "trailTitle": "Frosty Mountain"
+    "trailTitle": "Frosty Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1c4606149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": false,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "FALSE",
+    "camping": "TRUE",
     "rating": 4.52,
-    "trailTitle": "Garibaldi Lake"
+    "trailTitle": "Garibaldi Lake",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1c6e85149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4.13,
-    "trailTitle": "Goat Mountain"
+    "trailTitle": "Goat Mountain",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1c98f5149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 4.07,
-    "trailTitle": "Gold Creek Falls"
+    "trailTitle": "Gold Creek Falls",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1cc292149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 4.47,
-    "trailTitle": "Golden Ears"
+    "trailTitle": "Golden Ears",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1d1bc0149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": true,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "TRUE",
     "rating": 4.53,
-    "trailTitle": "Golden Ears Canyon Loop"
+    "trailTitle": "Golden Ears Canyon Loop",
+    "imageUri": ""
   },
   {
-
+    "id": "eb1d84d9149911eeac7a50eb7124d145",
     "difficulty": "Easy",
-    "publicTransit": false,
-    "dogFriendly": true,
-    "camping": false,
+    "publicTransit": "FALSE",
+    "dogFriendly": "TRUE",
+    "camping": "FALSE",
     "rating": 3.6,
-    "trailTitle": "Goldie Lake"
+    "trailTitle": "Goldie Lake",
+    "imageUri": ""
   },
   {
-    
+    "id": "eb1db16c149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
-    "publicTransit": true,
-    "dogFriendly": false,
-    "camping": false,
+    "publicTransit": "TRUE",
+    "dogFriendly": "FALSE",
+    "camping": "FALSE",
     "rating": 4.21,
-    "trailTitle": "Grouse Grind"
+    "trailTitle": "Grouse Grind",
+    "imageUri": ""
   }
 ]

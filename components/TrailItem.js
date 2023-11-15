@@ -1,28 +1,24 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
-const [imageUri, setImageUri] = useState("");
 
 // break down the entry list into appropriate and reusbale EntryItem
 const TrailItem = ({ item, navigation }) => {
 
-    useEffect(async () => {
+    const rate = item.rating;
+	const fullStars = Math.floor(rate);
+  	const halfStar = rate - fullStars >= 0.5 ? 1 : 0;
 
-        const response = await fetch(`https://api.bing.microsoft.com/v7.0/images/search?q=${item.trailTitle}`, {
-            method: 'GET',
-            headers: {
-              'Ocp-Apim-Subscription-Key': '8f17ea6d1c9a427aa26d4ff9cbe799b6',
-            },
-        });
-        const data = await response.json();
-        const uri = data.value[0].webSearchUrl;
-        setImageUri(uri);
-        }, [item.trailTitle]); 
+	const stars = Array.from({ length: fullStars }, (_, index) => (
+		<Icon key={index} name="star" size={14} color="#FFD700" />
+	)).concat(
+		halfStar === 1 ? <Icon key="half-star" name="star-half" size={14} color="#FFD700" /> : null
+	);
       
      return (
         <PressableButton
-            style={styles.itemStyle}
-            pressHandler={() =>
+            style={styles.container}
+            onPress={() =>
                 navigation.navigate("Details", {
                     camping: item.camping,
                     difficulty: item.difficulty,
@@ -31,37 +27,53 @@ const TrailItem = ({ item, navigation }) => {
                     publicTransit: item.publicTransit,
                     rating: item.rating,
                     trailTitle: item.trailTitle,
-                    imageUri: {imageUri},
+                    imageUri: item.imageUri,
                 })
             }
         >
-            <View>
-                <Text >{item.trailTitle}</Text>
-                <Text>{item.rating}</Text>
-                <Text>{item.publicTransit}</Text>
-                <Text>{item.dogFriendly}</Text>
-                <Text>{item.difficulty}</Text>
-                <Text>{item.camping}</Text>
+            <Image 
+                source={{ uri: item.imageUri }} 
+                style={styles.image} 
+            />
+            <View style={styles.content}>
+			<Text style={styles.text}>{item.trailTitle}</Text>
             </View>
+            <View style={styles.starsContainer}>{stars}</View>
         </PressableButton>
       )
   }
 
 
 const styles = StyleSheet.create({
-	container:{
-        flex: 1,
-        backgroundColor: 'rgba(255,255,255,0.7)', 
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        width: '100%',
+	container: {
+		position: 'relative',
+		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
+		borderWidth: 1.5,
+		borderColor: '#d2b48c',
+		borderRadius: 5,
+		marginHorizontal: 5,
+		overflow: 'hidden',
+		width: 145,
 	},
-	image: {
-        marginVertical: 20,
-        marginLeft: 130,
-        width: 180,
-        height: 180,
-        resizeMode: 'cover',
+	content: {
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	text:{
+		padding: 7,
+		fontSize: 16,
+	},
+	starsContainer: {
+    position: 'absolute', 
+    flexDirection: 'row',
+    alignItems: 'center',
+    top: 7, 
+    right: 10, 
+    },
+        image: {
+        width: '100%',
+        height: 210,
     },
 })
 
