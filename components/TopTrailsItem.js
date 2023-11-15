@@ -4,8 +4,8 @@ import {themeBackgroundColor, buttonborderRadius, themeTintColor, buttonFontSize
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const TopTrailsItem = (props) => {
-	console.log(props);
-	const rate = props.item.rate;
+	// console.log(props);
+	const rate = props.item.rating;
 	const fullStars = Math.floor(rate);
   	const halfStar = rate - fullStars >= 0.5 ? 1 : 0;
 
@@ -28,7 +28,7 @@ export const TopTrailsItem = (props) => {
 			/>
 			
 			<View style={styles.content}>
-				<Text style={styles.text}>{props.item.name}</Text>
+				<Text style={styles.text}>{props.item.trailTitle}</Text>
 			</View>
 			<View style={styles.starsContainer}>{stars}</View>
     </Pressable>

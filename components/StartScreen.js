@@ -5,17 +5,17 @@ import { backGroundImage } from '../styles';
 import { addInitialDataToFirestore } from "../firebase/firestore";
 import data from './traillist.json';
 
-const StartScreen = ({ navigation }) => {
+  const StartScreen = ({ navigation }) => {
     
     useEffect(() => {
       for(let i = 0; i < data.length; i++) {
+        // console.log(data[i]);
         addInitialDataToFirestore(data[i]);
       }
     }, []);
 
     const startHandler = async() => {
       navigation.replace("TabNavigation");
-      
     }
 
   return (
