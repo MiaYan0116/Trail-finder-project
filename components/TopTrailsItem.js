@@ -7,13 +7,13 @@ export const TopTrailsItem = (props) => {
 	// console.log(props);
 	const rate = props.item.rating;
 	const fullStars = Math.floor(rate);
-  const halfStar = rate - fullStars >= 0.5 ? 1 : 0;
+  	const halfStar = rate - fullStars >= 0.5 ? 1 : 0;
 
 	const stars = Array.from({ length: fullStars }, (_, index) => (
-    <Icon key={index} name="star" size={14} color="#FFD700" />
-  )).concat(
-    halfStar === 1 ? <Icon key="half-star" name="star-half" size={14} color="#FFD700" /> : null
-  );
+		<Icon key={index} name="star" size={14} color="#FFD700" />
+	)).concat(
+		halfStar === 1 ? <Icon key="half-star" name="star-half" size={14} color="#FFD700" /> : null
+	);
 
 	const itemPressed = () => {
 		props.itemPressHandle(props.item)
