@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { StyleSheet, Pressable, ImageBackground, View, TextInput, Text, Button } from 'react-native'
 import { iconSize, themeBackgroundColor, themeTintColor, backGroundImage } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import SingleButton from './SingleButton';
 
 const SearchScreen = ({ navigation }) => {
 	const [searchKey, setSearchKey] = useState('');
