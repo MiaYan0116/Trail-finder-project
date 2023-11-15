@@ -12,13 +12,13 @@ const HomeScreen = ({ navigation, route }) => {
   const list = [
     {name: 'Grouse Grind', rate: 4.5, imageUri: "https://insidevancouver.ca/wp-content/uploads/2013/08/Grousegrind2.jpeg"},
     {name: "St Mark's Summit", rate: 4.0, imageUri: 'https://www.insidevancouver.ca/wp-content/uploads/2021/08/vlad-d-ytAt9TT-X38-unsplash-664x434.jpg'},
-    {name: "Sea To Summit", rate: 4.0, imageUri: 'https://grindaholic.ca/wp-content/uploads/2020/06/Sea-to-summit-trail.jpg'},
+    {name: "Sea To Summit", rate: 4.0, imageUri: 'https://www.outdoorproject.com/sites/default/files/styles/hero_image_desktop/public/features/seatosummitr-2.jpg?itok=u0hYHkF-'},
     {name: "Quarry Rock", rate: 4.5, imageUri: 'https://images.dailyhive.com/20170825082201/north-vancouver-quarry-rock-hiking-deep-cove.jpg'},
     {name: "Tunnel Bluffs", rate: 4.7, imageUri: 'https://cdn-assets.alltrails.com/uploads/photo/image/62578510/b7c02601ffc90c343f6449758f7676f8.jpg'}
   ]
 
   const [topTrails, setTopTrails] = useState([]);
-
+  console.log("top",topTrails)
   useEffect(() => {
     const fetchTopTrails = async () => {
       const trailsRef = collection(db, 'traillist');
@@ -26,6 +26,7 @@ const HomeScreen = ({ navigation, route }) => {
       const querySnapshot = await getDocs(q);
       const documents = querySnapshot.docs.map(doc => doc.data());
       console.log(documents);
+      setTopTrails(documents);
     };
     fetchTopTrails();
   }, []);
@@ -55,10 +56,10 @@ const HomeScreen = ({ navigation, route }) => {
         <Text style={styles.listTitle}>Top 5 Trails</Text>
         <View style={styles.listContainer}>
           <FlatList
-            data={list}
+            data={topTrails}
             horizontal={true}
             renderItem={renderItem}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false} 
           />
         </View>

@@ -1,6 +1,5 @@
 [
   {
-    "id": "eb0e29ef149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -9,7 +8,6 @@
     "trailTitle": "Abby Grind"
   },
   {
-    "id": "eb0ee930149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -18,7 +16,6 @@
     "trailTitle": "Admiralty Point"
   },
   {
-    "id": "eb0f4019149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": false,
@@ -27,7 +24,6 @@
     "trailTitle": "Al's Habrich Ridge Trail"
   },
   {
-    "id": "eb0f6fde149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -36,7 +32,6 @@
     "trailTitle": "Aldergrove Regional Park"
   },
   {
-    "id": "eb0f9a64149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -45,7 +40,6 @@
     "trailTitle": "Alexandra Bridge"
   },
   {
-    "id": "eb0fce55149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -54,7 +48,6 @@
     "trailTitle": "Alice Lake"
   },
   {
-    "id": "eb1003ea149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -63,7 +56,6 @@
     "trailTitle": "Ancient Cedars Trail"
   },
   {
-    "id": "eb102c12149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
     "publicTransit": false,
     "dogFriendly": false,
@@ -72,7 +64,6 @@
     "trailTitle": "Ascent Trail"
   },
   {
-    "id": "eb105a58149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": true,
@@ -81,7 +72,6 @@
     "trailTitle": "Baden Powell Deep Cove to Lynn Canyon"
   },
   {
-    "id": "eb1089cc149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": true,
@@ -90,7 +80,6 @@
     "trailTitle": "Baden Powell Lynn Canyon to Grouse"
   },
   {
-    "id": "eb10b2e5149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
     "publicTransit": true,
     "dogFriendly": false,
@@ -99,7 +88,6 @@
     "trailTitle": "BCMC Trail"
   },
   {
-    "id": "eb10dda0149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": true,
@@ -108,7 +96,6 @@
     "trailTitle": "Belcarra Bluffs"
   },
   {
-    "id": "eb11066f149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -117,7 +104,6 @@
     "trailTitle": "Bert Flinn Park"
   },
   {
-    "id": "eb112ef6149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": true,
@@ -126,7 +112,6 @@
     "trailTitle": "Big Cedar and Kennedy Falls Trail"
   },
   {
-    "id": "eb1164b9149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
     "publicTransit": false,
     "dogFriendly": false,
@@ -135,7 +120,6 @@
     "trailTitle": "Black Tusk"
   },
   {
-    "id": "eb119005149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": false,
@@ -144,7 +128,6 @@
     "trailTitle": "Blackcomb Meadows"
   },
   {
-    "id": "eb11b643149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -153,7 +136,6 @@
     "trailTitle": "Bosumarne Falls"
   },
   {
-    "id": "eb11da6d149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -162,7 +144,6 @@
     "trailTitle": "Boundary Bay Regional Park"
   },
   {
-    "id": "eb11fe90149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -171,7 +152,6 @@
     "trailTitle": "Bowen Lookout"
   },
   {
-    "id": "eb129821149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -180,7 +160,6 @@
     "trailTitle": "Brae Island Regional Park"
   },
   {
-    "id": "eb12f898149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -189,7 +168,6 @@
     "trailTitle": "Brandywine Falls"
   },
   {
-    "id": "eb133b0d149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
     "publicTransit": false,
     "dogFriendly": true,
@@ -198,7 +176,6 @@
     "trailTitle": "Brandywine Meadows"
   },
   {
-    "id": "eb13769f149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -207,7 +184,6 @@
     "trailTitle": "Bridal Veil Falls"
   },
   {
-    "id": "eb13d43a149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -216,7 +192,6 @@
     "trailTitle": "Brohm Lake"
   },
   {
-    "id": "eb1415d2149911eeac7a50eb7124d145",
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": true,
@@ -225,7 +200,7 @@
     "trailTitle": "Brothers Creek Loop"
   },
   {
-    "id": "eb1479a6149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -234,7 +209,7 @@
     "trailTitle": "Brunswick Point"
   },
   {
-    "id": "eb14a3d0149911eeac7a50eb7124d145",
+ 
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -243,7 +218,7 @@
     "trailTitle": "Buntzen Lake"
   },
   {
-    "id": "eb14d0f4149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -252,7 +227,7 @@
     "trailTitle": "Burnaby Lake"
   },
   {
-    "id": "eb1504b5149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -261,7 +236,7 @@
     "trailTitle": "Burnaby Mountain"
   },
   {
-    "id": "eb152d93149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -270,7 +245,7 @@
     "trailTitle": "Burnett Falls"
   },
   {
-    "id": "eb155246149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -279,7 +254,7 @@
     "trailTitle": "Burns Bog Delta Nature Reserve"
   },
   {
-    "id": "eb157af5149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -288,7 +263,7 @@
     "trailTitle": "Campbell Valley Regional Park"
   },
   {
-    "id": "eb15abf5149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -297,7 +272,7 @@
     "trailTitle": "Capilano Canyon"
   },
   {
-    "id": "eb15d6b8149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -306,7 +281,7 @@
     "trailTitle": "Capilano Pacific Trail"
   },
   {
-    "id": "eb15fce8149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -315,7 +290,7 @@
     "trailTitle": "Cascade Falls"
   },
   {
-    "id": "eb16288b149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -324,7 +299,7 @@
     "trailTitle": "Chapman Falls"
   },
   {
-    "id": "eb1683dd149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": false,
@@ -333,7 +308,7 @@
     "trailTitle": "Cheakamus Lake"
   },
   {
-    "id": "eb16b3dc149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": false,
@@ -342,7 +317,7 @@
     "trailTitle": "Cheam Lake Wetlands"
   },
   {
-    "id": "eb16dcde149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -351,7 +326,7 @@
     "trailTitle": "Chilliwack Community Forest"
   },
   {
-    "id": "eb17061b149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -360,7 +335,7 @@
     "trailTitle": "Cliff Gilker Park"
   },
   {
-    "id": "eb172cc6149911eeac7a50eb7124d145",
+
     "difficulty": "Difficult",
     "publicTransit": true,
     "dogFriendly": true,
@@ -369,7 +344,7 @@
     "trailTitle": "Coliseum Mountain"
   },
   {
-    "id": "eb1751f1149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -378,7 +353,7 @@
     "trailTitle": "Colony Farm Regional Park"
   },
   {
-    "id": "eb17790a149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": false,
@@ -387,7 +362,7 @@
     "trailTitle": "Conflict Lake"
   },
   {
-    "id": "eb179f42149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -396,7 +371,7 @@
     "trailTitle": "Cool Creek Canyon"
   },
   {
-    "id": "eb17c44f149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": true,
@@ -405,7 +380,7 @@
     "trailTitle": "Coquitlam Crunch"
   },
   {
-    "id": "eb17e861149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -414,7 +389,7 @@
     "trailTitle": "Crater Rim Trail"
   },
   {
-    "id": "eb1836d6149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -423,7 +398,7 @@
     "trailTitle": "Crooked Falls"
   },
   {
-    "id": "eb185d36149911eeac7a50eb7124d145",
+    
     "difficulty": "Difficult",
     "publicTransit": true,
     "dogFriendly": false,
@@ -432,7 +407,7 @@
     "trailTitle": "Crown Mountain"
   },
   {
-    "id": "eb1883a1149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -441,7 +416,7 @@
     "trailTitle": "Crystal Falls"
   },
   {
-    "id": "eb18aa97149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -450,7 +425,7 @@
     "trailTitle": "Cypress Falls"
   },
   {
-    "id": "eb18d15a149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": false,
@@ -459,7 +434,6 @@
     "trailTitle": "Dam Mountain"
   },
   {
-    "id": "eb18f99c149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -468,7 +442,6 @@
     "trailTitle": "Deas Island Regional Park"
   },
   {
-    "id": "eb197570149911eeac7a50eb7124d145",
     "difficulty": "Difficult",
     "publicTransit": false,
     "dogFriendly": false,
@@ -477,7 +450,6 @@
     "trailTitle": "Demon Ridge"
   },
   {
-    "id": "eb19ae69149911eeac7a50eb7124d145",
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -486,7 +458,7 @@
     "trailTitle": "Derby Reach Regional Park"
   },
   {
-    "id": "eb19d77b149911eeac7a50eb7124d145",
+
     "difficulty": "Difficult",
     "publicTransit": true,
     "dogFriendly": false,
@@ -495,7 +467,7 @@
     "trailTitle": "Dilly Dally Loop"
   },
   {
-    "id": "eb1a0149149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -504,7 +476,7 @@
     "trailTitle": "Dog Mountain"
   },
   {
-    "id": "eb1a2b7c149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": true,
@@ -513,7 +485,7 @@
     "trailTitle": "Dorman Point"
   },
   {
-    "id": "eb1a54de149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -522,7 +494,7 @@
     "trailTitle": "Downes Bowl Trail"
   },
   {
-    "id": "eb1a7e55149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -531,7 +503,7 @@
     "trailTitle": "Eagle Bluffs"
   },
   {
-    "id": "eb1acdba149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": false,
@@ -540,7 +512,7 @@
     "trailTitle": "Elfin Lakes"
   },
   {
-    "id": "eb1af32f149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -549,7 +521,7 @@
     "trailTitle": "Elk Mountain"
   },
   {
-    "id": "eb1b19de149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -558,7 +530,7 @@
     "trailTitle": "Falls Lake"
   },
   {
-    "id": "eb1b40b8149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": false,
@@ -567,7 +539,7 @@
     "trailTitle": "Fisherman's Trail"
   },
   {
-    "id": "eb1b645c149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -576,7 +548,7 @@
     "trailTitle": "Flood Falls"
   },
   {
-    "id": "eb1b8aa1149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": true,
     "dogFriendly": false,
@@ -585,7 +557,7 @@
     "trailTitle": "Foreshore Trail"
   },
   {
-    "id": "eb1c195f149911eeac7a50eb7124d145",
+
     "difficulty": "Difficult",
     "publicTransit": false,
     "dogFriendly": true,
@@ -594,7 +566,7 @@
     "trailTitle": "Frosty Mountain"
   },
   {
-    "id": "eb1c4606149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": false,
@@ -603,7 +575,7 @@
     "trailTitle": "Garibaldi Lake"
   },
   {
-    "id": "eb1c6e85149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": true,
     "dogFriendly": false,
@@ -612,7 +584,7 @@
     "trailTitle": "Goat Mountain"
   },
   {
-    "id": "eb1c98f5149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -621,7 +593,7 @@
     "trailTitle": "Gold Creek Falls"
   },
   {
-    "id": "eb1cc292149911eeac7a50eb7124d145",
+
     "difficulty": "Difficult",
     "publicTransit": false,
     "dogFriendly": true,
@@ -630,7 +602,7 @@
     "trailTitle": "Golden Ears"
   },
   {
-    "id": "eb1d1bc0149911eeac7a50eb7124d145",
+
     "difficulty": "Intermediate",
     "publicTransit": false,
     "dogFriendly": true,
@@ -639,7 +611,7 @@
     "trailTitle": "Golden Ears Canyon Loop"
   },
   {
-    "id": "eb1d84d9149911eeac7a50eb7124d145",
+
     "difficulty": "Easy",
     "publicTransit": false,
     "dogFriendly": true,
@@ -648,7 +620,7 @@
     "trailTitle": "Goldie Lake"
   },
   {
-    "id": "eb1db16c149911eeac7a50eb7124d145",
+    
     "difficulty": "Difficult",
     "publicTransit": true,
     "dogFriendly": false,

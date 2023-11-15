@@ -28,7 +28,7 @@ export const TopTrailsItem = (props) => {
 			/>
 			
 			<View style={styles.content}>
-				<Text style={styles.text}>{props.item.name}</Text>
+				<Text style={styles.text}>{props.item.trailTitle}</Text>
 			</View>
 			<View style={styles.starsContainer}>{stars}</View>
     </Pressable>
