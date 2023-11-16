@@ -31,8 +31,8 @@ const HomeScreen = ({ navigation, route }) => {
     fetchTopTrails();
   }, []);
 
-  const detailsHandler = (pressedItem) => {
-		navigation.navigate('Details', {pressedItem});
+  const detailsHandler = (pressedItem, imageUri) => {
+		navigation.navigate('Details', {pressedItem, imageUri});
 	}
 
   const renderItem = ({ item }) => (
