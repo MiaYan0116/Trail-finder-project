@@ -14,7 +14,7 @@ const HomeStack = () => {
       },
       headerTintColor: themeTintColor,
     }}>
-			<Stack.Screen
+		<Stack.Screen
     	  name='Home Screen'
     	  component={HomeScreen}
     	  options={() => ({

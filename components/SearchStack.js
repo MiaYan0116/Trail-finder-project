@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import TrailDetails from './TrailDetail'
 import SearchScreen from './SearchScreen';
+import ResultsScreen from './ResultsScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor } from '../styles';
 
@@ -14,13 +15,20 @@ const SearchStack = () => {
       },
       headerTintColor: themeTintColor,
     }}>
-			<Stack.Screen
+		<Stack.Screen
     	  name='SearchScreen'
     	  component={SearchScreen}
     	  options={() => ({
     	    headerTitle: 'Search',
     	  })}
     	/>
+		<Stack.Screen
+		 name='SearchResult'
+    	  component={ResultsScreen}
+    	  options={() => ({
+    	    headerTitle: 'Results',
+    	  })}
+    	/> 
     	<Stack.Screen
     	  name='Details'
     	  component={TrailDetails}

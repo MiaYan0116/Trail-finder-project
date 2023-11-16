@@ -26,6 +26,7 @@ const SearchScreen = ({ navigation }) => {
 
 	const searchHandler = () => {
 		console.log(searchKey);
+		navigation.navigate('SearchResult');
 	}
 
 	const detailsHandler = () => {

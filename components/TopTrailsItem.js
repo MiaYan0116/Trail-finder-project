@@ -15,7 +15,9 @@ export const TopTrailsItem = (props) => {
 	}
 
   return (
-    <Pressable style={styles.container} onPress={itemPressed}>
+    <Pressable 
+		style={styles.container} 
+		onPress={itemPressed}>
 			<Image 
 				source={{ uri: imageUri }} 
 				style={styles.image}
