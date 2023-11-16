@@ -1,11 +1,10 @@
 import React from 'react'
-import { Image, StyleSheet, View, Text } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TrailDetails = ({ navigation, route }) => {
-  console.log('details:',route.params)
   const item = route.params.pressedItem;
   const imageUri = item.imageUri;
   const rate = item.rating;
@@ -30,7 +29,7 @@ const TrailDetails = ({ navigation, route }) => {
   
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 			<Image
 				source={{uri: imageUri}}
 				style={styles.image}
@@ -87,7 +86,7 @@ const TrailDetails = ({ navigation, route }) => {
           </View>
         </View>
       </View>
-		</View>
+		</ScrollView>
   )
 }
 
@@ -95,8 +94,6 @@ const styles = StyleSheet.create({
 	container:{
 		flex: 1,
 		backgroundColor: 'rgba(255,255,255,0.7)', 
-		justifyContent: 'flex-start',
-  	alignItems: 'flex-start',
     width: '100%',
 	},
 	image: {
@@ -112,7 +109,6 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 15,
 		marginLeft: 40,
-		alignItems: 'center'
 	},
 	titleText: {
 		fontSize: 30,

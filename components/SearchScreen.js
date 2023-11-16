@@ -8,10 +8,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 const SearchScreen = ({ navigation }) => {
 	const [searchKey, setSearchKey] = useState('');
 	const [rating, setRating] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [publicTransit, setPublicTransit] = useState(false);
-  const [camping, setCamping] = useState(false);
-  const [dogFriendly, setDogFriendly] = useState(false);
+	const [difficulty, setDifficulty] = useState('');
+	const [publicTransit, setPublicTransit] = useState(false);
+	const [camping, setCamping] = useState(false);
+	const [dogFriendly, setDogFriendly] = useState(false);
 
 	const [open, setOpen] = useState(false);
 	const ratingOptions = [1, 2, 2.5, 3, 3.5, 4, 4.5, 5];
@@ -20,7 +20,7 @@ const SearchScreen = ({ navigation }) => {
 	const publicTransitOptions = [false, true];
 	const campingOptions = [false, true];
 
-	const serachKeyChangeHandle = (searchInput) => {
+	const searchKeyChangeHandle = (searchInput) => {
 		setSearchKey(searchInput);
 	}
 
@@ -102,7 +102,7 @@ const SearchScreen = ({ navigation }) => {
 
 				{/* PublicTransit Input */}
 				<View style={styles.inputContainer}>
-					<Text style={styles.label}>public Transit</Text>
+					<Text style={styles.label}>Public Transit</Text>
 					<View style={styles.buttonContainer}>
 						<Pressable
 							onPress={() => {setPublicTransit(true)}}

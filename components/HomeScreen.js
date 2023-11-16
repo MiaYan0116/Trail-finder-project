@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Pressable, FlatList, Image, ImageBackground, StyleSheet, View, Text, Button } from 'react-native'
+import { Pressable, FlatList, Image, ImageBackground, StyleSheet, View, Text, Button, ScrollView } from 'react-native'
 import { backGroundImage } from '../styles';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -11,21 +11,19 @@ const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
 
   const [topTrails, setTopTrails] = useState([]);
-  console.log("top",topTrails)
   useEffect(() => {
     const fetchTopTrails = async () => {
       const trailsRef = collection(db, 'traillist');
       const q = query(trailsRef, orderBy('rating', 'desc'), limit(5))
       const querySnapshot = await getDocs(q);
       const documents = querySnapshot.docs.map(doc => doc.data());
-      console.log(documents);
       setTopTrails(documents);
     };
     fetchTopTrails();
   }, []);
 
-  const detailsHandler = (pressedItem, imageUri) => {
-		navigation.navigate('Details', {pressedItem, imageUri});
+  const detailsHandler = (pressedItem) => {
+		navigation.navigate('Details', {pressedItem});
 	}
 
   const renderItem = ({ item }) => (
@@ -41,7 +39,7 @@ const HomeScreen = ({ navigation, route }) => {
 			source={require('../assets/background_image.jpeg')}
 			style={ backGroundImage }
 		>
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<Image 
           source={require('../assets/trail_logo.png')} 
           style={styles.image}
@@ -65,7 +63,7 @@ const HomeScreen = ({ navigation, route }) => {
             <Text style={styles.tailorText}>Tailor Your Trails!</Text>
           </View>
         </Pressable>
-			</View>
+			</ScrollView>
 		</ImageBackground>
   )
 }
@@ -73,8 +71,6 @@ const styles = StyleSheet.create({
 	container:{
 		flex: 1,
 		backgroundColor: 'rgba(255,255,255,0.7)', 
-		justifyContent: 'flex-start',
-  	alignItems: 'flex-start',
     width: '100%',
 	},
 	image: {
@@ -109,12 +105,12 @@ const styles = StyleSheet.create({
   tailorTextContainer:{
     position: 'absolute',
     bottom: 40, 
-    right: 20,
+    right: 32,
   },
   tailorText:{
     fontSize: 35,
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   }
 
 })
