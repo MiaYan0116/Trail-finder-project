@@ -5,31 +5,13 @@ import {themeBackgroundColor, buttonborderRadius, themeTintColor, buttonFontSize
 import  RatingStars from './RatingStars';
 
 export const TopTrailsItem = (props) => {
+	
 	const item = props.item;
 	const rate = item.rating;
-	const [imageUri, setImageUri] = useState("");
-	console.log('uri', imageUri);
-  useEffect(() => {
-		const fetchImage = async() => {
-			try {
-				const response = await fetch(`https://api.bing.microsoft.com/v7.0/images/search?q=${item.trailTitle}`, {
-					method: 'GET',
-					headers: {
-						'Ocp-Apim-Subscription-Key': '8f17ea6d1c9a427aa26d4ff9cbe799b6',
-					},
-				});
-				const data = await response.json();
-				const uri = data.value[0].contentUrl;
-				setImageUri(uri);
-			} catch (error) {
-				console.error(error);
-			}
-		}
-		fetchImage();
-  }, [item.trailTitle]);
+	const imageUri = item.imageUri;
 
 	const itemPressed = () => {
-		props.itemPressHandle(props.item, imageUri)
+		props.itemPressHandle(props.item)
 	}
 
   return (

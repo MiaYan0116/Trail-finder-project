@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Pressable, ImageBackground, View, TextInput, Text, Button } from 'react-native'
+import { StyleSheet, Pressable, ImageBackground, View, TextInput, Text, Button, ScrollView } from 'react-native'
 import { iconSize, themeBackgroundColor, themeTintColor, backGroundImage } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SingleButton from './SingleButton'
@@ -59,7 +59,7 @@ const SearchScreen = ({ navigation }) => {
 					<Text style={styles.label}>Difficulty</Text>
 					<View style={styles.buttonContainer}>
 						<Pressable
-							onPress={() => {setDifficulty("East")}}
+							onPress={() => {setDifficulty("Easy")}}
 							style={({ pressed }) => [
 								{ backgroundColor: pressed ? "darkred" : "green" }, // Change background color on press
 								styles.difficultyButton,
@@ -203,20 +203,18 @@ const styles = StyleSheet.create({
 	container:{
 		flex: 1,
 		backgroundColor: 'rgba(255,255,255,0.7)', 
-		justifyContent: 'flex-start',
-  	alignItems: 'flex-start',
-		paddingVertical: 30
-		
+		paddingVertical: 30,
+	
 	},
 	inputContainer: {
-    flexDirection: 'row', 
-		alignItems: 'center', 
-		justifyContent: 'flex-start',
-		width: '85%',
-		padding: 5,
-		marginTop: 10,
-		marginHorizontal: 30
-  },
+		flexDirection: 'row', 
+			alignItems: 'center', 
+			justifyContent: 'flex-start',
+			width: '85%',
+			padding: 5,
+			marginTop: 10,
+			marginHorizontal: 30
+	},
 	inputs: {
 		backgroundColor: 'transparent',
 		borderColor: themeTintColor,
@@ -238,7 +236,7 @@ const styles = StyleSheet.create({
 	difficultyButton: {
 		height: 30,
 		justifyContent: 'center',
-		width: 100,
+		width: 80,
 		alignItems: 'center',
 		borderRadius: 10,
 		marginLeft: 10
@@ -248,10 +246,10 @@ const styles = StyleSheet.create({
 		height: 45,
     width: 45,
 		borderWidth: 0.5,
-    borderRadius: 25, // Half of the height for a perfect circle
-    backgroundColor: 'transparent', // You can change the background color as needed
-    justifyContent: 'center',
-    alignItems: 'center',
+		borderRadius: 25, // Half of the height for a perfect circle
+		backgroundColor: 'transparent', // You can change the background color as needed
+		justifyContent: 'center',
+		alignItems: 'center',
 	}
 	
 })

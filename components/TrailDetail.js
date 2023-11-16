@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const TrailDetails = ({ navigation, route }) => {
   console.log('details:',route.params)
   const item = route.params.pressedItem;
-  const imageUri = route.params.imageUri;
+  const imageUri = item.imageUri;
   const rate = item.rating;
   let publicTransit;
   let dogFriendly;

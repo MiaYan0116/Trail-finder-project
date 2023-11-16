@@ -6,6 +6,7 @@ import { addInitialDataToFirestore } from "../firebase/firestore";
 import data from './traillist.json';
 
 
+  /** We are not using External API at this moment
   async function fetchImageUri(item) {
     const response = await fetch(`https://api.bing.microsoft.com/v7.0/images/search?q=${item.trailTitle}`, {
         method: 'GET',
@@ -20,10 +21,11 @@ import data from './traillist.json';
   }; 
 
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  */
 
   const StartScreen = ({ navigation }) => {
     
-    
+    /** We are not using External API at this moment
     useEffect(() => {
 
       const addInitialData = async (batchSize) => {
@@ -41,7 +43,9 @@ import data from './traillist.json';
               const retries = 10;
               for (let attempt = 1; attempt <= retries; attempt++) {
                 try {
-                  item.imageUri = await fetchImageUri(item);
+                  if (item.imageUri) {
+                    item.imageUri = await fetchImageUri(item);
+                  }
                   
                   break;
                 } catch (err) {
@@ -71,6 +75,7 @@ import data from './traillist.json';
       }
       addInitialData(14);
     }, []);
+    */
 
     const startHandler = async() => {
       navigation.replace("TabNavigation");

@@ -9,13 +9,6 @@ import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
-  const list = [
-    {name: 'Grouse Grind', rate: 4.5, imageUri: "https://insidevancouver.ca/wp-content/uploads/2013/08/Grousegrind2.jpeg"},
-    {name: "St Mark's Summit", rate: 4.0, imageUri: 'https://www.insidevancouver.ca/wp-content/uploads/2021/08/vlad-d-ytAt9TT-X38-unsplash-664x434.jpg'},
-    {name: "Sea To Summit", rate: 4.0, imageUri: 'https://www.outdoorproject.com/sites/default/files/styles/hero_image_desktop/public/features/seatosummitr-2.jpg?itok=u0hYHkF-'},
-    {name: "Quarry Rock", rate: 4.5, imageUri: 'https://images.dailyhive.com/20170825082201/north-vancouver-quarry-rock-hiking-deep-cove.jpg'},
-    {name: "Tunnel Bluffs", rate: 4.7, imageUri: 'https://cdn-assets.alltrails.com/uploads/photo/image/62578510/b7c02601ffc90c343f6449758f7676f8.jpg'}
-  ]
 
   const [topTrails, setTopTrails] = useState([]);
   console.log("top",topTrails)
