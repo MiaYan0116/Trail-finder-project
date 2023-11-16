@@ -7,11 +7,20 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 const SearchScreen = ({ navigation }) => {
 	const [searchKey, setSearchKey] = useState('');
-	const [rating, setRating] = useState('');
+	const [rating, setRating] = useState(0);
 	const [difficulty, setDifficulty] = useState('');
 	const [publicTransit, setPublicTransit] = useState(false);
 	const [camping, setCamping] = useState(false);
 	const [dogFriendly, setDogFriendly] = useState(false);
+	const [ratings, setRatings] = useState([{label: '1', value: '1'},
+											{label: '2', value: '2'},
+											{label: '2.5', value: '2.5'},
+											{label: '3', value: '3'},
+											{label: '3.5', value: '3.5'},
+											{label: '4', value: '4'},
+											{label: '4.5', value: '4.5'},
+											{label: '5', value: '5'},
+										]);
 
 	const [open, setOpen] = useState(false);
 	const ratingOptions = [1, 2, 2.5, 3, 3.5, 4, 4.5, 5];
@@ -20,13 +29,17 @@ const SearchScreen = ({ navigation }) => {
 	const publicTransitOptions = [false, true];
 	const campingOptions = [false, true];
 
+	/** 
 	const searchKeyChangeHandle = (searchInput) => {
 		setSearchKey(searchInput);
 	}
+	*/
 
 	const searchHandler = () => {
-		console.log(searchKey);
-		navigation.navigate('SearchResult');
+		const searchInput = {"rating": rating, "difficulty": difficulty, "publicTransit": publicTransit, "camping": camping, "dogFriendly": dogFriendly};
+		console.log(searchInput);
+		setSearchKey(searchInput);
+		navigation.navigate('SearchResult', searchInput);
 	}
 
 	const detailsHandler = () => {
@@ -40,7 +53,7 @@ const SearchScreen = ({ navigation }) => {
 		>	
 			<View style={styles.container}>
 				{/* Rating Input */}
-				<View style={styles.inputContainer}>
+				<View style={styles.dropDownContainer}>
 					<Text style={styles.label}>Rating</Text>
 					<DropDownPicker
 						style={styles.inputs}
@@ -49,7 +62,7 @@ const SearchScreen = ({ navigation }) => {
 						items={ratingOptions.map(value => ({ label: `${value}`, value }))}
 						setOpen={setOpen}
 						setValue={setRating}
-						setItems={() => {}}
+						setItems={setRatings}
 						multiple={false}
 						scrollViewProps={{ maxHeight: 120 }}
 					/>
@@ -205,16 +218,28 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: 'rgba(255,255,255,0.7)', 
 		paddingVertical: 30,
+		zIndex: 999,
 	
 	},
 	inputContainer: {
 		flexDirection: 'row', 
-			alignItems: 'center', 
-			justifyContent: 'flex-start',
-			width: '85%',
-			padding: 5,
-			marginTop: 10,
-			marginHorizontal: 30
+		alignItems: 'center', 
+		justifyContent: 'flex-start',
+		width: '85%',
+		padding: 5,
+		marginTop: 10,
+		marginHorizontal: 30,
+		zIndex: 999,
+	},
+	dropDownContainer: {
+		flexDirection: 'row', 
+		alignItems: 'center', 
+		justifyContent: 'flex-start',
+		width: '85%',
+		padding: 5,
+		marginTop: 10,
+		marginHorizontal: 30,
+		zIndex: 1000,
 	},
 	inputs: {
 		backgroundColor: 'transparent',
@@ -222,7 +247,8 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		margin: 15,
 		height: 20,
-		width: '90%'
+		width: '90%',
+		zIndex: 1001,
 	},
 	label: {
 		fontWeight: 'bold',
@@ -233,6 +259,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10, 
 		marginVertical: 5,
 		flexDirection: 'row', 
+		zIndex: 999,
 	},
 	difficultyButton: {
 		height: 30,
@@ -240,17 +267,19 @@ const styles = StyleSheet.create({
 		width: 80,
 		alignItems: 'center',
 		borderRadius: 10,
-		marginLeft: 10
+		marginLeft: 10,
+		zIndex: 999,
 	},
 	button: {
 		marginHorizontal: 10,
 		height: 45,
-    width: 45,
+    	width: 45,
 		borderWidth: 0.5,
 		borderRadius: 25, // Half of the height for a perfect circle
 		backgroundColor: 'transparent', // You can change the background color as needed
 		justifyContent: 'center',
 		alignItems: 'center',
+		zIndex: 999,
 	}
 	
 })

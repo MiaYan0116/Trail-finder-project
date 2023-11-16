@@ -6,30 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ResultsScreen = ({ navigation, route }) => {
   console.log(route);
-
-  /** 
-  const item = route.params.pressedItem;
-  const imageUri = item.imageUri;
-  const rate = item.rating;
-  let publicTransit;
-  let dogFriendly;
-  let camping;
-  if(item.publicTransit === false){
-    publicTransit = 'No';
-  }else{
-    publicTransit = 'Yes';
-  }
-  if(item.dogFriendly === false){
-    dogFriendly = 'No';
-  }else{
-    dogFriendly = 'Yes';
-  }
-  if(item.camping === false){
-    camping = 'No';
-  }else{
-    camping = 'Yes';
-  }
-  */
+  const { camping, difficulty, dogFriendly, publicTransit, rating } = route.params;
+  console.log(rating);
 
   return (
     <Text style={styles.titleText}>aaa</Text>
