@@ -9,7 +9,6 @@ export const TopTrailsItem = (props) => {
 	const item = props.item;
 	const rate = item.rating;
 	const imageUri = item.imageUri;
-
 	const itemPressed = () => {
 		props.itemPressHandle(props.item)
 	}
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 5,
 		overflow: 'hidden',
 		width: 145,
+		marginBottom: 10,
 	},
 	content: {
 		flexDirection: 'row',
