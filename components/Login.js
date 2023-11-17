@@ -4,6 +4,7 @@ import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, butt
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseSetup'
+import { getUserById } from '../firebase/firestore'
 
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState("");
@@ -24,7 +25,8 @@ const Login = ({ navigation }) => {
 			return;
 		}
 		try {
-			await signInWithEmailAndPassword(auth, email, password)
+			const userCredential = await signInWithEmailAndPassword(auth, email, password)
+			navigation.replace('ProfileScreen')
 		} catch (error) {
 			if(error.code === 'auth/invalid-email'){
 				Alert.alert("invalid email")
