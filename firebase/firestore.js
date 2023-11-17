@@ -15,8 +15,6 @@ import {
 } from "@firebase/firestore";
 import { db } from "./firebaseSetup";
 
-
-
 export async function addInitialDataToFirestore(data) {
   try {
     const { trailTitle } = data;
@@ -38,6 +36,25 @@ export async function addInitialDataToFirestore(data) {
   }
 }
 
+export async function addUserToFireStore(user){
+  try {
+    const userRef = collection(db, 'users');
+    const docRef = await addDoc(userRef, user);
+    const documentId = docRef.id;
+    return documentId;
+  } catch (error) {
+    logError(error);
+  }
+}
+
+export async function updateUser(updateduser){
+  try {
+    const userRef = collection(db, 'users');
+
+  } catch (error) {
+    
+  }
+}
 
 function logError(err) {
   console.log(err);

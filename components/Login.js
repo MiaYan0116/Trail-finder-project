@@ -25,6 +25,7 @@ const Login = ({ navigation }) => {
 		}
 		try {
 			await signInWithEmailAndPassword(auth, email, password)
+			navigation.replace('ProfileScreen')
 		} catch (error) {
 			if(error.code === 'auth/invalid-email'){
 				Alert.alert("invalid email")

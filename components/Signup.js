@@ -4,7 +4,7 @@ import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, butt
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseSetup';
-
+import { addUserToFireStore } from '../firebase/firestore'
 const Signup = ({ navigation }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -33,7 +33,15 @@ const Signup = ({ navigation }) => {
 		}
 		try {
 			const userCred = await createUserWithEmailAndPassword(auth, email, password);
-			console.log(userCred);
+			const user = {
+				username: 'momo',
+				email: email,
+				description: 'A new user!',
+				avatarUri: 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png',
+				uid: userCred.user.uid
+			}
+			const ucid = addUserToFireStore(user);
+			navigation.replace('ProfileScreen')
 		} catch (error) {
 			console.log("signup err", error.code)
 			if(error.code === 'auth/invalid-email'){
@@ -159,8 +167,8 @@ const styles = StyleSheet.create({
 		margin: 20,
 		padding: 10,
 		width: 200,
-		borderWidth: 2, // Add border width
-    borderColor: themeTintColor, // Add border color
+		borderWidth: 2, 
+    borderColor: themeTintColor, 
     borderRadius: buttonborderRadius,
 	},
 	buttonText: {
