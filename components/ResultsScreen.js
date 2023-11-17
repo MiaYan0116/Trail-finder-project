@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, FlatList } from 'react-native'
+import { StyleSheet, View, Text, FlatList } from 'react-native'
 import TopTrailsItem from './TopTrailsItem';
 import {
   collection,
@@ -11,6 +11,7 @@ import { db } from "../firebase/firebaseSetup";
 
 const ResultsScreen = ({ navigation, route }) => {
   const [resultList, setResultList] = useState([]);
+  const [isResultExist, setIsResultExist] = useState(false);
   const { camping, difficulty, dogFriendly, publicTransit, rating } = route.params;
   const ratingUpperLimit = rating + 0.5;
 
@@ -45,27 +46,33 @@ const ResultsScreen = ({ navigation, route }) => {
           });
         }
         setResultList(newArray);
+
         console.log(resultList);
       },
       (err) => {
         console.log(err);
       }
     );
+    
     return () => {
       unsubscribe();
+      setIsResultExist(resultList != []); 
     };
   }, []);
 
 
   return (
     <View style={styles.listContainer}>
-      <FlatList
+      { isResultExist ? 
+      (<FlatList
         data={resultList}
         horizontal={false}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={true}
-      />
+      />) : 
+      (<Text style={styles.text}>No trail found. Please amend your search filters.</Text>)
+      }
     </View>  
   )
 }
@@ -80,6 +87,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   
+	text:{
+		padding: 7,
+		fontSize: 16,
+	},
 })
 
 export default ResultsScreen
