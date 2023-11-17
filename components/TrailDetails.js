@@ -5,6 +5,7 @@ import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TrailDetails = ({ navigation, route }) => {
+  console.log('TrailDetails component loaded');
   const item = route.params.pressedItem;
   const [isLiked, setIsLiked] = useState(false);
   const imageUri = item.imageUri;
@@ -29,6 +30,12 @@ const TrailDetails = ({ navigation, route }) => {
   }
   
 
+  const handlePress = () => {
+    setIsLiked(!isLiked);
+    console.log(isLiked);
+  }
+
+
   return (
     <ScrollView style={styles.container}>
 			<Image
@@ -38,9 +45,17 @@ const TrailDetails = ({ navigation, route }) => {
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
-          {isLiked ? (
-            <Icon name="heart" size={25} color={themeBackgroundColor}/>
-          ) : <Icon name="heart-o"  size={25} color={themeBackgroundColor}/>}
+          <Pressable onPress={handlePress}>
+            {({ pressed }) => (
+              <Icon
+                name={isLiked ? 'heart' : 'heart-o'}
+                size={25}
+                color={pressed ? 'gray' : themeBackgroundColor}
+              />
+            )}
+          </Pressable>
+
+ 
         </View>
         <View style={styles.infoContainer}>
           <View style={styles.listItem}>

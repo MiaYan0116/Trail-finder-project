@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import TrailDetails from './TrailDetail'
+import TrailDetails from './TrailDetails';
 import SearchScreen from './SearchScreen';
 import ResultsScreen from './ResultsScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

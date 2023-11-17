@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import TrailDetails from './TrailDetail'
+import TrailDetails from './TrailDetails';
 import HomeScreen from './HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor } from '../styles';
