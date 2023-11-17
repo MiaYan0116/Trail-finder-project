@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Text, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList, Text } from 'react-native'
 import TopTrailsItem from './TopTrailsItem';
 import {
   collection,
@@ -45,18 +45,16 @@ const ResultsScreen = ({ navigation, route }) => {
             newArray.push({ ...docSnap.data(), id: docSnap.id });
           });
         }
+        setIsResultExist(newArray && newArray.length);
         setResultList(newArray);
-
-        console.log(resultList);
+        
       },
       (err) => {
         console.log(err);
       }
     );
-    
     return () => {
       unsubscribe();
-      setIsResultExist(resultList != []); 
     };
   }, []);
 
@@ -70,7 +68,7 @@ const ResultsScreen = ({ navigation, route }) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={true}
-      />) : 
+      />) :
       (<Text style={styles.text}>No trail found. Please amend your search filters.</Text>)
       }
     </View>  
@@ -87,10 +85,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   
-	text:{
-		padding: 7,
-		fontSize: 16,
-	},
 })
 
 export default ResultsScreen

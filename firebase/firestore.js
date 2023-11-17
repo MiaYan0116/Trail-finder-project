@@ -39,6 +39,9 @@ export async function addInitialDataToFirestore(data) {
 }
 
 
+
+
+
 function logError(err) {
   console.log(err);
 }

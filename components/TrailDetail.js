@@ -1,11 +1,12 @@
-import React from 'react'
-import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { Pressable, Image, StyleSheet, View, Text, ScrollView } from 'react-native'
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TrailDetails = ({ navigation, route }) => {
   const item = route.params.pressedItem;
+  const [isLiked, setIsLiked] = useState(false);
   const imageUri = item.imageUri;
   const rate = item.rating;
   let publicTransit;
@@ -37,6 +38,9 @@ const TrailDetails = ({ navigation, route }) => {
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
+          {isLiked ? (
+            <Icon name="heart" size={25} color={themeBackgroundColor}/>
+          ) : <Icon name="heart-o"  size={25} color={themeBackgroundColor}/>}
         </View>
         <View style={styles.infoContainer}>
           <View style={styles.listItem}>
@@ -108,13 +112,17 @@ const styles = StyleSheet.create({
 		width: '100%',
     height: 50,
     paddingHorizontal: 15,
-		marginLeft: 40,
+		marginLeft: 35,
+    flexDirection: "row",
+    
 	},
 	titleText: {
 		fontSize: 30,
 		fontWeight: 'bold',
-		color: themeBackgroundColor
+		color: themeBackgroundColor,
+    marginRight: 25,
 	},
+
   starsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
