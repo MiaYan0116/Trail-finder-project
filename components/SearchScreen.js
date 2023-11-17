@@ -6,12 +6,12 @@ import SingleButton from './SingleButton'
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const SearchScreen = ({ navigation }) => {
-	const [searchKey, setSearchKey] = useState('');
+	const [searchKey, setSearchKey] = useState("");
 	const [rating, setRating] = useState(0);
-	const [difficulty, setDifficulty] = useState('');
-	const [publicTransit, setPublicTransit] = useState(false);
-	const [camping, setCamping] = useState(false);
-	const [dogFriendly, setDogFriendly] = useState(false);
+	const [difficulty, setDifficulty] = useState("");
+	const [publicTransit, setPublicTransit] = useState("");
+	const [camping, setCamping] = useState("");
+	const [dogFriendly, setDogFriendly] = useState("");
 	const [ratings, setRatings] = useState([{label: '1', value: '1'},
 											{label: '2', value: '2'},
 											{label: '2.5', value: '2.5'},
@@ -25,9 +25,9 @@ const SearchScreen = ({ navigation }) => {
 	const [open, setOpen] = useState(false);
 	const ratingOptions = [1, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 	const difficultyOptions = ['Easy', 'Difficult', 'Intermediate'];
-	const dogOptions = [false, true];
-	const publicTransitOptions = [false, true];
-	const campingOptions = [false, true];
+	const dogOptions = ["FALSE", "TRUE"];
+	const publicTransitOptions = ["FALSE", "TRUE"];
+	const campingOptions = ["FALSE", "TRUE"];
 
 	/** 
 	const searchKeyChangeHandle = (searchInput) => {
@@ -37,13 +37,8 @@ const SearchScreen = ({ navigation }) => {
 
 	const searchHandler = () => {
 		const searchInput = {"rating": rating, "difficulty": difficulty, "publicTransit": publicTransit, "camping": camping, "dogFriendly": dogFriendly};
-		console.log(searchInput);
 		setSearchKey(searchInput);
 		navigation.navigate('SearchResult', searchInput);
-	}
-
-	const detailsHandler = () => {
-		navigation.navigate("Details")
 	}
 
   return (
@@ -119,7 +114,7 @@ const SearchScreen = ({ navigation }) => {
 					<Text style={styles.label}>Public Transit</Text>
 					<View style={styles.buttonContainer}>
 						<Pressable
-							onPress={() => {setPublicTransit(true)}}
+							onPress={() => {setPublicTransit("TRUE")}}
 							style={({ pressed }) => [
 								styles.button,
 								{
@@ -130,7 +125,7 @@ const SearchScreen = ({ navigation }) => {
 							<Text style={{color: themeBackgroundColor, fontWeight: 'bold', fontSize: 15}}>Yes</Text>
 						</Pressable>
 						<Pressable
-							onPress={() => {setPublicTransit(false)}}
+							onPress={() => {setPublicTransit("FALSE")}}
 							style={({ pressed }) => [
 								styles.button,
 								{
@@ -148,7 +143,7 @@ const SearchScreen = ({ navigation }) => {
 					<Text style={styles.label}>Camping</Text>
 					<View style={{marginLeft: 40, flexDirection: 'row', }}>
 						<Pressable
-							onPress={() => {setCamping(true)}}
+							onPress={() => {setCamping("TRUE")}}
 							style={({ pressed }) => [
 								styles.button,
 								{
@@ -159,7 +154,7 @@ const SearchScreen = ({ navigation }) => {
 							<Text style={{color: themeBackgroundColor, fontWeight: 'bold', fontSize: 15}}>Yes</Text>
 						</Pressable>
 						<Pressable
-							onPress={() => {setCamping(false)}}
+							onPress={() => {setCamping("FALSE")}}
 							style={({ pressed }) => [
 								styles.button,
 								{
@@ -177,7 +172,7 @@ const SearchScreen = ({ navigation }) => {
 						<Text style={styles.label}>Dog Friendly</Text>
 						<View style={styles.buttonContainer}>
 							<Pressable
-								onPress={() => { setDogFriendly(true) }} 
+								onPress={() => { setDogFriendly("TRUE") }} 
 								style={({ pressed }) => [
 									styles.button,
 									{
@@ -188,7 +183,7 @@ const SearchScreen = ({ navigation }) => {
 								<Text style={{ color: themeBackgroundColor, fontWeight: 'bold', fontSize: 15 }}>Yes</Text>
 							</Pressable>
 							<Pressable
-								onPress={() => { setDogFriendly(false) }} 
+								onPress={() => { setDogFriendly("FALSE") }} 
 								style={({ pressed }) => [
 									styles.button,
 									{

@@ -1,133 +1,85 @@
-import React from 'react'
-import { Image, StyleSheet, View, Text, FlatList } from 'react-native'
-import { themeBackgroundColor } from '../styles'
-import RatingStars from './RatingStars'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, View, FlatList } from 'react-native'
+import TopTrailsItem from './TopTrailsItem';
+import {
+  collection,
+  onSnapshot, 
+  query, 
+  where, 
+} from "@firebase/firestore";
+import { db } from "../firebase/firebaseSetup";
 
 const ResultsScreen = ({ navigation, route }) => {
-  console.log(route);
+  const [resultList, setResultList] = useState([]);
   const { camping, difficulty, dogFriendly, publicTransit, rating } = route.params;
-  console.log(rating);
+  const ratingUpperLimit = rating + 0.5;
+
+  const renderItem = ({ item }) => (
+    <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
+  );
+
+  const detailsHandler = (pressedItem) => {
+		navigation.navigate('Details', {pressedItem});
+	}
+
+
+  useEffect(() => {
+    const q = query(
+      collection(db, "traillist"),
+      where("camping", "==", camping),
+      where("difficulty", "==", difficulty),
+      where("dogFriendly", "==", dogFriendly),
+      where("publicTransit", "==", publicTransit),      
+      where("rating", "<", ratingUpperLimit),
+      where("rating", ">=", rating),
+    );
+
+    const unsubscribe = onSnapshot(
+      q,
+      (querySnapshot) => {
+        let newArray = [];
+        if (!querySnapshot.empty) {
+          // use a for loop to call .data() on each item of querySnapshot.docs
+          querySnapshot.docs.forEach((docSnap) => {
+            newArray.push({ ...docSnap.data(), id: docSnap.id });
+          });
+        }
+        setResultList(newArray);
+        console.log(resultList);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
 
   return (
-    <Text style={styles.titleText}>aaa</Text>
-    /**
-    <ScrollView style={styles.container}>
-			<Image
-				source={{uri: imageUri}}
-				style={styles.image}
-			/>
-      <View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>{item.trailTitle}</Text>
-        </View>
-        <View style={styles.infoContainer}>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='star' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Rating</Text>
-              <Text>{RatingStars({ rate })}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='bus' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Public Transit</Text>
-              <Text>{publicTransit}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='paw' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Dog Friendly</Text>
-              <Text>{dogFriendly}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='wrench' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Difficulty</Text>
-              <Text>{item.difficulty}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='fire' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Camping</Text>
-              <Text>{camping}</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-		</ScrollView>
-     */
+    <View style={styles.listContainer}>
+      <FlatList
+        data={resultList}
+        horizontal={false}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={true}
+      />
+    </View>  
   )
 }
 
 const styles = StyleSheet.create({
-	container:{
-		flex: 1,
-		backgroundColor: 'rgba(255,255,255,0.7)', 
-    width: '100%',
-	},
-	image: {
-    marginTop: 40,
-		marginBottom: 20,
-    marginLeft: 40,
-    width: '80%',
-    height: 260,
-    resizeMode: 'cover',
-  },
-  titleContainer:{
-		width: '100%',
-    height: 50,
-    paddingHorizontal: 15,
-		marginLeft: 40,
-	},
-	titleText: {
-		fontSize: 30,
-		fontWeight: 'bold',
-		color: themeBackgroundColor
-	},
-  starsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    top: 7, 
-    right: 10, 
-  },
-  infoContainer: {
-    // flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+  listContainer:{
+    flexDirection: 'column',
+    width: '92%',
     marginLeft: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  listItem: {
-    flexDirection: 'row',
+    marginRight: 20,
+    marginVertical: 20,
     alignItems: 'center',
-    marginVertical: 7
   },
-  iconContainer: {
-    marginRight: 10,
-  },
-  label: {
-    fontWeight: 'bold',
-    fontSize: 17,
-    color: themeBackgroundColor
-  },
+  
 })
 
 export default ResultsScreen
