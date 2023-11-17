@@ -5,80 +5,58 @@ import { db, auth } from '../firebase/firebaseSetup';
 import { collection, query, where, getDocs } from "@firebase/firestore";
 import { container, themeBackgroundColor } from '../styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
 
 const ProfileScreen = ({ navigation }) => {
-  console.log("auth", auth.currentUser.uid);
-  const [user, setUser] = useState(null);
-  let initialDes;
-  let initialName;
-
-  if(user){
-    initialDes = user.description;
-    initialName = user.username
-  }else{
-    initialDes = ''
-    initialName = ''
-  }
-  const [description, setDescription] = useState(initialDes);
-  const [username, setUsername] = useState(initialName);
-  console.log("user:", user);
-
-
+  const [user, setUser] = useState({});
+  const [description, setDescription] = useState('');
+  const [username, setUsername] = useState('');
+  const [userCid, setUserCid] = useState('');
   useEffect(() => {
-    const getUserData = async () => {
+    const fetchUserData = async () => {
       try {
-        const q = query(
-          collection(db, 'users'),
-          where('uid', '==', auth.currentUser.uid)
-        );
-        const querySnapshot = await getDocs(q);
-  
-        // Check if the document exists
-        if (querySnapshot.size > 0) {
-          // Assuming there is only one document with the given UID
-          const userData = querySnapshot.docs[0].data();
-          setUser(userData);
-        } else {
-          // Handle the case where no matching document is found
-          setUser(null);
+        if (auth.currentUser) {
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
+          setUser(userData || {});
+          setDescription(userData.description || '');
+          setUsername(userData.username || '');
+          setUserCid(userId || '');
         }
       } catch (error) {
-        console.error('Error getting user data:', error);
-        // Handle the error as needed
+        console.error('Error fetching user data:', error);
       }
     };
   
-    // Call the function to get user data when the component mounts
-    getUserData();
+    fetchUserData();
   }, []);
-  
-    
+
+
   const usernameChangeHandler = (username) => {
     setUsername(username);
   }
-
   const descriptionChangeHandler = (description) => {
     setDescription(description);
   }
 
-  const saveHandler = () => {
-    const updatedUser = {
+  const saveHandler = async () => {
+    const updatedField = {
       username: username,
       description: description,
-      email: user.email,
-      uid: user.uid
     }
-    console.log(updatedUser);
+    await updateUser(userCid, updatedField);
+    console.log(updatedField);
   }
-
+  const LogOutHandler = () => {
+    LogOut();
+    navigation.replace('Login');
+  }
   const loginHandler = () => {
-		navigation.navigate('Login');
-	}
-
+    navigation.navigate('Login');
+  }
+  
   return (
     <View style={container}>
-      {user && <View>
+      {auth.currentUser && <View>
         <Image 
           source={{uri: user.avatarUri}}
           style={styles.avatar}
@@ -102,9 +80,13 @@ const ProfileScreen = ({ navigation }) => {
             onChangeText={descriptionChangeHandler}
           />
         </View>
-        <Button title="Save" onPress={saveHandler}/>
+        <View style={{flexDirection: 'row'}}>
+          <Button title="Save" onPress={saveHandler}/>
+          <Button title="Log out" onPress={LogOutHandler}/>
+        </View>
+        
       </View>}
-      {!user && <Button title="Login" onPress={loginHandler}/>}
+      {!auth.currentUser && <Button title="Login" onPress={loginHandler}/>}
     </View>
   )
 }

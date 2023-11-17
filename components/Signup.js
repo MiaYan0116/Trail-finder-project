@@ -42,6 +42,7 @@ const Signup = ({ navigation }) => {
 			}
 			const ucid = addUserToFireStore(user);
 			navigation.replace('ProfileScreen')
+
 		} catch (error) {
 			console.log("signup err", error.code)
 			if(error.code === 'auth/invalid-email'){
