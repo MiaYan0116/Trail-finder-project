@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { Pressable, Image, StyleSheet, View, Text, ScrollView } from 'react-native'
+import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
+import { addWishItemToFireStore } from '../firebase/firestore';
+
 
 const TrailDetails = ({ navigation, route }) => {
-  console.log('TrailDetails component loaded');
+
   const item = route.params.pressedItem;
   const [isLiked, setIsLiked] = useState(false);
   const imageUri = item.imageUri;
@@ -30,9 +34,45 @@ const TrailDetails = ({ navigation, route }) => {
   }
   
 
+  const [user, setUser] = useState({});
+  const [description, setDescription] = useState('');
+  const [username, setUsername] = useState('');
+  const [userCid, setUserCid] = useState('');
+
+
+    const fetchUserData = async () => {
+      try {
+        if (auth.currentUser) {
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
+          setUser(userData || {});
+          setDescription(userData.description || '');
+          setUsername(userData.username || '');
+          setUserCid(userId || '');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
   const handlePress = () => {
-    setIsLiked(!isLiked);
-    console.log(isLiked);
+    if (auth.currentUser) {
+      fetchUserData();
+      console.log(user);
+      setIsLiked(!isLiked);
+      const wishData = {"user": userCid, "trailTitle": item.trailTitle}
+      if (isLiked) {
+        addWishItemToFireStore(wishData);
+      } 
+      //else {
+       // removeWishItemToFireStore(userCid, trailTitle);
+     // }
+
+
+    } else {
+      console.log("You need to login first");
+      navigation.navigate('Login');
+    }
+
   }
 
 
