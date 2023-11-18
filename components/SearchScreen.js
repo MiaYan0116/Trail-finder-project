@@ -29,12 +29,6 @@ const SearchScreen = ({ navigation }) => {
 	const publicTransitOptions = ["FALSE", "TRUE"];
 	const campingOptions = ["FALSE", "TRUE"];
 
-	/** 
-	const searchKeyChangeHandle = (searchInput) => {
-		setSearchKey(searchInput);
-	}
-	*/
-
 	const searchHandler = () => {
 		const searchInput = {"rating": rating, "difficulty": difficulty, "publicTransit": publicTransit, "camping": camping, "dogFriendly": dogFriendly};
 		setSearchKey(searchInput);

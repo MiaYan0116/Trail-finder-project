@@ -49,6 +49,26 @@ export const addUserToFireStore = async (user) => {
   }
 }
 
+
+export const addWishItemToFireStore = async (wishData) => {
+  try {
+    const wishRef = collection(db, 'wishlist');
+    const docRef = await addDoc(wishRef, wishData);
+    const documentId = docRef.id;
+    return documentId;
+  } catch (error) {
+    logError(error);
+  }
+}
+
+/*
+export const removeWishItemToFireStore = async (userCid, trailTitle) => {
+  try{
+
+  }
+}
+*/
+
 export const getUserByUserAuthId = async (userAuthId) => {
   try {
     const usersCollection = collection(db, 'users');
@@ -85,6 +105,9 @@ export async function LogOut(){
     logError(error)
   }
 }
+
+
+
 
 function logError(err) {
   console.log(err);

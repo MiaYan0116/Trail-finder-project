@@ -1,11 +1,17 @@
-import React from 'react'
-import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { Pressable, Image, StyleSheet, View, Text, ScrollView } from 'react-native'
+import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
+import { addWishItemToFireStore } from '../firebase/firestore';
+
 
 const TrailDetails = ({ navigation, route }) => {
+
   const item = route.params.pressedItem;
+  const [isLiked, setIsLiked] = useState(false);
   const imageUri = item.imageUri;
   const rate = item.rating;
   let publicTransit;
@@ -28,6 +34,48 @@ const TrailDetails = ({ navigation, route }) => {
   }
   
 
+  const [user, setUser] = useState({});
+  const [description, setDescription] = useState('');
+  const [username, setUsername] = useState('');
+  const [userCid, setUserCid] = useState('');
+
+
+    const fetchUserData = async () => {
+      try {
+        if (auth.currentUser) {
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
+          setUser(userData || {});
+          setDescription(userData.description || '');
+          setUsername(userData.username || '');
+          setUserCid(userId || '');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+  const handlePress = () => {
+    if (auth.currentUser) {
+      fetchUserData();
+      console.log(user);
+      setIsLiked(!isLiked);
+      const wishData = {"user": userCid, "trailTitle": item.trailTitle}
+      if (isLiked) {
+        addWishItemToFireStore(wishData);
+      } 
+      //else {
+       // removeWishItemToFireStore(userCid, trailTitle);
+     // }
+
+
+    } else {
+      console.log("You need to login first");
+      navigation.navigate('Login');
+    }
+
+  }
+
+
   return (
     <ScrollView style={styles.container}>
 			<Image
@@ -37,6 +85,17 @@ const TrailDetails = ({ navigation, route }) => {
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
+          <Pressable onPress={handlePress}>
+            {({ pressed }) => (
+              <Icon
+                name={isLiked ? 'heart' : 'heart-o'}
+                size={25}
+                color={pressed ? 'gray' : themeBackgroundColor}
+              />
+            )}
+          </Pressable>
+
+ 
         </View>
         <View style={styles.infoContainer}>
           <View style={styles.listItem}>
@@ -108,13 +167,17 @@ const styles = StyleSheet.create({
 		width: '100%',
     height: 50,
     paddingHorizontal: 15,
-		marginLeft: 40,
+		marginLeft: 35,
+    flexDirection: "row",
+    
 	},
 	titleText: {
 		fontSize: 30,
 		fontWeight: 'bold',
-		color: themeBackgroundColor
+		color: themeBackgroundColor,
+    marginRight: 25,
 	},
+
   starsContainer: {
     flexDirection: 'row',
     alignItems: 'center',

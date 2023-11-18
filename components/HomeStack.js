@@ -1,9 +1,13 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import TrailDetails from './TrailDetail'
+import TrailDetails from './TrailDetails';
 import HomeScreen from './HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor } from '../styles';
+import Login from './Login';
+import ProfileScreen from './ProfileScreen';
+import Signup from './Signup'
+
 
 const Stack = createNativeStackNavigator();
 const HomeStack = () => {
@@ -28,6 +32,27 @@ const HomeStack = () => {
     	    headerTitle: 'Details',
     	  })}
     	/>
+		<Stack.Screen
+			name='Login'
+			component={Login}
+			options={() => ({
+				headerTitle: 'Login',
+			})}
+		/>
+		<Stack.Screen
+				name='Signup'
+				component={Signup}
+				options={() => ({
+					headerTitle: 'Signup',
+				})}
+		/>
+		<Stack.Screen
+				name='ProfileScreen'
+				component={ProfileScreen}
+				options={() => ({
+					headerTitle: 'Profile',
+				})}
+		/>
     </Stack.Navigator>
   )
 }
