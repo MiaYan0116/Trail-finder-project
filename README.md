@@ -26,7 +26,7 @@
 #### Profile page: after successfully logging in, the user will see the profile page, and can upload an avatar image or edit the description and username.
 ![Login](login.jpg)
 ![Signup](signup.jpg)
-![ProfileScreen](profile.jpg)
+![Profile](profile.png)
 
 * SearchScreen
 #### Display the search page for user to select the trail features they want to have. When the user hit the search button, a result screen will be navigated to.
