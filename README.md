@@ -2,8 +2,8 @@
 ## Team Members
 ## （Mia）Jiaxin Yan，（Grace）Ya Xiao
 
-# Data Model
-## The data model of TrailFinder app includes the following three collections:
+## Data Model
+### The data model of TrailFinder app includes the following three collections:
 
 ## 1. traillist
 ### Description:
@@ -48,8 +48,8 @@
 ### the list of liked trails of each app user
 
 ### Attributes:
-### createdAt: the time of the wishitem created
+#### createdAt: the time of the wishitem created
 
-### userCid: unique identifier of the user
+#### userCid: unique identifier of the user
 
-### trailTitle: the title of the trail
+#### trailTitle: the title of the trail
