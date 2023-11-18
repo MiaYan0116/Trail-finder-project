@@ -51,23 +51,51 @@ export const addUserToFireStore = async (user) => {
 
 
 export const addWishItemToFireStore = async (wishData) => {
+  wishData.createdAt = Timestamp.now();
   try {
-    const wishRef = collection(db, 'wishlist');
-    const docRef = await addDoc(wishRef, wishData);
-    const documentId = docRef.id;
-    return documentId;
-  } catch (error) {
-    logError(error);
+    const { userCid, trailTitle } = wishData;
+    // Check if a document with the given wishData already exists
+    const wishlistRef = collection(db, 'wishlist');
+    const q = query(wishlistRef, where('userCid', '==', userCid), where('trailTitle', '==', trailTitle));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      // No existing document found, add the new one
+      await addDoc(wishlistRef, wishData);
+      console.log(`Document with trailTitle ${trailTitle} and userCid ${userCid} added to wishlist of Firestore.`);
+    } else {
+      console.log(`Document with trailTitle ${trailTitle} and userCid ${userCid} already exists in the wishlist of Firestore. Skipped.`);
+    }
+  } catch (err) {
+    logError(err);
   }
+
 }
 
-/*
-export const removeWishItemToFireStore = async (userCid, trailTitle) => {
-  try{
 
+export const deleteWishItemFromFireStore = async (userCid, trailTitle) => {
+  try {
+    const wishlistRef = collection(db, 'wishlist');
+    
+    // Check if a document with the given userCid and trailTitle exists
+    const q = query(wishlistRef, where('userCid', '==', userCid), where('trailTitle', '==', trailTitle));
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
+
+    if (!querySnapshot.empty) {
+      // Document found, delete it
+      querySnapshot.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+        console.log(`Document with trailTitle ${trailTitle} and userCid ${userCid} deleted from wishlist in Firestore.`);
+      });
+    } else {
+      console.log(`Document with trailTitle ${trailTitle} and userCid ${userCid} not found in the wishlist of Firestore. Nothing to delete.`);
+    }
+  } catch (err) {
+    logError(err);
   }
-}
-*/
+};
+
 
 export const getUserByUserAuthId = async (userAuthId) => {
   try {
@@ -91,8 +119,9 @@ export const getUserByUserAuthId = async (userAuthId) => {
 export const updateUser = async (userid, updatedField) => {
   try {
     const userCollectionRef = collection(db, 'users');
-    const userRef = doc(userCollectionRef, userid)
+    const userRef = doc(userCollectionRef, userid);
     await updateDoc(userRef, updatedField);
+    console.log(`User with userid ${userid} updated in Firestore.`)
   } catch (error) {
     console.error('Error updating user:', error);
   }

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pressable, Image, StyleSheet, View, Text, ScrollView } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
-import { addWishItemToFireStore } from '../firebase/firestore';
+import { LogOut, deleteWishItemToFireStore, getUserByUserAuthId, updateUser } from '../firebase/firestore';
+import { addWishItemToFireStore, deleteWishItemFromFireStore } from '../firebase/firestore';
 
 
 const TrailDetails = ({ navigation, route }) => {
@@ -40,6 +40,7 @@ const TrailDetails = ({ navigation, route }) => {
   const [userCid, setUserCid] = useState('');
 
 
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         if (auth.currentUser) {
@@ -53,28 +54,36 @@ const TrailDetails = ({ navigation, route }) => {
         console.error('Error fetching user data:', error);
       }
     };
+  
+    fetchUserData();
+  }, []);
+
+
+
+  const handleIsLiked = () => {
+    setIsLiked((prevIsLiked) => {
+      const newIsLiked = !prevIsLiked;
+      if (newIsLiked) {
+        const wishData = {"userCid": userCid, "trailTitle": item.trailTitle}
+        addWishItemToFireStore(wishData);
+      } else {
+        deleteWishItemFromFireStore(userCid, item.trailTitle);
+      }
+      return newIsLiked;
+    })
+  }
+
 
   const handlePress = () => {
-    if (auth.currentUser) {
-      fetchUserData();
-      console.log(user);
-      setIsLiked(!isLiked);
-      const wishData = {"user": userCid, "trailTitle": item.trailTitle}
-      if (isLiked) {
-        addWishItemToFireStore(wishData);
-      } 
-      //else {
-       // removeWishItemToFireStore(userCid, trailTitle);
-     // }
-
-
+    
+    if (auth.currentUser) {       
+      handleIsLiked();
     } else {
       console.log("You need to login first");
       navigation.navigate('Login');
     }
 
   }
-
 
   return (
     <ScrollView style={styles.container}>
