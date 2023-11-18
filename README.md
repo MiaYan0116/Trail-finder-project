@@ -3,8 +3,8 @@
 ### （Mia）Jiaxin Yan
 #### Laid the foundation by providing the framework and building stack navigation for the app.
 #### Made the components for user to log in, sign out, and editing profile, and contributed to CRU operations of user collection.
-#### Built the HomeScreen from functionality to UI.
-#### Built the SearchScreen from functionality to UI.
+#### Built the HomeScreen from functionality of generating top 5 trails to UI.
+#### Built the SearchScreen from functionality of different search filter buttons to UI.
 #### Improved the style design of the entire system (background pictures, fonts and colors, etc.).
 
 ### （Grace）Ya Xiao
