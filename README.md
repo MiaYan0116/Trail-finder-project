@@ -14,6 +14,32 @@
 #### Implemented the like button functionality and contributed to the CD operations of wishlist collection.
 
 
+## Features and Progess (screenshots)
+* Homepage Screen
+#### Display of top 5 trails in Greater Vancouver Area and the tailor trail component.
+#### Detailed view: Users can click on any trail image to dive deeper into its details.
+![HomeScreen](homepage_1.jpg)
+![HomeScreen](homepage_2.jpg)
+
+* ProfileSection
+#### Display the login page for user to login. If they are first-time users, they will be directing to the signup page to register an account.
+#### Profile page: after successfully logging in, the user will see the profile page, and can upload an avatar image or edit the description and username.
+![Login](login.jpg)
+![Signup](signup.jpg)
+![ProfileScreen](profile.jpg)
+
+* SearchScreen
+#### Display the search page for user to select the trail features they want to have. When the user hit the search button, a result screen will be navigated to.
+#### Detailed view: Users can click on any trails in the result screen(if there's any trail found) to dive deeper into its details.
+#### Like it or not. When being directed to the detail page, user can choose to hit the like button or not. If they hit it, the button will be toggled to solid heart.
+![SearchScreen](search.jpg)
+![ResultScreen](results.jpg)
+![Details](details_1.jpg)
+![Details](details_2.jpg)
+![ButtonHit](likebutton_hit.jpg)
+
+
+
 ## Data Model
 ### The data model of TrailFinder app includes the following three collections:
 
