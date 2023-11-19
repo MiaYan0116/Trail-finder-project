@@ -38,7 +38,7 @@ const Signup = ({ navigation }) => {
 				email: email,
 				description: 'A new user!',
 				avatarUri: 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png',
-				uid: userCred.user.uid
+				uid: userCred.user.uid,
 			}
 			const ucid = addUserToFireStore(user);
 			navigation.replace('ProfileScreen')
