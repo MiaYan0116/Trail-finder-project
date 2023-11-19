@@ -12,7 +12,6 @@ import {
   query, 
   where, 
   getDocs,
-  getDoc
 } from "@firebase/firestore";
 import { db } from "./firebaseSetup";
 import { auth } from './firebaseSetup';
@@ -134,9 +133,6 @@ export async function LogOut(){
     logError(error)
   }
 }
-
-
-
 
 function logError(err) {
   console.log(err);

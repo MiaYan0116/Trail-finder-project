@@ -18,14 +18,13 @@
 * Homepage Screen
 #### Display of top 5 trails in Greater Vancouver Area and the tailor trail component.
 #### Detailed view: Users can click on any trail image to dive deeper into its details.
-![HomeScreen](homepage_1.jpg)
-![HomeScreen](homepage_2.jpg)
+![HomeScreen](homepage.png)
 
 * ProfileSection
 #### Display the login page for user to login. If they are first-time users, they will be directing to the signup page to register an account.
 #### Profile page: after successfully logging in, the user will see the profile page, and can upload an avatar image or edit the description and username.
-![Login](login.jpg)
-![Signup](signup.jpg)
+![Login](login.png)
+![Signup](signup.png)
 ![Profile](profile.png)
 
 * SearchScreen
@@ -34,9 +33,8 @@
 #### Like it or not. When being directed to the detail page, user can choose to hit the like button or not. If they hit it, the button will be toggled to solid heart.
 ![SearchScreen](search.jpg)
 ![ResultScreen](results.jpg)
-![Details](details_1.jpg)
-![Details](details_2.jpg)
-![ButtonHit](likebutton_hit.jpg)
+![Details](details.png)
+![ButtonHit](likebutton_hit.png)
 
 
 
@@ -67,7 +65,7 @@
 
 ## 2. users
 ### Description:
-### the app users which are hiking-lovers
+### the app users which are hiking-lovers. This collection stores users' personal information, such as username, avatar, signature(description), wishlist and recommendation.
 
 ### Attributes:
 #### uid: unique identifier of the user
