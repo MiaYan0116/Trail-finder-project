@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { Image, TextInput, StyleSheet, View, Text, Button } from 'react-native'
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Pressable, Image, TextInput, StyleSheet, View, Text, Button } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
-import { collection, query, where, getDocs } from "@firebase/firestore";
 import { container, themeBackgroundColor } from '../styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
+import ImageManager, { openCamera } from './ImageManager';
 
 const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useState({});
   const [description, setDescription] = useState('');
   const [username, setUsername] = useState('');
   const [userCid, setUserCid] = useState('');
+  const [userImageUri, setUserImageUri] = useState('https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png');
+
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -21,12 +23,12 @@ const ProfileScreen = ({ navigation }) => {
           setDescription(userData.description || '');
           setUsername(userData.username || '');
           setUserCid(userId || '');
+          setUserImageUri(userData.avatarUri || 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
-  
     fetchUserData();
   }, []);
 
@@ -42,6 +44,7 @@ const ProfileScreen = ({ navigation }) => {
     const updatedField = {
       username: username,
       description: description,
+      avatarUri: userImageUri,
     }
     await updateUser(userCid, updatedField);
     console.log(updatedField);
@@ -57,10 +60,13 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <View style={container}>
       {auth.currentUser && <View>
-        <Image 
-          source={{uri: user.avatarUri}}
-          style={styles.avatar}
-        />
+        <View style={styles.avatarContainer}>
+          <Image 
+            source={{uri: userImageUri}}
+            style={styles.avatar}
+          />
+          <ImageManager setPassImageUri={setUserImageUri}/>
+        </View>
         <View style={{marginVertical: 25, alignItems: 'center'}}>
           <TextInput 
             style={styles.usernameInput}
@@ -70,7 +76,7 @@ const ProfileScreen = ({ navigation }) => {
         </View>
         <View style={styles.infoContainer}>
           <Icon name="envelope" size={20} color="#777" style={styles.icon} />
-          <Text style={styles.infoText}>{user.email}</Text>
+          <Text style={{fontSize: 18}}>{user.email}</Text>
         </View>
         <View style={styles.infoContainer}>
           <Icon name="pencil" size={20} color="#777" style={styles.icon} />
@@ -84,7 +90,6 @@ const ProfileScreen = ({ navigation }) => {
           <Button title="Save" onPress={saveHandler}/>
           <Button title="Log out" onPress={LogOutHandler}/>
         </View>
-        
       </View>}
       {!auth.currentUser && <Button title="Login" onPress={loginHandler}/>}
     </View>
@@ -92,13 +97,16 @@ const ProfileScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  
   avatar: {
     width: 150,
     height: 150,
     borderWidth: 1,
     borderRadius: 100
   },
+  avatarContainer: {
+    position: 'relative',
+  },
+  
   usernameInput:{
     fontSize: 30,
     fontWeight: 'bold',
