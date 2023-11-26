@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, Image, StyleSheet, View, Text, ScrollView } from 'react-native'
+import { Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { LogOut, deleteWishItemToFireStore, getUserByUserAuthId, updateUser } from '../firebase/firestore';
-import { addWishItemToFireStore, deleteWishItemFromFireStore } from '../firebase/firestore';
-
+import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStore } from '../firebase/firestore';
+import { Calendar } from 'react-native-calendars';
+import { mapAPIKey } from '@env';
 
 const TrailDetails = ({ navigation, route }) => {
 
   const item = route.params.pressedItem;
+  console.log(item);
   const [isLiked, setIsLiked] = useState(false);
   const imageUri = item.imageUri;
   const rate = item.rating;
@@ -33,12 +34,10 @@ const TrailDetails = ({ navigation, route }) => {
     camping = 'Yes';
   }
   
-
   const [user, setUser] = useState({});
   const [description, setDescription] = useState('');
   const [username, setUsername] = useState('');
   const [userCid, setUserCid] = useState('');
-
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -54,17 +53,15 @@ const TrailDetails = ({ navigation, route }) => {
         console.error('Error fetching user data:', error);
       }
     };
-  
+    
     fetchUserData();
   }, []);
-
-
 
   const handleIsLiked = () => {
     setIsLiked((prevIsLiked) => {
       const newIsLiked = !prevIsLiked;
       if (newIsLiked) {
-        const wishData = {"userCid": userCid, "trailTitle": item.trailTitle}
+        const wishData = {"userCid": userCid, "trailTitle": item.trailTitle, "date": selectedDate}
         addWishItemToFireStore(wishData);
       } else {
         deleteWishItemFromFireStore(userCid, item.trailTitle);
@@ -73,16 +70,13 @@ const TrailDetails = ({ navigation, route }) => {
     })
   }
 
-
   const handlePress = () => {
-    
     if (auth.currentUser) {       
       handleIsLiked();
     } else {
-      console.log("You need to login first");
+      Alert.alert("You need to login first");
       navigation.navigate('Login');
     }
-
   }
 
   return (
@@ -103,7 +97,6 @@ const TrailDetails = ({ navigation, route }) => {
               />
             )}
           </Pressable>
-
  
         </View>
         <View style={styles.infoContainer}>

@@ -25,10 +25,12 @@
     "papaparse": "^5.4.1",
     "react": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-calendars": "^1.1302.0",
     "react-native-dotenv": "^3.4.9",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-fs": "^2.20.0",
     "react-native-image-picker": "^7.0.2",
+    "react-native-push-notification": "^8.1.1",
     "react-native-render-html": "^6.3.4",
     "react-native-vector-icons": "^10.0.2"
   },

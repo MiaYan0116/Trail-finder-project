@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Pressable, FlatList, Image, ImageBackground, StyleSheet, View, Text, Button, ScrollView } from 'react-native'
 import { backGroundImage } from '../styles';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Icon from 'react-native-vector-icons/FontAwesome';
 import TopTrailsItem from './TopTrailsItem';
 import { db } from '../firebase/firebaseSetup'
 import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
