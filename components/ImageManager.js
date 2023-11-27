@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { container, themeBackgroundColor } from '../styles'
 import * as ImagePicker from "expo-image-picker";
 
+
 export default function ImageManager({ setPassImageUri }) {
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
   const [imageUri, setImageUri] = useState("");

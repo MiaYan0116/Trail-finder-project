@@ -4,7 +4,9 @@ import { db, auth } from '../firebase/firebaseSetup';
 import { container, themeBackgroundColor } from '../styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
-import ImageManager, { openCamera } from './ImageManager';
+import ImageManager from './ImageManager';
+import { storage } from '../firebase/firebaseSetup';
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
 const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useState({});
@@ -32,12 +34,34 @@ const ProfileScreen = ({ navigation }) => {
     fetchUserData();
   }, []);
 
+  // useEffect(() => {
+  //   listAll(imageListRef).then((response) => {
+  //     response.items.forEach((item) => {
+  //       getDownloadURL(item).then((url) => {
+  //         console.log(url);
+  //         setImageList((prev) => [...prev, url]);
+  //       })
+  //     })
+  //   })
+  // }, [])
 
   const usernameChangeHandler = (username) => {
     setUsername(username);
   }
   const descriptionChangeHandler = (description) => {
     setDescription(description);
+  }
+
+  const uploadImage = () => {
+    if(userImageUri === 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png') return;
+    console.log(userImageUri);
+    let file_name = userImageUri.split("/").pop();
+    console.log(file_name);
+    const imageRef = ref(storage, `avatars/${file_name}`);
+    uploadBytes(imageRef, userImageUri).then(() => {
+      console.log("Image Uploaded!");
+    })
+    console.log("upload pressed")
   }
 
   const saveHandler = async () => {
@@ -47,6 +71,8 @@ const ProfileScreen = ({ navigation }) => {
       avatarUri: userImageUri,
     }
     await updateUser(userCid, updatedField);
+
+    uploadImage();
     console.log(updatedField);
   }
   const LogOutHandler = () => {
