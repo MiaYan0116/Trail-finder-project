@@ -18,17 +18,17 @@ const TrailDetails = ({ navigation, route }) => {
   let publicTransit;
   let dogFriendly;
   let camping;
-  if(item.publicTransit === false){
+  if(item.publicTransit === "FALSE"){
     publicTransit = 'No';
   }else{
     publicTransit = 'Yes';
   }
-  if(item.dogFriendly === false){
+  if(item.dogFriendly === "FALSE"){
     dogFriendly = 'No';
   }else{
     dogFriendly = 'Yes';
   }
-  if(item.camping === false){
+  if(item.camping === "FALSE"){
     camping = 'No';
   }else{
     camping = 'Yes';

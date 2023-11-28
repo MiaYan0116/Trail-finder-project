@@ -96,6 +96,38 @@ export const deleteWishItemFromFireStore = async (userCid, trailTitle) => {
 };
 
 
+/**
+export const getWishListByUserAuthId = async (userAuthId) => {
+  try {
+    const wishlistCollection = collection(db, 'wishlist');
+    const q = query(wishlistCollection, where('uid', '==', userAuthId));
+
+  } catch (error) {
+    console.error('Error getting the wishlist by userAuthId:', error);
+  }
+}
+*/
+
+export const getTrailItemByTrailTitle = async (wishItem) => {
+  try {
+    const trailsCollection = collection(db, 'traillist');
+    const q = query(trailsCollection, where('trailTitle', '==', wishItem.trailTitle));
+    const querySnapshot = await getDocs(q);
+
+    console.log(querySnapshot.docs[0].data());
+    if (querySnapshot.size > 0) {
+      const trailData = querySnapshot.docs[0].data();
+      return trailData;
+    } else {
+      console.log('No matching document found');
+    }
+  } catch (error) {
+    console.error('Error getting trailItem by trailTitle:', wishItem.trailTitle);
+  }
+}
+
+
+
 export const getUserByUserAuthId = async (userAuthId) => {
   try {
     const usersCollection = collection(db, 'users');

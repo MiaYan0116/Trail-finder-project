@@ -8,12 +8,13 @@ import {
   where, 
 } from "@firebase/firestore";
 import { db, auth } from "../firebase/firebaseSetup";
-import { getWishlistByUserAuthId } from '../firebase/firestore';
+import { getWishlistByUserAuthId, getTrailItemByTrailTitle } from '../firebase/firestore';
 
 const WishlistScreen = ({ navigation, route }) => {
 
   const userCid = auth.currentUser.uid;
   const [wishList, setWishList] = useState([]);
+  const [trailList, setTrailList] = useState([]);
   const [isWishListExist, setIsWishListExist] = useState(false);
   
 
@@ -34,7 +35,7 @@ const WishlistScreen = ({ navigation, route }) => {
 
     const unsubscribe = onSnapshot(
       q,
-      (querySnapshot) => {
+      async (querySnapshot) => {
         let newArray = [];
         if (!querySnapshot.empty) {
           // use a for loop to call .data() on each item of querySnapshot.docs
@@ -44,6 +45,8 @@ const WishlistScreen = ({ navigation, route }) => {
         }
         setIsWishListExist(newArray && newArray.length);
         setWishList(newArray);
+        const trailListDerived = await getTrailListFromWishList(wishList);
+        setTrailList(trailListDerived);
         
       },
       (err) => {
@@ -55,11 +58,21 @@ const WishlistScreen = ({ navigation, route }) => {
     };
   }, []);
 
+
+  const getTrailListFromWishList = async (wishListInput) => {
+    const newTrailList = await Promise.all(wishListInput.map(async (wishItem) => {
+        return getTrailItemByTrailTitle(wishItem);
+      }));
+    console.log(newTrailList);
+    return newTrailList;
+  }
+
+
   return (
     <View style={styles.listContainer}>
       { isWishListExist ? 
       (<FlatList
-        data={wishList}
+        data={trailList}
         horizontal={false}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
