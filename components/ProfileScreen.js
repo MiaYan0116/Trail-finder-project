@@ -83,6 +83,10 @@ const ProfileScreen = ({ navigation }) => {
     navigation.navigate('Login');
   }
   
+  const wishListHandler = () => {
+    navigation.navigate('Wishlist');
+  }
+  
   return (
     <View style={container}>
       {auth.currentUser && <View>
@@ -115,6 +119,7 @@ const ProfileScreen = ({ navigation }) => {
         <View style={{flexDirection: 'row'}}>
           <Button title="Save" onPress={saveHandler}/>
           <Button title="Log out" onPress={LogOutHandler}/>
+          <Button title="Wishlist" onPress={wishListHandler}/>
         </View>
       </View>}
       {!auth.currentUser && <Button title="Login" onPress={loginHandler}/>}
