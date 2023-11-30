@@ -25,7 +25,7 @@ export default function ImageManager({ setPassImageUri }) {
       const result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
       });
-      console.log(result);
+      console.log("result", result);
       setImageUri(result.assets[0].uri);
       setPassImageUri(result.assets[0].uri);
     } catch (err) {
@@ -51,8 +51,8 @@ export default function ImageManager({ setPassImageUri }) {
 const styles = StyleSheet.create({
   cameraIcon: {
     position: 'absolute',
-    bottom: -8,
-    right: 5,
+    bottom: 2,
+    right: 30,
     backgroundColor: 'transparent', // Make the background transparent
     padding: 10,
   },

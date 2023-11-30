@@ -43,7 +43,7 @@ import { imageAPIKey, mapAPIKey } from '@env';
   // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const StartScreen = ({ navigation }) => {
-    
+    console.log(data);
     // We are not using External API at this moment
     // useEffect(() => {
     //   const addInitialData = async (batchSize) => {

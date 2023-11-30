@@ -61,7 +61,7 @@ const TrailDetails = ({ navigation, route }) => {
     setIsLiked((prevIsLiked) => {
       const newIsLiked = !prevIsLiked;
       if (newIsLiked) {
-        const wishData = {"userCid": userCid, "trailTitle": item.trailTitle, "date": selectedDate}
+        const wishData = {"userCid": userCid, "trailTitle": item.trailTitle}
         addWishItemToFireStore(wishData);
       } else {
         deleteWishItemFromFireStore(userCid, item.trailTitle);

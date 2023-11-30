@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
 import ImageManager from './ImageManager';
 import { storage } from '../firebase/firebaseSetup';
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useState({});
@@ -34,16 +34,6 @@ const ProfileScreen = ({ navigation }) => {
     fetchUserData();
   }, []);
 
-  // useEffect(() => {
-  //   listAll(imageListRef).then((response) => {
-  //     response.items.forEach((item) => {
-  //       getDownloadURL(item).then((url) => {
-  //         console.log(url);
-  //         setImageList((prev) => [...prev, url]);
-  //       })
-  //     })
-  //   })
-  // }, [])
 
   const usernameChangeHandler = (username) => {
     setUsername(username);
@@ -52,29 +42,36 @@ const ProfileScreen = ({ navigation }) => {
     setDescription(description);
   }
 
-  const uploadImage = () => {
-    if(userImageUri === 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png') return;
-    console.log(userImageUri);
-    let file_name = userImageUri.split("/").pop();
-    console.log(file_name);
-    const imageRef = ref(storage, `avatars/${file_name}`);
-    uploadBytes(imageRef, userImageUri).then(() => {
-      console.log("Image Uploaded!");
-    })
-    console.log("upload pressed")
+  async function uploadImageToStorage() {
+    try {
+      if(userImageUri === 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png') return;
+      const response = await fetch(userImageUri);
+      const imageBlob = await response.blob();
+      const imageName = userImageUri.substring(userImageUri.lastIndexOf("/") + 1);
+      const imageRef = ref(storage, `images/${imageName}`);
+      await uploadBytesResumable(imageRef, imageBlob);
+      const downloadUri = await getDownloadURL(imageRef);
+      console.log("Downloaded URI@: ", downloadUri);
+      return downloadUri;
+    } catch (err) {
+      console.log("error in uploading: ",err);
+    }
   }
 
   const saveHandler = async () => {
+    const downloadedUri = await uploadImageToStorage();
+    console.log("avatar: ", downloadedUri);
+    setUserImageUri(downloadedUri);
     const updatedField = {
       username: username,
       description: description,
-      avatarUri: userImageUri,
+      avatarUri: downloadedUri,
     }
     await updateUser(userCid, updatedField);
-
-    uploadImage();
-    console.log(updatedField);
+    
+    console.log("userUpdated", updatedField);
   }
+
   const LogOutHandler = () => {
     LogOut();
     navigation.replace('Login');
@@ -136,6 +133,7 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     position: 'relative',
+    marginLeft: 30
   },
   
   usernameInput:{
