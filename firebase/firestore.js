@@ -108,6 +108,7 @@ export const getWishListByUserAuthId = async (userAuthId) => {
 }
 */
 
+
 export const getTrailItemByTrailTitle = async (wishItem) => {
   try {
     const trailsCollection = collection(db, 'traillist');

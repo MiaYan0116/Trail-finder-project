@@ -31,6 +31,7 @@ const HomeScreen = ({ navigation, route }) => {
 
   const tailorPressedHandle = () => {
     console.log("tailor pressed")
+    navigation.navigate('Recommendation');
   }
 
   return (

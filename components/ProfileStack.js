@@ -6,6 +6,7 @@ import ProfileScreen from './ProfileScreen';
 import Login from './Login';
 import Signup from './Signup';
 import WishlistScreen from './WishlistScreen';
+import Map from "./Map";
 
 const Stack = createNativeStackNavigator();
 const ProfileStack = () => {
@@ -44,6 +45,7 @@ const ProfileStack = () => {
 					headerTitle: 'Wishlist',
 				})}
 			/>
+			<Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   )
 }
