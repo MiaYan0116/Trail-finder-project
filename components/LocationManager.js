@@ -4,14 +4,13 @@ import * as Location from "expo-location";
 import { mapAPIKey } from "@env";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Alert } from 'react-native';
+import SingleButton from './SingleButton';
 
 const windowWidth = Dimensions.get("window").width;
 
 export default function LocationManager({ locationList }) {
   const navigation = useNavigation();
   const route = useRoute();
-  console.log(locationList);
-
   const [status, requestPermission] = Location.useForegroundPermissions();
   const [location, setLocation] = useState(null);
 
@@ -40,29 +39,27 @@ export default function LocationManager({ locationList }) {
         latitude: locationObject.coords.latitude,
         longitude: locationObject.coords.longitude,
       });
-      console.log(location);
     } catch (err) {
       console.log("locate user ", err);
     }
   }
   const chooseLocationHandler = () => {
-    navigation.navigate("Map");
+    navigation.navigate("Map", locationList);
   };
   return (
     <View>
-      <Button title="Where am I?" onPress={locateMeHandler} />
-      <Button
-        title="Show all my wishitems on the map"
-        onPress={chooseLocationHandler}
-      />
-      {location && (
-        <Image
-          source={{
-            uri: `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:L%7C${location.latitude},${location.longitude}&key=${mapAPIKey}`,
-          }}
-          style={styles.image}
-        />
-      )}
+        <View style={{flexDirection: 'row'}}>
+            <SingleButton text={'Where am I?'} handlefunc={locateMeHandler} />
+            <SingleButton text={"Show wish items on the map"} handlefunc={chooseLocationHandler} />
+        </View>
+        {location && (
+            <Image
+            source={{
+                uri: `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:L%7C${location.latitude},${location.longitude}&key=${mapAPIKey}`,
+            }}
+            style={styles.image}
+            />
+        )}
     </View>
   );
 }

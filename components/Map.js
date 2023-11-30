@@ -4,7 +4,8 @@ import MapView, { Marker } from "react-native-maps";
 
 export default function Map({ navigation, route }) {
   const [selectedLocation, setSelectedLocation] = useState(null);
-  
+  const locationList = route.params;
+    
   function confirmLocationHandler() {
     navigation.navigate("Wishlist", { selectedCoord: selectedLocation });
   }
@@ -12,10 +13,10 @@ export default function Map({ navigation, route }) {
     <>
       <MapView
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: 49.2827,
+          longitude: -123.1207,
+          latitudeDelta: 4,
+          longitudeDelta: 6,
         }}
         style={{ flex: 1 }}
         onPress={(e) => {
@@ -26,6 +27,15 @@ export default function Map({ navigation, route }) {
         }}
       >
         <Marker coordinate={selectedLocation} />
+        {locationList.map((location, index) => (
+            <Marker
+                key={index} // Make sure to include a unique key for each Marker
+                coordinate={{
+                latitude: location.lat,
+                longitude: location.lng,
+                }}
+            />
+        ))}
       </MapView>
       <Button
         disabled={!selectedLocation}

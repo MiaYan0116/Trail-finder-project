@@ -8,6 +8,7 @@ import ImageManager from './ImageManager';
 import { storage } from '../firebase/firebaseSetup';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
+
 const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useState({});
   const [description, setDescription] = useState('');
