@@ -8,6 +8,7 @@ import ImageManager from './ImageManager';
 import { storage } from '../firebase/firebaseSetup';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
+
 const ProfileScreen = ({ navigation }) => {
   const [user, setUser] = useState({});
   const [description, setDescription] = useState('');
@@ -81,7 +82,7 @@ const ProfileScreen = ({ navigation }) => {
   }
   
   const wishListHandler = () => {
-    navigation.navigate('Wishlist');
+    navigation.navigate('Wishlist', {userCid});
   }
   
   return (

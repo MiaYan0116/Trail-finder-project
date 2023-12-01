@@ -4,7 +4,7 @@ import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStore } from '../firebase/firestore';
+import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStore, updateUser } from '../firebase/firestore';
 import { Calendar } from 'react-native-calendars';
 import { mapAPIKey } from '@env';
 
@@ -38,6 +38,7 @@ const TrailDetails = ({ navigation, route }) => {
   const [description, setDescription] = useState('');
   const [username, setUsername] = useState('');
   const [userCid, setUserCid] = useState('');
+  const [wishitems, setWishitems] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -48,6 +49,9 @@ const TrailDetails = ({ navigation, route }) => {
           setDescription(userData.description || '');
           setUsername(userData.username || '');
           setUserCid(userId || '');
+          setWishitems(userData.wishitems || '');
+          const isTrailTitleIncluded = userData.wishitems.some(wishitem => wishitem.trailTitle === item.trailTitle);
+          setIsLiked(isTrailTitleIncluded);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -63,8 +67,18 @@ const TrailDetails = ({ navigation, route }) => {
       if (newIsLiked) {
         const wishData = {"userCid": userCid, "trailTitle": item.trailTitle}
         addWishItemToFireStore(wishData);
+        setWishitems((prevWishitems) => {
+          const newWishitems = [...prevWishitems, wishData]
+          updateUser(userCid, {wishitems: newWishitems});
+          return newWishitems;
+        });
       } else {
         deleteWishItemFromFireStore(userCid, item.trailTitle);
+        setWishitems((prevWishitems) => {
+          const newWishitems = prevWishitems.filter((wishItem) => wishItem.trailTitle != item.trailTitle);
+          updateUser(userCid, {wishitems: newWishitems});
+          return newWishitems;
+        })
       }
       return newIsLiked;
     })
@@ -78,6 +92,8 @@ const TrailDetails = ({ navigation, route }) => {
       navigation.navigate('Login');
     }
   }
+
+
 
   return (
     <ScrollView style={styles.container}>

@@ -8,7 +8,7 @@ import {
   where, 
 } from "@firebase/firestore";
 import { db, auth } from "../firebase/firebaseSetup";
-import { getWishlistByUserAuthId, getTrailItemByTrailTitle } from '../firebase/firestore';
+import { getWishlistByUserAuthId, getTrailItemByTrailTitle, getUserByUserAuthId } from '../firebase/firestore';
 import LocationManager from './LocationManager';
 
 const WishlistScreen = ({ navigation, route }) => {
@@ -18,20 +18,22 @@ const WishlistScreen = ({ navigation, route }) => {
   const [trailList, setTrailList] = useState([]);
   const [isWishListExist, setIsWishListExist] = useState(false);
   const [locationList, setLocationList] = useState([]);
+  const userid = route.params.userCid;
+  console.log(userid);
 
   const renderItem = ({ item }) => (
     <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
   );
 
   const detailsHandler = (pressedItem) => {
-    console.log(pressedItem.trailTitle);
 		navigation.navigate('Details', {pressedItem});
 	}
 
   useEffect(() => {
+    console.log(userid);
     const q = query(
       collection(db, "wishlist"),
-      where('userCid', '==', userCid),
+      where('userCid', '==', userid),
     );
 
     const unsubscribe = onSnapshot(
@@ -46,10 +48,6 @@ const WishlistScreen = ({ navigation, route }) => {
         }
         setIsWishListExist(newArray && newArray.length);
         setWishList(newArray);
-        const trailListDerived = await getTrailListFromWishList(wishList);
-        setTrailList(trailListDerived);
-        console.log(trailList);
-        getLocationListFromTrailList(trailList);
       },
       (err) => {
         console.log(err);
@@ -61,44 +59,48 @@ const WishlistScreen = ({ navigation, route }) => {
   }, []);
 
 
-  const getTrailListFromWishList = async (wishListInput) => {
-    try {
-      const newTrailList = await Promise.all(wishListInput.map(async (wishItem) => {
-        return getTrailItemByTrailTitle(wishItem);
-      }));
-      console.log(newTrailList);
-      return newTrailList;
-    } catch (err) {
-      console.log(err)
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        //console.log(wishList);
+        const newTrailList = await Promise.all(
+          wishList.map(async (wishItem) => {
+            return getTrailItemByTrailTitle(wishItem);
+          })
+        );
+        setTrailList(newTrailList);
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }
+    fetchData();
+  }, [wishList]);
 
-  const getLocationListFromTrailList = (trailListInput) => {
-    setLocationList(trailListInput.map((item) => {
-      item.geo }))
-    console.log(locationList);
-  }
-  //<View>
-  //<LocationManager />
-//</View>
 
+  useEffect(() => {
+    function getLocationListFromTrailList(trailListInput) {
+      setLocationList(trailListInput.map((item) => item.geo ))
+    }
+    getLocationListFromTrailList(trailList);
+    
+  }, [trailList])
+
+  
   return (
     <View>
-
-    <LocationManager locationList={locationList}/>
-    <View style={styles.listContainer}>
-
-      { isWishListExist ? 
-      (<FlatList
-        data={trailList}
-        horizontal={false}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={true}
-      />) :
-      (<Text style={styles.text}>No wish item found.</Text>)
-      }
-    </View> 
+      <LocationManager locationList={locationList}/>
+      <View style={styles.listContainer}>
+        { isWishListExist ? 
+        (<FlatList
+          data={trailList}
+          horizontal={false}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={true}
+        />) :
+        (<Text style={styles.text}>No wish item found.</Text>)
+        }
+      </View> 
     </View>
   )
 }
