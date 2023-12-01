@@ -2,20 +2,24 @@
 ## Team Members and contributions
 ### （Mia）Jiaxin Yan
 #### Laid the foundation by providing the framework and building stack navigation for the app.
-#### Made the components for user to log in, sign out, and editing profile, and contributed to CRU operations of user collection.
-#### Built the HomeScreen from functionality of generating top 5 trails to UI.
-#### Built the SearchScreen from functionality of different search filter buttons to UI.
-#### Improved the style design of the entire system (background pictures, fonts and colors, etc.).
+#### Made the components for users to log in, sign out, and edit profiles, and contributed to CRU operations of user collection.
+#### Built the HomeScreen from the functionality of generating top 5 trails to UI.
+#### Built the SearchScreen from the functionality of different search filter buttons to UI.
+#### Improved the style design of the entire system (background pictures, fonts, and colors, etc.).
+#### Improved profile screen and used camera to update user avatars.
+#### Improved the style design of the search result screen and wishlist screen.
+
 
 ### （Grace）Ya Xiao
 #### Built the WishListScreen from functionality to UI.
+#### Finished CRD operations of items in wishlist.
 #### Incorporated the functionality of interactive map(with multiple markers) and static map to the WishListScreen.
-#### Amended the initial state of like button and added the wishitems field of user collection.
+#### Contributed to fetching all trial images from Bing image search API.
+#### Contributed to storing the date selected by the user and enables sending notifications.
 
-
-## Features and Progess (screenshots)
+## Features and Progress (screenshots)
 * Homepage Screen
-#### Display of top 5 trails in Greater Vancouver Area and the tailor trail component.
+#### Display of top 5 trails in the Greater Vancouver Area and the tailor trail component.
 #### Detailed view: Users can click on any trail image to dive deeper into its details.
 ![HomeScreen](homepage.png)
 
@@ -101,3 +105,9 @@
 
 ### Attributes:
 #### preferenceSet: the preference set that the recommended list is generated based on. It is derived from the user's wishlist.
+
+## Iteration 2
+### Using camera to let users upload their avatar to replace the default avatar, and store the new avatar into the firestore.
+### Using Google Map Api to get users current location and the location of each trail. Display all the trails of user's wishlist on the map.
+### Using Bing image search api to fetch images of all trails.
+### Finished authentication part, eg: login, register.
