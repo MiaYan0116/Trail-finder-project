@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Pressable } from 'react-native'
 import {themeBackgroundColor, buttonborderRadius, themeTintColor, buttonFontSize, buttonInactiveColor } from '../styles'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const SingleButton = (props) => {
   return (
@@ -19,12 +20,16 @@ export const SingleButton = (props) => {
         onPress={props.handlefunc}
       >
         {({ pressed }) => (
-          <Text 
-						style={[styles.buttonText, 
-						{ color: pressed ? buttonInactiveColor : themeTintColor }]}
-					>
-            {props.text}
-          </Text>
+          <View style={{flexDirection: 'row'}}>
+            {props.iconName && <Icon name={props.iconName} size={16} color={themeTintColor} />}
+            <Text 
+              style={[styles.buttonText, 
+              { color: pressed ? buttonInactiveColor : themeTintColor }]}
+            >
+              {props.text}
+            </Text>
+          </View>
+          
         )}
       </Pressable>
     </View>
@@ -42,6 +47,7 @@ const styles = StyleSheet.create({
 		fontSize: buttonFontSize,
 		fontWeight: 'bold',
 		textAlign: 'center',
+    marginLeft: 13
 	}
 })
 export default SingleButton;

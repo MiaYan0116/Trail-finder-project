@@ -1,10 +1,10 @@
-import { View, Button, StyleSheet, Image, Dimensions } from "react-native";
+import {  Alert, View, Button, StyleSheet, Image, Dimensions } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
 import { mapAPIKey } from "@env";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Alert } from 'react-native';
 import SingleButton from './SingleButton';
+
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -48,9 +48,9 @@ export default function LocationManager({ locationList }) {
   };
   return (
     <View>
-        <View style={{flexDirection: 'row'}}>
-            <SingleButton text={'Where am I?'} handlefunc={locateMeHandler} />
-            <SingleButton text={"Show wish items on the map"} handlefunc={chooseLocationHandler} />
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <SingleButton text={'Where am I?'} handlefunc={locateMeHandler} iconName={"location-arrow"}/>
+            <SingleButton text={"Trails Map"} handlefunc={chooseLocationHandler} iconName={"map"}/>
         </View>
         {location && (
             <Image

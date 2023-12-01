@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, FlatList, Text } from 'react-native'
-import TopTrailsItem from './TopTrailsItem';
+import ListSingleTrailItem from './ListSingleTrailItem';
 import {
   collection,
   onSnapshot, 
@@ -22,7 +22,7 @@ const WishlistScreen = ({ navigation, route }) => {
   console.log(userid);
 
   const renderItem = ({ item }) => (
-    <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
+    <ListSingleTrailItem item={item} itemPressHandle={detailsHandler} />
   );
 
   const detailsHandler = (pressedItem) => {

@@ -42,7 +42,7 @@ const ProfileStack = () => {
 				name='Wishlist'
 				component={WishlistScreen}
 				options={() => ({
-					headerTitle: 'Wishlist',
+					headerTitle: 'My Wishlist',
 				})}
 			/>
 			<Stack.Screen name="Map" component={Map} />
