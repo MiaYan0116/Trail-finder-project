@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, FlatList, Text } from 'react-native'
-import TopTrailsItem from './TopTrailsItem';
+import ListSingleTrailItem from './ListSingleTrailItem';
 import {
   collection,
   onSnapshot, 
@@ -16,7 +16,7 @@ const ResultsScreen = ({ navigation, route }) => {
   const ratingUpperLimit = rating + 0.5;
 
   const renderItem = ({ item }) => (
-    <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
+    <ListSingleTrailItem item={item} itemPressHandle={detailsHandler} />
   );
 
   const detailsHandler = (pressedItem) => {
@@ -78,7 +78,7 @@ const ResultsScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   listContainer:{
     flexDirection: 'column',
-    width: '92%',
+    // width: '92%',
     marginLeft: 20,
     marginRight: 20,
     marginVertical: 20,

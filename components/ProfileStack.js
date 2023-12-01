@@ -5,6 +5,8 @@ import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, butt
 import ProfileScreen from './ProfileScreen';
 import Login from './Login';
 import Signup from './Signup';
+import WishlistScreen from './WishlistScreen';
+import Map from "./Map";
 
 const Stack = createNativeStackNavigator();
 const ProfileStack = () => {
@@ -36,6 +38,14 @@ const ProfileStack = () => {
 					headerTitle: 'Signup',
 				})}
 			/>
+			<Stack.Screen
+				name='Wishlist'
+				component={WishlistScreen}
+				options={() => ({
+					headerTitle: 'My Wishlist',
+				})}
+			/>
+			<Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   )
 }
