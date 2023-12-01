@@ -14,8 +14,8 @@
 #### Built the WishListScreen from functionality to UI.
 #### Finished CRD operations of items in wishlist.
 #### Incorporated the functionality of interactive map(with multiple markers) and static map to the WishListScreen.
+#### Built the ResultScreen from functionality to UI.
 #### Contributed to fetching all trial images from Bing image search API.
-#### Contributed to storing the date selected by the user and enables sending notifications.
 
 ## Features and Progress (screenshots)
 * Homepage Screen
@@ -26,9 +26,11 @@
 * ProfileSection
 #### Display the login page for user to login. If they are first-time users, they will be directing to the signup page to register an account.
 #### Profile page: after successfully logging in, the user will see the profile page, and can upload an avatar image or edit the description and username.
+#### Enable to used camera to update user avatars.
 ![Login](login.png)
 ![Signup](signup.png)
-![Profile](profile.png)
+![Profile](profile.jpg)
+![Profile](camerause.jpg)
 
 * SearchScreen
 #### Display the search page for user to select the trail features they want to have. When the user hit the search button, a result screen will be navigated to.
@@ -38,11 +40,17 @@
 ![ResultScreen](results.jpg)
 ![Details](details.png)
 ![ButtonHit](likebutton_hit.png)
-
-
+* WishlistScreen
+#### Display the wishlist for user to see all trails liked. User can also see them in the interactive map, check the current location and display the selected location on the static map.
+#### Detailed view: User can click the liked button to unlike the trail. There's a calendar button that can be used to set notifications for visiting the trail on a specific selected date.
+![WishlistScreen](wishlist_1.jpg)
+![WishlistScreen](currentlocation.jpg)
+![WishlistScreen](selectedlocation.jpg)
+![Map](interactivemap.jpg)
+![Details](wishlist_detail.jpg)
 
 ## Data Model
-### The data model of TrailFinder app includes the following three collections:
+### The data model of TrailFinder app includes the following four collections:
 
 ## 1. traillist
 ### Description:
