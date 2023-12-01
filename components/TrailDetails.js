@@ -57,7 +57,7 @@ const TrailDetails = ({ navigation, route }) => {
         console.error('Error fetching user data:', error);
       }
     };
-    
+
     fetchUserData();
   }, []);
 
@@ -113,6 +113,13 @@ const TrailDetails = ({ navigation, route }) => {
               />
             )}
           </Pressable>
+          {isLiked && 
+            <Icon
+              name={'calendar'}
+              size={25}
+              color={themeBackgroundColor}
+            />
+          }
  
         </View>
         <View style={styles.infoContainer}>

@@ -20,8 +20,8 @@ export const SingleButton = (props) => {
         onPress={props.handlefunc}
       >
         {({ pressed }) => (
-          <View style={{flexDirection: 'row'}}>
-            {props.iconName && <Icon name={props.iconName} size={16} color={themeTintColor} />}
+          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            {props.iconName && <Icon name={props.iconName} size={16} color={themeTintColor} style={{marginRight: 9}}/>}
             <Text 
               style={[styles.buttonText, 
               { color: pressed ? buttonInactiveColor : themeTintColor }]}
@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
 		fontSize: buttonFontSize,
 		fontWeight: 'bold',
 		textAlign: 'center',
-    marginLeft: 13
 	}
 })
 export default SingleButton;
