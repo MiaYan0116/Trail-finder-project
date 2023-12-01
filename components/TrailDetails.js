@@ -4,7 +4,7 @@ import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles'
 import RatingStars from './RatingStars'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStore, updateUser } from '../firebase/firestore';
+import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStore } from '../firebase/firestore';
 import { Calendar } from 'react-native-calendars';
 import { mapAPIKey } from '@env';
 
@@ -14,7 +14,6 @@ const TrailDetails = ({ navigation, route }) => {
   console.log(item);
   const [isLiked, setIsLiked] = useState(false);
   const imageUri = item.imageUri;
-  const trailTitle = item.trailTitle;
   const rate = item.rating;
   let publicTransit;
   let dogFriendly;
@@ -39,7 +38,6 @@ const TrailDetails = ({ navigation, route }) => {
   const [description, setDescription] = useState('');
   const [username, setUsername] = useState('');
   const [userCid, setUserCid] = useState('');
-  const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -50,7 +48,6 @@ const TrailDetails = ({ navigation, route }) => {
           setDescription(userData.description || '');
           setUsername(userData.username || '');
           setUserCid(userId || '');
-          setWishlist(userData.wishlist || '');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -64,22 +61,10 @@ const TrailDetails = ({ navigation, route }) => {
     setIsLiked((prevIsLiked) => {
       const newIsLiked = !prevIsLiked;
       if (newIsLiked) {
-        //const wishData = {"userCid": userCid, "trailTitle": trailTitle, "date": selectedDate}
-        const wishData = {"userCid": userCid, "trailTitle": trailTitle}
+        const wishData = {"userCid": userCid, "trailTitle": item.trailTitle}
         addWishItemToFireStore(wishData);
-        setWishlist((prevWishlist) => {
-          const newWishList = [...prevWishlist, wishData]
-          updateUser(userCid, {wishlist: newWishList});
-          return newWishList;
-        });
-        
       } else {
-        deleteWishItemFromFireStore(userCid, trailTitle);
-        setWishlist((prevWishlist) => {
-          const newWishList = prevWishlist.filter((wishItem) => wishItem.trailTitle != trailTitle);
-          updateUser(userCid, {wishlist: newWishList});
-          return newWishList;
-        })
+        deleteWishItemFromFireStore(userCid, item.trailTitle);
       }
       return newIsLiked;
     })

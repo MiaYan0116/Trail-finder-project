@@ -85,7 +85,7 @@ const ProfileScreen = ({ navigation }) => {
   }
   
   const wishListHandler = () => {
-    navigation.navigate('Wishlist');
+    navigation.navigate('Wishlist', {userCid});
   }
   
   return (

@@ -8,7 +8,7 @@ import {
   where, 
 } from "@firebase/firestore";
 import { db, auth } from "../firebase/firebaseSetup";
-import { getWishlistByUserAuthId, getTrailItemByTrailTitle } from '../firebase/firestore';
+import { getWishlistByUserAuthId, getTrailItemByTrailTitle, getUserByUserAuthId } from '../firebase/firestore';
 import LocationManager from './LocationManager';
 
 const WishlistScreen = ({ navigation, route }) => {
@@ -18,6 +18,8 @@ const WishlistScreen = ({ navigation, route }) => {
   const [trailList, setTrailList] = useState([]);
   const [isWishListExist, setIsWishListExist] = useState(false);
   const [locationList, setLocationList] = useState([]);
+  const userid = route.params.userCid;
+  console.log(userid);
 
   const renderItem = ({ item }) => (
     <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
@@ -28,9 +30,10 @@ const WishlistScreen = ({ navigation, route }) => {
 	}
 
   useEffect(() => {
+    console.log(userid);
     const q = query(
       collection(db, "wishlist"),
-      where('userCid', '==', userCid),
+      where('userCid', '==', userid),
     );
 
     const unsubscribe = onSnapshot(
@@ -59,6 +62,7 @@ const WishlistScreen = ({ navigation, route }) => {
   useEffect(() => {
     async function fetchData() {
       try {
+        //console.log(wishList);
         const newTrailList = await Promise.all(
           wishList.map(async (wishItem) => {
             return getTrailItemByTrailTitle(wishItem);
