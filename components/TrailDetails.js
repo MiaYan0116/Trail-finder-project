@@ -13,6 +13,8 @@ const TrailDetails = ({ navigation, route }) => {
   const item = route.params.pressedItem;
   console.log(item);
   const [isLiked, setIsLiked] = useState(false);
+  const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
   const imageUri = item.imageUri;
   const rate = item.rating;
   let publicTransit;
@@ -84,7 +86,7 @@ const TrailDetails = ({ navigation, route }) => {
     })
   }
 
-  const handlePress = () => {
+  const handlePressLike = () => {
     if (auth.currentUser) {       
       handleIsLiked();
     } else {
@@ -93,7 +95,17 @@ const TrailDetails = ({ navigation, route }) => {
     }
   }
 
-
+  
+  const handlePressCalendar = () => {
+    setIsCalendarVisible((prevIsCalendarVisible) => !prevIsCalendarVisible);
+    
+  }
+  
+  const handleSelectDate = (day) => {
+    console.log('Selected date: ', day.dateString);
+    setSelectedDate(day.dateString);
+    setIsCalendarVisible(false);
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -101,10 +113,19 @@ const TrailDetails = ({ navigation, route }) => {
 				source={{uri: imageUri}}
 				style={styles.image}
 			/>
+       {isCalendarVisible && (
+            <View style={styles.calendarPopup}>
+              <Calendar onDayPress={handleSelectDate}
+                        markedDates={{
+                          [selectedDate]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+                        }}
+              />
+            </View>
+          )}
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
-          <Pressable onPress={handlePress}>
+          <Pressable onPress={handlePressLike}>
             {({ pressed }) => (
               <Icon
                 name={isLiked ? 'heart' : 'heart-o'}
@@ -113,15 +134,22 @@ const TrailDetails = ({ navigation, route }) => {
               />
             )}
           </Pressable>
+          
           {isLiked && 
-            <Icon
-              name={'calendar'}
-              size={25}
-              color={themeBackgroundColor}
-            />
+          <Pressable onPress={handlePressCalendar}>
+            {({ pressed }) => (
+              <Icon
+               name={'calendar'}
+               size={25}
+               color={pressed ? 'gray' : themeBackgroundColor}
+             />
+            )}
+          </Pressable>
           }
- 
+
+         
         </View>
+        <Text>SelectedDateIs{selectedDate}</Text>
         <View style={styles.infoContainer}>
           <View style={styles.listItem}>
             <View style={styles.iconContainer}>
@@ -208,6 +236,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: 7, 
     right: 10, 
+  },
+  calendarPopup: {
+    position: 'absolute',
+    backgroundColor: '#C89D7C',
+    width: '100%',
+    height: '60%',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 2000,
   },
   infoContainer: {
     // flexDirection: 'row',
