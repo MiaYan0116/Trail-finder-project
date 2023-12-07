@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
-import { themeBackgroundColor } from '../styles'
-import RatingStars from './RatingStars'
+import { themeBackgroundColor } from '../styles';
+import RatingStars from './RatingStars';
+import { format } from 'date-fns-tz';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStore, updateUser } from '../firebase/firestore';
 import { Calendar } from 'react-native-calendars';
 import { mapAPIKey } from '@env';
+import NotificationManager from "./NotificationManager";
 
 const TrailDetails = ({ navigation, route }) => {
 
@@ -15,6 +17,7 @@ const TrailDetails = ({ navigation, route }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState(null);
   const imageUri = item.imageUri;
   const rate = item.rating;
   let publicTransit;
@@ -95,16 +98,26 @@ const TrailDetails = ({ navigation, route }) => {
     }
   }
 
-  
+  /*
   const handlePressCalendar = () => {
     setIsCalendarVisible((prevIsCalendarVisible) => !prevIsCalendarVisible);
     
   }
-  
+  */
   const handleSelectDate = (day) => {
-    console.log('Selected date: ', day.dateString);
+    const timeZone = 'America/Vancouver';
+    const currentTimeUnformatted = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS", { timeZone });
+    const currentTimeFormatted = `${currentTimeUnformatted}Z`;
+    const currentTime = new Date(currentTimeFormatted);
+    console.log("The current time when user selects the date is: ", currentTime);
+    setSelectedTime(currentTime);
     setSelectedDate(day.dateString);
+    console.log("The selected date is: ", selectedDate);
     setIsCalendarVisible(false);
+  }
+
+  const handleChange = (data) => {
+    setIsCalendarVisible(data);
   }
 
   return (
@@ -134,22 +147,9 @@ const TrailDetails = ({ navigation, route }) => {
               />
             )}
           </Pressable>
-          
-          {isLiked && 
-          <Pressable onPress={handlePressCalendar}>
-            {({ pressed }) => (
-              <Icon
-               name={'calendar'}
-               size={25}
-               color={pressed ? 'gray' : themeBackgroundColor}
-             />
-            )}
-          </Pressable>
-          }
-
-         
+          <NotificationManager selectedDate={selectedDate} trailName={item.trailTitle} isLiked={isLiked} changedHandler={handleChange} selectedTime={selectedTime}/>
+                   
         </View>
-        <Text>SelectedDateIs{selectedDate}</Text>
         <View style={styles.infoContainer}>
           <View style={styles.listItem}>
             <View style={styles.iconContainer}>

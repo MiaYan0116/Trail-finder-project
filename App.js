@@ -4,6 +4,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigation from './components/TabNavigation';
 import StartScreen from './components/StartScreen';
 import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor } from './styles';
+import * as Notifications from "expo-notifications";
+
+Notifications.setNotificationHandler({
+  handleNotification: async function (notification) {
+    return {
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: true,
+    };
+  },
+});
 
 const Stack = createNativeStackNavigator();
 export default function App() {
