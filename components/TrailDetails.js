@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
+import { Modal, Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles';
 import RatingStars from './RatingStars';
@@ -127,7 +127,33 @@ const TrailDetails = ({ navigation, route }) => {
 				source={{uri: imageUri}}
 				style={styles.image}
 			/>
-       {isCalendarVisible && (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isCalendarVisible}
+        onRequestClose={() => {
+          setIsCalendarVisible(!isCalendarVisible);
+        }}
+      >
+        <View style={styles.modalView}>
+          <Calendar
+            // ... 日历组件的其它属性
+            onDayPress={handleSelectDate}
+            markedDates={{
+              [selectedDate]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+            }}
+          />
+          {/* 添加一个按钮来关闭模态框 */}
+          <Pressable
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => setIsCalendarVisible(!isCalendarVisible)}
+          >
+            <Text style={styles.textStyle}>Close</Text>
+          </Pressable>
+        </View>
+      </Modal>
+
+       {/* {isCalendarVisible && (
             <View style={styles.calendarPopup}>
               <Calendar onDayPress={handleSelectDate}
                         markedDates={{
@@ -135,7 +161,7 @@ const TrailDetails = ({ navigation, route }) => {
                         }}
               />
             </View>
-          )}
+          )} */}
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
@@ -318,6 +344,35 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: 'white',
+  },
+  modalView: {
+    marginTop: 300,
+    marginHorizontal: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
   },
 })
 
