@@ -9,6 +9,8 @@ import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStor
 import { Calendar } from 'react-native-calendars';
 import { mapAPIKey } from '@env';
 import NotificationManager from "./NotificationManager";
+import MapView, { Marker } from 'react-native-maps';
+import SingleButton from './SingleButton';
 
 const TrailDetails = ({ navigation, route }) => {
 
@@ -44,6 +46,7 @@ const TrailDetails = ({ navigation, route }) => {
   const [username, setUsername] = useState('');
   const [userCid, setUserCid] = useState('');
   const [wishitems, setWishitems] = useState([]);
+  const [isFullMapVisible, setIsFullMapVisible] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -113,6 +116,10 @@ const TrailDetails = ({ navigation, route }) => {
   const handleChange = (data) => {
     setIsCalendarVisible(data);
   }
+
+  const handleMapPress = () => {
+    setIsFullMapVisible(true);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -193,6 +200,46 @@ const TrailDetails = ({ navigation, route }) => {
           </View>
         </View>
       </View>
+      <Pressable onPress={handleMapPress}>
+        <MapView
+          style={{ height: 110, marginHorizontal: 25, marginTop: -5 }}
+          initialRegion={{
+            latitude: item.geo.lat,
+            longitude: item.geo.lng,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          <Marker
+            coordinate={{ latitude: item.geo.lat, longitude: item.geo.lng }}
+            title={item.trailTitle}
+          />
+        </MapView>
+      </Pressable>
+      {isFullMapVisible && (
+        <View style={styles.fullMapView}>
+          <MapView
+            style={{ flex: 1 }}
+            initialRegion={{
+              latitude: 49.6168742,
+              longitude: -121.0780851,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          >
+            <Marker
+              coordinate={{ latitude: 49.6168742, longitude: -121.0780851 }}
+              title={item.trailTitle}
+            />
+          </MapView>
+          {/* button to hide the entire map */}
+          <View style={{alignItems: 'center'}}>
+            <SingleButton text={"Close"} handlefunc={() => setIsFullMapVisible(false)} />
+          </View>
+        </View>
+      )}
+
+
 		</ScrollView>
   )
 }
@@ -245,14 +292,11 @@ const styles = StyleSheet.create({
     zIndex: 2000,
   },
   infoContainer: {
-    // flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginLeft: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
   },
   listItem: {
     flexDirection: 'row',
@@ -266,6 +310,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     color: themeBackgroundColor
+  },
+  fullMapView: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'white',
   },
 })
 
