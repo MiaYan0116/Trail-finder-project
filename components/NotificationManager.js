@@ -103,6 +103,7 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
                name={'calendar'}
                size={25}
                color={pressed ? 'gray' : themeBackgroundColor}
+               style={{marginLeft: 15, marginTop: 7}}
              />
             )}
           </Pressable>

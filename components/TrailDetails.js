@@ -98,12 +98,6 @@ const TrailDetails = ({ navigation, route }) => {
     }
   }
 
-  /*
-  const handlePressCalendar = () => {
-    setIsCalendarVisible((prevIsCalendarVisible) => !prevIsCalendarVisible);
-    
-  }
-  */
   const handleSelectDate = (day) => {
     const timeZone = 'America/Vancouver';
     const currentTimeUnformatted = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS", { timeZone });
@@ -144,6 +138,7 @@ const TrailDetails = ({ navigation, route }) => {
                 name={isLiked ? 'heart' : 'heart-o'}
                 size={25}
                 color={pressed ? 'gray' : themeBackgroundColor}
+                style={{marginTop: 7}}
               />
             )}
           </Pressable>
