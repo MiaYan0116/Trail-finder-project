@@ -46,24 +46,41 @@ const RecommendationScreen = ({ navigation, route }) => {
   }, []);
 
   
+  // useEffect(() => {
+  //   async function getRecommendationTrailList(inputList) {
+  //     try {
+  //       let trailArray = [];
+  //       let locationArray = [];
+  //       inputList.map(async (input) => {
+  //         const recommendedTrail = await getTrailItemByTrailId(input[0]);
+  //         console.log(recommendedTrail);
+  //         trailArray.push(recommendedTrail);
+  //         locationArray.push(recommendedTrail.geo);
+  //       })
+  //       setRecommendationTrails(trailArray);
+  //       setLocationList(locationArray);
+  //     } catch (err) {
+  //       console.log("error in get the recommendation trail list.")
+  //     }
+  //   }
+  //   getRecommendationTrailList(recommendationList);
+  // }, [recommendationList]);
+
   useEffect(() => {
-    async function getRecommendationTrailList(inputList) {
+    async function fetchTrails() {
       try {
-        let trailArray = [];
-        let locationArray = [];
-        inputList.map(async (input) => {
-          const recommendedTrail = await getTrailItemByTrailId(input[0]);
-          console.log(recommendedTrail);
-          trailArray.push(recommendedTrail);
-          locationArray.push(recommendedTrail.geo);
-        })
-        setRecommendationTrails(trailArray);
-        setLocationList(locationArray);
+        const trailPromises = recommendationList.map(input => getTrailItemByTrailId(input[0]));
+        const trails = await Promise.all(trailPromises);
+        setRecommendationTrails(trails);
+        setLocationList(trails.map(trail => trail.geo));
       } catch (err) {
-        console.log("error in get the recommendation trail list.")
+        console.log("error in get the recommendation trail list.", err)
       }
     }
-    getRecommendationTrailList(recommendationList);
+  
+    if (recommendationList.length > 0) {
+      fetchTrails();
+    }
   }, [recommendationList]);
 
 

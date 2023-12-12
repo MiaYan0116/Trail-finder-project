@@ -8,7 +8,7 @@ import Login from './Login';
 import ProfileScreen from './ProfileScreen';
 import RecommendationScreen from './RecommendationScreen';
 import Signup from './Signup'
-
+import Map from "./Map";
 
 const Stack = createNativeStackNavigator();
 const HomeStack = () => {
@@ -61,6 +61,7 @@ const HomeStack = () => {
 					headerTitle: 'Profile',
 				})}
 		/>
+		<Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   )
 }
