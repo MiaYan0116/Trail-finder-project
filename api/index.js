@@ -10,7 +10,11 @@ import { Parser } from 'json2csv';
 import { spawn } from 'child_process';
 
 const app = express();
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -142,11 +146,13 @@ app.get("/csv_all", async (req, res) => {
 app.get("/recommendation/:uid", async(req, res) => {
   try {
     const uid = req.params.uid;
+    console.log("qqqqq");
     const pythonScriptPath = 'recommendationAlgorithm.py';
     const pythonScriptArgs = [uid];
     const pythonProcess = spawn('python', [pythonScriptPath, ...pythonScriptArgs]);
     pythonProcess.stdout.on('data', (data) => {
       console.log(`Python script stdout: ${data}`);
+      res.status(200).send(data);
     });
     pythonProcess.stderr.on('data', (data) => {
       console.error(`Python script stderr: ${data}`);
@@ -154,7 +160,7 @@ app.get("/recommendation/:uid", async(req, res) => {
     pythonProcess.on('close', (code) => {
       console.log(`Python script process exited with code ${code}`);
     });
-    res.status(200).send('Success');
+    
   } catch (err) {
     console.error('Error generating recommendation:', err);
     res.status(500).send('Error generating recommendation');

@@ -53,7 +53,6 @@ def calculate_simple_matching_coefficient(pattern_dict, df):
         for property in pattern_dict:
             if df[property].values[i] == pattern_dict[property]:
                 numerator += 1
-        print(numerator)
         rating, trail_title = df["rating"].values[i], df["id"].values[i]
         smc[trail_title] = [numerator / denominator, rating]
     return smc
@@ -85,25 +84,25 @@ def recommend_trails(uid):
     sorted_trails = sort_trails_based_on_smc_and_rating(smc, df_wish_list_encoded)
     res = top_trails(sorted_trails)
     print(res)
-    csv_file_path = 'output.csv'
+    return res
+    # csv_file_path = 'output.csv'
 
-    # Open the CSV file in write mode
-    with open(csv_file_path, 'w', newline='') as csv_file:
-        # Create a CSV writer object
-        csv_writer = csv.writer(csv_file)
+    # # Open the CSV file in write mode
+    # with open(csv_file_path, 'w', newline='') as csv_file:
+    #     # Create a CSV writer object
+    #     csv_writer = csv.writer(csv_file)
 
-        # Write the header
-        csv_writer.writerow(['trail id', 'similarity score', 'rating'])
+    #     # Write the header
+    #     csv_writer.writerow(['trail id', 'similarity score', 'rating'])
 
-        # Write the data to the CSV file
-        for key, values in res.items():
-            csv_writer.writerow([key] + values)
+    #     # Write the data to the CSV file
+    #     for key, values in res.items():
+    #         csv_writer.writerow([key] + values)
 
     
 
 def main():
-    res = recommend_trails('MaHXxeeEnkV6DiYgvQOokezcFl82')
-    print(res)
+    recommend_trails('MaHXxeeEnkV6DiYgvQOokezcFl82')
 
 if __name__ == "__main__":
     main()

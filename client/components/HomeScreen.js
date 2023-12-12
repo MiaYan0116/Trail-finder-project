@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import { Pressable, FlatList, Image, ImageBackground, StyleSheet, View, Text, Button, ScrollView } from 'react-native'
+import { Pressable, FlatList, Image, ImageBackground, StyleSheet, View, Text, Button, ScrollView, Alert } from 'react-native'
 import { backGroundImage } from '../styles';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TopTrailsItem from './TopTrailsItem';
-import { db } from '../firebase/firebaseSetup'
+import { db, auth } from '../firebase/firebaseSetup'
+import { getUserByUserAuthId } from '../firebase/firestore';
 import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
+  
 
   const [topTrails, setTopTrails] = useState([]);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        if (auth.currentUser) {
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
+          setUserId(userId);
+        }
+      } catch (error) {
+      console.error('Error fetching user data:', error);
+      }
+    };
+      fetchUserData();
+  })
+
+
+
   useEffect(() => {
     const fetchTopTrails = async () => {
       const trailsRef = collection(db, 'traillist');
@@ -30,8 +50,13 @@ const HomeScreen = ({ navigation, route }) => {
   );
 
   const tailorPressedHandle = () => {
-    console.log("tailor pressed")
-    navigation.navigate('Recommendation');
+    if (auth.currentUser) {
+      navigation.navigate('Recommendation', userId);
+    } else {
+      Alert.alert("You need to login first");
+      navigation.navigate('Login');
+    }
+
   }
 
   return (

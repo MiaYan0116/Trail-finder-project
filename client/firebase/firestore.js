@@ -12,7 +12,7 @@ import {
   query, 
   where, 
   getDocs,
-} from "@firebase/firestore";
+} from "firebase/firestore";
 import { db } from "./firebaseSetup";
 import { auth } from './firebaseSetup';
 
@@ -79,7 +79,6 @@ export const deleteWishItemFromFireStore = async (userCid, trailTitle) => {
     // Check if a document with the given userCid and trailTitle exists
     const q = query(wishlistRef, where('userCid', '==', userCid), where('trailTitle', '==', trailTitle));
     const querySnapshot = await getDocs(q);
-    console.log(querySnapshot);
 
     if (!querySnapshot.empty) {
       // Document found, delete it
@@ -114,8 +113,6 @@ export const getTrailItemByTrailTitle = async (wishItem) => {
     const trailsCollection = collection(db, 'traillist');
     const q = query(trailsCollection, where('trailTitle', '==', wishItem.trailTitle));
     const querySnapshot = await getDocs(q);
-
-    console.log(querySnapshot.docs[0].data());
     if (querySnapshot.size > 0) {
       const trailData = querySnapshot.docs[0].data();
       return trailData;
@@ -124,6 +121,22 @@ export const getTrailItemByTrailTitle = async (wishItem) => {
     }
   } catch (error) {
     console.error('Error getting trailItem by trailTitle:', wishItem.trailTitle);
+  }
+}
+
+export const getTrailItemByTrailId = async (trailId) => {
+  try {
+    const trailsCollection = collection(db, 'traillist');
+    const q = query(trailsCollection, where('id', '==', trailId));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.size > 0) {
+      const trailData = querySnapshot.docs[0].data();
+      return trailData;
+    } else {
+      console.log('No matching document found');
+    }
+  } catch (error) {
+    console.error('Error getting trailItem by trail id:', trailId);
   }
 }
 
