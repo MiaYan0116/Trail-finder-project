@@ -7,6 +7,7 @@ import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
 import ImageManager from './ImageManager';
 import { storage } from '../firebase/firebaseSetup';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import SingleButton from './SingleButton';
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -149,6 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    marginLeft: 40,
     marginVertical: 10
   },
   label:{

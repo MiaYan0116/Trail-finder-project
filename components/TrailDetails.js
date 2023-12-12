@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
+import { Modal, Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles';
 import RatingStars from './RatingStars';
@@ -9,6 +9,8 @@ import { getUserByUserAuthId, addWishItemToFireStore, deleteWishItemFromFireStor
 import { Calendar } from 'react-native-calendars';
 import { mapAPIKey } from '@env';
 import NotificationManager from "./NotificationManager";
+import MapView, { Marker } from 'react-native-maps';
+import SingleButton from './SingleButton';
 
 const TrailDetails = ({ navigation, route }) => {
 
@@ -44,6 +46,7 @@ const TrailDetails = ({ navigation, route }) => {
   const [username, setUsername] = useState('');
   const [userCid, setUserCid] = useState('');
   const [wishitems, setWishitems] = useState([]);
+  const [isFullMapVisible, setIsFullMapVisible] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -98,12 +101,6 @@ const TrailDetails = ({ navigation, route }) => {
     }
   }
 
-  /*
-  const handlePressCalendar = () => {
-    setIsCalendarVisible((prevIsCalendarVisible) => !prevIsCalendarVisible);
-    
-  }
-  */
   const handleSelectDate = (day) => {
     const timeZone = 'America/Vancouver';
     const currentTimeUnformatted = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSS", { timeZone });
@@ -120,13 +117,43 @@ const TrailDetails = ({ navigation, route }) => {
     setIsCalendarVisible(data);
   }
 
+  const handleMapPress = () => {
+    setIsFullMapVisible(true);
+  };
+
   return (
     <ScrollView style={styles.container}>
 			<Image
 				source={{uri: imageUri}}
 				style={styles.image}
 			/>
-       {isCalendarVisible && (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isCalendarVisible}
+        onRequestClose={() => {
+          setIsCalendarVisible(!isCalendarVisible);
+        }}
+      >
+        <View style={styles.modalView}>
+          <Calendar
+            // ... 日历组件的其它属性
+            onDayPress={handleSelectDate}
+            markedDates={{
+              [selectedDate]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+            }}
+          />
+          {/* 添加一个按钮来关闭模态框 */}
+          <Pressable
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => setIsCalendarVisible(!isCalendarVisible)}
+          >
+            <Text style={styles.textStyle}>Close</Text>
+          </Pressable>
+        </View>
+      </Modal>
+
+       {/* {isCalendarVisible && (
             <View style={styles.calendarPopup}>
               <Calendar onDayPress={handleSelectDate}
                         markedDates={{
@@ -134,7 +161,7 @@ const TrailDetails = ({ navigation, route }) => {
                         }}
               />
             </View>
-          )}
+          )} */}
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
@@ -144,6 +171,7 @@ const TrailDetails = ({ navigation, route }) => {
                 name={isLiked ? 'heart' : 'heart-o'}
                 size={25}
                 color={pressed ? 'gray' : themeBackgroundColor}
+                style={{marginTop: 7}}
               />
             )}
           </Pressable>
@@ -198,6 +226,46 @@ const TrailDetails = ({ navigation, route }) => {
           </View>
         </View>
       </View>
+      <Pressable onPress={handleMapPress}>
+        <MapView
+          style={{ height: 110, marginHorizontal: 25, marginTop: -5 }}
+          initialRegion={{
+            latitude: item.geo.lat,
+            longitude: item.geo.lng,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          <Marker
+            coordinate={{ latitude: item.geo.lat, longitude: item.geo.lng }}
+            title={item.trailTitle}
+          />
+        </MapView>
+      </Pressable>
+      {isFullMapVisible && (
+        <View style={styles.fullMapView}>
+          <MapView
+            style={{ flex: 1 }}
+            initialRegion={{
+              latitude: 49.6168742,
+              longitude: -121.0780851,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          >
+            <Marker
+              coordinate={{ latitude: 49.6168742, longitude: -121.0780851 }}
+              title={item.trailTitle}
+            />
+          </MapView>
+          {/* button to hide the entire map */}
+          <View style={{alignItems: 'center'}}>
+            <SingleButton text={"Close"} handlefunc={() => setIsFullMapVisible(false)} />
+          </View>
+        </View>
+      )}
+
+
 		</ScrollView>
   )
 }
@@ -250,14 +318,11 @@ const styles = StyleSheet.create({
     zIndex: 2000,
   },
   infoContainer: {
-    // flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginLeft: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
   },
   listItem: {
     flexDirection: 'row',
@@ -271,6 +336,43 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     color: themeBackgroundColor
+  },
+  fullMapView: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'white',
+  },
+  modalView: {
+    marginTop: 300,
+    marginHorizontal: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
   },
 })
 
