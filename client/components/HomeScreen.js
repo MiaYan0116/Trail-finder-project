@@ -12,14 +12,16 @@ const HomeScreen = ({ navigation, route }) => {
   
 
   const [topTrails, setTopTrails] = useState([]);
-  const [userId, setUserId] = useState("");
+  const [userUid, setUserUid] = useState("");
+  const [userCid, setUserCid] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         if (auth.currentUser) {
           const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
-          setUserId(userData.uid);
+          setUserUid(userData.uid);
+          setUserCid(userId);
         }
       } catch (error) {
       console.error('Error fetching user data:', error);
@@ -51,7 +53,7 @@ const HomeScreen = ({ navigation, route }) => {
 
   const tailorPressedHandle = () => {
     if (auth.currentUser) {
-      navigation.navigate('Recommendation', userId);
+      navigation.navigate('Recommendation', {userUid, userCid});
     } else {
       Alert.alert("You need to login first");
       navigation.navigate('Login');

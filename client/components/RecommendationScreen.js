@@ -5,11 +5,12 @@ import ListSingleTrailItem from './ListSingleTrailItem';
 import { urlDomain } from "@env";
 import { getTrailItemByTrailId } from '../firebase/firestore';
 import LocationManager from './LocationManager';
+import { updateUser } from '../firebase/firestore';
 
 
 const RecommendationScreen = ({ navigation, route }) => {
   //console.log(route.params);
-  const userId = route.params;
+  const { userUid, userCid} = route.params;
   const [recommendationList, setRecommendationList] = useState([]);
   const [recommendationTrails, setRecommendationTrails] = useState([]);
   const [locationList, setLocationList] = useState([]);
@@ -29,7 +30,7 @@ const RecommendationScreen = ({ navigation, route }) => {
     async function getRecommendationResult() {
       try {
         const response = await axios.get(
-          `http://${urlDomain}:8000/recommendation/${userId}`, {withCredentials: true,}
+          `http://${urlDomain}:8000/recommendation/${userUid}`, {withCredentials: true,}
         );
         // data is converted from JSON to JS object
         const data = response.data;
@@ -72,6 +73,7 @@ const RecommendationScreen = ({ navigation, route }) => {
         const trailPromises = recommendationList.map(input => getTrailItemByTrailId(input[0]));
         const trails = await Promise.all(trailPromises);
         setRecommendationTrails(trails);
+        updateUser(userCid, {recommendationitems: trails});
         setLocationList(trails.map(trail => trail.geo));
       } catch (err) {
         console.log("error in get the recommendation trail list.", err)
