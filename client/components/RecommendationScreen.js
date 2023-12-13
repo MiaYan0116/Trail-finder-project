@@ -32,13 +32,13 @@ const RecommendationScreen = ({ navigation }) => {
     async function getRecommendationResult() {
       try {
         if (auth.currentUser) {
-          const { userData, userId, wishlist } = await getUserByUserAuthId(auth.currentUser.uid);
-          if (wishlist) {
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
+          if (userData.wishitems) {
             setUserCid(userId || '');
             setUserUid(userData.uid || '');
             setIsWishlistExist(true);
             const response = await axios.get(
-              `http://${urlDomain}:8000/recommendation/${userUid}`, {withCredentials: true,}
+              `http://${urlDomain}:8000/recommendation/${userData.uid}`, {withCredentials: true,}
             );
             // data is converted from JSON to JS object
             const data = response.data;
