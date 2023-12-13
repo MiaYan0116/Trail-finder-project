@@ -9,7 +9,8 @@ import LocationManager from './LocationManager';
 import { updateUser, getUserByUserAuthId } from '../firebase/firestore';
 
 
-const RecommendationScreen = ({ navigation }) => {
+
+const RecommendationScreen = ({ navigation, route }) => {
   const [recommendationList, setRecommendationList] = useState([]);
   const [recommendationTrails, setRecommendationTrails] = useState([]);
   const [locationList, setLocationList] = useState([]);
@@ -32,8 +33,9 @@ const RecommendationScreen = ({ navigation }) => {
     async function getRecommendationResult() {
       try {
         if (auth.currentUser) {
-          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
-          if (userData.wishitems) {
+
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);          
+          if (userData.wishitems && userData.wishitems.length > 0) {
             setUserCid(userId || '');
             setUserUid(userData.uid || '');
             setIsWishlistExist(true);
