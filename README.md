@@ -24,7 +24,8 @@
 #### 6.run npx nodemon index.js to start the server
 #### 7.run npx expo start to start the frontend
 
-
+## Link to the demo video
+#### https://youtu.be/QZWsLP-ufhI?si=qK7aPYoH0nrEvWga
 
 ## Features and Progress (screenshots)
 * Homepage Screen
