@@ -9,6 +9,7 @@ import ProfileScreen from './ProfileScreen';
 import RecommendationScreen from './RecommendationScreen';
 import Signup from './Signup'
 import Map from "./Map";
+import ProfileStack from './ProfileStack';
 
 const Stack = createNativeStackNavigator();
 const HomeStack = () => {
@@ -40,7 +41,7 @@ const HomeStack = () => {
     	    headerTitle: 'Recommendation',
     	  })}
     	/>
-		<Stack.Screen
+		{/* <Stack.Screen
 			name='Login'
 			component={Login}
 			options={() => ({
@@ -60,7 +61,7 @@ const HomeStack = () => {
 				options={() => ({
 					headerTitle: 'Profile',
 				})}
-		/>
+		/> */}
 		<Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   )

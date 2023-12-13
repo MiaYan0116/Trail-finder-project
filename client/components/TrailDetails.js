@@ -97,7 +97,7 @@ const TrailDetails = ({ navigation, route }) => {
       handleIsLiked();
     } else {
       Alert.alert("You need to login first");
-      navigation.navigate('Login');
+      navigation.navigate('Profile', {screen: 'ProfileScreen'});
     }
   }
 

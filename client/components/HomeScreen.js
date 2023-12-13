@@ -9,7 +9,7 @@ import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
-  
+  console.log("home: ", auth.currentUser);
 
   const [topTrails, setTopTrails] = useState([]);
   const [userId, setUserId] = useState("");
@@ -60,9 +60,9 @@ const HomeScreen = ({ navigation, route }) => {
       
     } else {
       Alert.alert("You need to login first");
-      navigation.navigate('Login');
+      navigation.navigate('Profile', {screen: 'ProfileScreen'});
+      // navigation.replace('Login');
     }
-
   }
 
   return (
