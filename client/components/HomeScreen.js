@@ -51,7 +51,7 @@ const HomeScreen = ({ navigation, route }) => {
     <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
   );
 
-  const tailorPressedHandle = () => {
+  const tailorPressedHandle = async () => {
     if (auth.currentUser) {
       navigation.navigate('Recommendation', {userUid, userCid});
     } else {
