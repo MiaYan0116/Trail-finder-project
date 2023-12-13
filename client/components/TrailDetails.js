@@ -108,7 +108,6 @@ const TrailDetails = ({ navigation, route }) => {
     const currentTime = new Date(currentTimeFormatted);
     console.log("The current time when user selects the date is: ", currentTime);
     setSelectedTime(currentTime);
-    console.log("The date string is: ", day.dateString);
     setSelectedDate(day.dateString);
     console.log("The selected date is: ", selectedDate);
     setIsCalendarVisible(false);

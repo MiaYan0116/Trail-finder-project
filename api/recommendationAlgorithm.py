@@ -5,6 +5,7 @@ This is a recommendation engine with collaborative filtering that suggests trail
 import requests
 import pandas as pd
 import csv
+import sys
 
 BOOLEAN_COLMUNS = ['camping', 'publicTransit', 'dogFriendly']
 CATEGORICAL_COLUMNS = ['difficulty']
@@ -102,13 +103,14 @@ def recommend_trails(uid):
     
 
 def main():
-    recommend_trails('MaHXxeeEnkV6DiYgvQOokezcFl82')
+    if len(sys.argv) < 2:
+        print("Error: Missing user ID argument.")
+    else:
+        # The first argument (index 0) is the script name, so user ID is at index 1
+        userid = sys.argv[1]
+        recommend_trails(userid)
 
 if __name__ == "__main__":
     main()
 
-
     
-
- 
-

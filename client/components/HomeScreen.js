@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation, route }) => {
       try {
         if (auth.currentUser) {
           const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
-          setUserId(userId);
+          setUserId(userData.uid);
         }
       } catch (error) {
       console.error('Error fetching user data:', error);

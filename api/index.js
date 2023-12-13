@@ -9,6 +9,7 @@ import serviceAccount from './serviceAccountKey.json' assert {type: 'json'};
 import { Parser } from 'json2csv';
 import { spawn } from 'child_process';
 
+
 const app = express();
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -85,6 +86,7 @@ app.get("/csv/:uid", async (req, res) => {
   try {
     const uid = req.params.uid;
     const userData =  await getUserByUserAuthId(uid);
+    console.log(userData);
     const wishList = userData.wishitems;
     const newTrailList = await Promise.all(
       wishList.map(async (wishItem) => {
@@ -145,10 +147,11 @@ app.get("/csv_all", async (req, res) => {
 
 app.get("/recommendation/:uid", async(req, res) => {
   try {
-    const uid = req.params.uid;
+    const userid = req.params.uid;
+    console.log(req.params);
     console.log("qqqqq");
     const pythonScriptPath = 'recommendationAlgorithm.py';
-    const pythonScriptArgs = [uid];
+    const pythonScriptArgs = [userid];
     const pythonProcess = spawn('python', [pythonScriptPath, ...pythonScriptArgs]);
     pythonProcess.stdout.on('data', (data) => {
       console.log(`Python script stdout: ${data}`);
