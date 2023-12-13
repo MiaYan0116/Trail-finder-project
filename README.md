@@ -61,6 +61,7 @@
 ![WishlistScreen](selectedlocation.jpg)
 ![Map](interactivemap.jpg)
 ![Details](wishlist_detail.jpg)
+![Details](wishlist_detail_2.jpg)
 ![Details](wishlist_detail_calendar.jpg)
 
 ## Data Model
