@@ -21,13 +21,16 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
         Alert.alert("You need to give permission to send notification");
         return;
       }
-      Notifications.scheduleNotificationAsync({
-        content: {
-          title: "visit notification",
-          body: `Remember to visit ${trailName} today!`,
-        },
-        trigger: { seconds: timeDifference },
-      });
+      if (timeDifference > 0) {
+        Notifications.scheduleNotificationAsync({
+          content: {
+            title: "visit notification",
+            body: `Remember to visit ${trailName} today!`,
+          },
+          trigger: { seconds: timeDifference },
+        });
+  
+      }
 
     } catch (err) {
       console.log("schedule notification error ", err);
@@ -49,6 +52,7 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
 
   useEffect(() => {
     const calculateTimeDifference = () => {
+
       // Scheduled time
       const scheduledDateTime = new Date(selectedDate);
 
@@ -64,8 +68,8 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
     // Call the function initially
     calculateTimeDifference();
 
-    // Set up a timer to recalculate the time difference every second
-    const timer = setInterval(calculateTimeDifference, 1000);
+    // Set up a timer to recalculate the time difference every twenty second
+    const timer = setInterval(calculateTimeDifference, 20000);
 
     // Clear the timer when the component is unmounted
     return () => clearInterval(timer);

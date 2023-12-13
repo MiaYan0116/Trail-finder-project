@@ -32,13 +32,8 @@ const RecommendationScreen = ({ navigation, route }) => {
     async function getRecommendationResult() {
       try {
         if (auth.currentUser) {
-          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
-          console.log(userData);
-          //console.log(userData.wishitems);
-          
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);          
           if (userData.wishitems && userData.wishitems.length > 0) {
-            console.log("rrrrr");
-            console.log(typeof(userData.wishitems));
             setUserCid(userId || '');
             setUserUid(userData.uid || '');
             setIsWishlistExist(true);
