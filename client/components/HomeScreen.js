@@ -9,19 +9,17 @@ import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
-  
+  console.log("home: ", auth.currentUser);
 
   const [topTrails, setTopTrails] = useState([]);
-  const [userUid, setUserUid] = useState("");
-  const [userCid, setUserCid] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         if (auth.currentUser) {
           const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
-          setUserUid(userData.uid);
-          setUserCid(userId);
+          setUserId(userData.uid);
         }
       } catch (error) {
       console.error('Error fetching user data:', error);
@@ -55,16 +53,16 @@ const HomeScreen = ({ navigation, route }) => {
     if (auth.currentUser) {
       const user = await getUserByUserAuthId(auth.currentUser.uid);
       if(user.userData.wishitems){
-        navigation.navigate('Recommendation', {userUid, userCid});
-      } else{
+        navigation.navigate('Recommendation', userId);
+      }else{
         Alert.alert("You need to add some trails first");
       }
-
-      } else {
+      
+    } else {
       Alert.alert("You need to login first");
-      navigation.navigate('Login');
+      navigation.navigate('Profile', {screen: 'ProfileScreen'});
+      // navigation.replace('Login');
     }
-
   }
 
   return (

@@ -9,7 +9,7 @@ import LocationManager from './LocationManager';
 import { updateUser, getUserByUserAuthId } from '../firebase/firestore';
 
 
-const RecommendationScreen = ({ navigation }) => {
+const RecommendationScreen = ({ navigation, route }) => {
   const [recommendationList, setRecommendationList] = useState([]);
   const [recommendationTrails, setRecommendationTrails] = useState([]);
   const [locationList, setLocationList] = useState([]);
@@ -33,7 +33,12 @@ const RecommendationScreen = ({ navigation }) => {
       try {
         if (auth.currentUser) {
           const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
-          if (userData.wishitems) {
+          console.log(userData);
+          //console.log(userData.wishitems);
+          
+          if (userData.wishitems && userData.wishitems.length > 0) {
+            console.log("rrrrr");
+            console.log(typeof(userData.wishitems));
             setUserCid(userId || '');
             setUserUid(userData.uid || '');
             setIsWishlistExist(true);

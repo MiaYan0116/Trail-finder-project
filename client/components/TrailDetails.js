@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
-import { auth } from '../firebase/firebaseSetup';
+import { db, auth } from '../firebase/firebaseSetup';
 import { themeBackgroundColor } from '../styles';
 import RatingStars from './RatingStars';
 import { format } from 'date-fns-tz';
@@ -97,7 +97,7 @@ const TrailDetails = ({ navigation, route }) => {
       handleIsLiked();
     } else {
       Alert.alert("You need to login first");
-      navigation.navigate('Login');
+      navigation.navigate('Profile', {screen: 'ProfileScreen'});
     }
   }
 

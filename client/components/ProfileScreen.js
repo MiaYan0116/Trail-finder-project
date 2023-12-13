@@ -117,13 +117,19 @@ const ProfileScreen = ({ navigation }) => {
             onChangeText={descriptionChangeHandler}
           />
         </View>
-        <View style={{flexDirection: 'row'}}>
-          <Button title="Save" onPress={saveHandler}/>
-          <Button title="Log out" onPress={LogOutHandler}/>
-          <Button title="Wishlist" onPress={wishListHandler}/>
+        <View style={{ flexDirection: 'row' }}>
+          <View>
+            <Button title="Save" onPress={saveHandler} />
+          </View>
+          <View style={{ marginLeft: 5 }}>
+            <Button title="Log out" onPress={LogOutHandler} />
+          </View>
+          <View style={{ marginLeft: 5 }}>
+            <Button title="Wishlist" onPress={wishListHandler} />
+          </View>
         </View>
+
       </View>}
-      {/* {!auth.currentUser && <Button title="Login" onPress={loginHandler}/>} */}
     </View>
   )
 }
