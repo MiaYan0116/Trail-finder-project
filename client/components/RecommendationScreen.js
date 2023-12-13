@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList, Alert, Text } from 'react-native'
 import axios from 'axios';
 import ListSingleTrailItem from './ListSingleTrailItem';
 import { urlDomain } from "@env";
 import { getTrailItemByTrailId } from '../firebase/firestore';
+import { auth } from '../firebase/firebaseSetup';
 import LocationManager from './LocationManager';
+import { updateUser, getUserByUserAuthId } from '../firebase/firestore';
 
 
-const RecommendationScreen = ({ navigation, route }) => {
-  //console.log(route.params);
-  const userId = route.params;
+const RecommendationScreen = ({ navigation }) => {
   const [recommendationList, setRecommendationList] = useState([]);
   const [recommendationTrails, setRecommendationTrails] = useState([]);
   const [locationList, setLocationList] = useState([]);
+  const [userCid, setUserCid] = useState('');
+  const [userUid, setUserUid] = useState('');
+  const [isWishListExist, setIsWishlistExist] = useState(false);
 
 
   const renderItem = ({ item }) => (
@@ -28,16 +31,25 @@ const RecommendationScreen = ({ navigation, route }) => {
     //we have to use a separate function because the effect function can not be marked async
     async function getRecommendationResult() {
       try {
-        const response = await axios.get(
-          `http://${urlDomain}:8000/recommendation/${userId}`, {withCredentials: true,}
-        );
-        // data is converted from JSON to JS object
-        const data = response.data;
-        const fixedJsonString = data.replace(/'/g, '"');
-        const validJsonString = fixedJsonString.slice(0, -1);
-        const resultDict = JSON.parse(validJsonString);
-        const resultArray = Object.entries(resultDict);
-        setRecommendationList(resultArray);
+        if (auth.currentUser) {
+          const { userData, userId } = await getUserByUserAuthId(auth.currentUser.uid);
+          if (userData.wishitems) {
+            setUserCid(userId || '');
+            setUserUid(userData.uid || '');
+            setIsWishlistExist(true);
+            const response = await axios.get(
+              `http://${urlDomain}:8000/recommendation/${userData.uid}`, {withCredentials: true,}
+            );
+            // data is converted from JSON to JS object
+            const data = response.data;
+            const fixedJsonString = data.replace(/'/g, '"');
+            const validJsonString = fixedJsonString.slice(0, -1);
+            const resultDict = JSON.parse(validJsonString);
+            const resultArray = Object.entries(resultDict);
+            setRecommendationList(resultArray);
+          } else {
+            Alert.alert("You need to add some trails first");
+          }}       
       } catch (err) {
         console.log("error in fetching users data ", err);
       }
@@ -46,32 +58,13 @@ const RecommendationScreen = ({ navigation, route }) => {
   }, []);
 
   
-  // useEffect(() => {
-  //   async function getRecommendationTrailList(inputList) {
-  //     try {
-  //       let trailArray = [];
-  //       let locationArray = [];
-  //       inputList.map(async (input) => {
-  //         const recommendedTrail = await getTrailItemByTrailId(input[0]);
-  //         console.log(recommendedTrail);
-  //         trailArray.push(recommendedTrail);
-  //         locationArray.push(recommendedTrail.geo);
-  //       })
-  //       setRecommendationTrails(trailArray);
-  //       setLocationList(locationArray);
-  //     } catch (err) {
-  //       console.log("error in get the recommendation trail list.")
-  //     }
-  //   }
-  //   getRecommendationTrailList(recommendationList);
-  // }, [recommendationList]);
-
   useEffect(() => {
     async function fetchTrails() {
       try {
         const trailPromises = recommendationList.map(input => getTrailItemByTrailId(input[0]));
         const trails = await Promise.all(trailPromises);
         setRecommendationTrails(trails);
+        updateUser(userCid, {recommendationitems: trails});
         setLocationList(trails.map(trail => trail.geo));
       } catch (err) {
         console.log("error in get the recommendation trail list.", err)
@@ -83,21 +76,20 @@ const RecommendationScreen = ({ navigation, route }) => {
     }
   }, [recommendationList]);
 
-
-
-
-
   return (
     <View>
       <LocationManager locationList={locationList}/>
       <View style={styles.listContainer}>
-        <FlatList
+        { isWishListExist ? 
+        (<FlatList
           data={recommendationTrails}
           horizontal={false}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={true}
-        />
+        />) : 
+        (<Text style={styles.text}>No recommended item found.</Text>)
+        }
       </View> 
     </View> 
   )
