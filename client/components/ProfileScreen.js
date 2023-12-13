@@ -28,6 +28,8 @@ const ProfileScreen = ({ navigation }) => {
           setUsername(userData.username || '');
           setUserCid(userId || '');
           setUserImageUri(userData.avatarUri || 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png');
+        }else{
+          navigation.replace('Login');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -121,7 +123,7 @@ const ProfileScreen = ({ navigation }) => {
           <Button title="Wishlist" onPress={wishListHandler}/>
         </View>
       </View>}
-      {!auth.currentUser && <Button title="Login" onPress={loginHandler}/>}
+      {/* {!auth.currentUser && <Button title="Login" onPress={loginHandler}/>} */}
     </View>
   )
 }

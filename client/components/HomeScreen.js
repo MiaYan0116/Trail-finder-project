@@ -49,9 +49,15 @@ const HomeScreen = ({ navigation, route }) => {
     <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
   );
 
-  const tailorPressedHandle = () => {
+  const tailorPressedHandle = async () => {
     if (auth.currentUser) {
-      navigation.navigate('Recommendation', userId);
+      const user = await getUserByUserAuthId(auth.currentUser.uid);
+      if(user.userData.wishitems){
+        navigation.navigate('Recommendation', userId);
+      }else{
+        Alert.alert("You need to add some trails first");
+      }
+      
     } else {
       Alert.alert("You need to login first");
       navigation.navigate('Login');
