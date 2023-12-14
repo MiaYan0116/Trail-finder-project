@@ -1,8 +1,8 @@
 /*
 TrailDetail is one reusable component that is used for both HomeScreen, WishlistScreen, ResultScreen and RecommendationScreen.
 */
-import React, { useEffect, useState } from 'react'
-import { Modal, Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
+import React, { useEffect, useState, useRef } from 'react'
+import { Modal, Pressable, Image, StyleSheet, View, Text, ScrollView, Alert, Animated } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
 import colors from "../helper/colors";
 import fontSizes from "../helper/fontSizes";
@@ -16,6 +16,7 @@ import { mapAPIKey } from '@env';
 import NotificationManager from "./NotificationManager";
 import MapView, { Marker } from 'react-native-maps';
 import SingleButton from './SingleButton';
+import { themeBackgroundColor } from '../styles';
 
 const TrailDetails = ({ navigation, route }) => {
 
@@ -52,6 +53,8 @@ const TrailDetails = ({ navigation, route }) => {
   const [userCid, setUserCid] = useState('');
   const [wishitems, setWishitems] = useState([]);
   const [isFullMapVisible, setIsFullMapVisible] = useState(false);
+  const heartScale = useRef(new Animated.Value(1)).current;
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -74,6 +77,24 @@ const TrailDetails = ({ navigation, route }) => {
     fetchUserData();
   }, []);
 
+  const triggerHeartAnimation = () => {
+    Animated.sequence([
+      // magnify the heart icon
+      Animated.timing(heartScale, {
+        toValue: 2.5,
+        duration: 230,
+        useNativeDriver: true,
+      }),
+      // bounce
+      Animated.spring(heartScale, {
+        toValue: 1,
+        friction: 2,
+        tension: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+};
+
 
 
   // If the like button is hit, update the wishlist and users collections accordingly
@@ -81,6 +102,7 @@ const TrailDetails = ({ navigation, route }) => {
     setIsLiked((prevIsLiked) => {
       const newIsLiked = !prevIsLiked;
       if (newIsLiked) {
+        triggerHeartAnimation();
         const wishData = {"userCid": userCid, "trailTitle": item.trailTitle}
         addWishItemToFireStore(wishData);
         setWishitems((prevWishitems) => {
@@ -183,12 +205,13 @@ const TrailDetails = ({ navigation, route }) => {
           <Text style={styles.titleText}>{item.trailTitle}</Text>
           <Pressable onPress={handlePressLike}>
             {({ pressed }) => (
-              <Icon
-                name={isLiked ? 'heart' : 'heart-o'}
-                size={25}
-                color={pressed ? 'gray' : colors.themeBackgroundColor}
-                style={{marginTop: 7}}
-              />
+              <Animated.View style={{ transform: [{ scale: heartScale }], marginTop: 6 }}>
+                <Icon
+                  name={isLiked ? 'heart' : 'heart-o'}
+                  size={25}
+                  color={isLiked ? themeBackgroundColor : colors.themeBackgroundColor}
+                />
+              </Animated.View>
             )}
           </Pressable>
           <NotificationManager selectedDate={selectedDate} trailName={item.trailTitle} isLiked={isLiked} changedHandler={handleChange} selectedTime={selectedTime}/>

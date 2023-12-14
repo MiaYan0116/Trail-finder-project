@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { StyleSheet, Pressable, ImageBackground, View, TextInput, Text, Button, ScrollView } from 'react-native'
+import React, { useState, useRef, useEffect } from 'react'
+import { StyleSheet, Pressable, ImageBackground, View, Animated, Text } from 'react-native'
 import { iconSize, themeBackgroundColor, themeTintColor, backGroundImage } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SingleButton from './SingleButton'
 import DropDownPicker from 'react-native-dropdown-picker';
 
+const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
 const SearchScreen = ({ navigation }) => {
 	const [searchKey, setSearchKey] = useState("");
 	const [rating, setRating] = useState(0);
@@ -35,11 +36,36 @@ const SearchScreen = ({ navigation }) => {
 		navigation.navigate('SearchResult', searchInput);
 	}
 
+
+	const animatedOpacity = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(animatedOpacity, {
+          toValue: 1,
+          duration: 5000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedOpacity, {
+          toValue: 0,
+          duration: 5000,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, [animatedOpacity]);
+
   return (
-    <ImageBackground
-			source={require('../assets/background_image.jpeg')}
-			style={ backGroundImage }
-		>	
+		<View style={{ flex: 1 }}>
+			<AnimatedImageBackground
+				source={require('../assets/background_image.jpeg')}
+				style={[
+					StyleSheet.absoluteFillObject, // 这将使背景图片填充整个屏幕
+					{ opacity: animatedOpacity }
+				]}
+				resizeMode="cover"
+			/>	
 			<View style={styles.container}>
 				{/* Rating Input */}
 				<View style={styles.dropDownContainer}>
@@ -195,9 +221,8 @@ const SearchScreen = ({ navigation }) => {
 							<SingleButton text={'Search'} handlefunc={searchHandler} />
 						</View>
 					</View>
-					
-				</View>
-		</ImageBackground>
+			</View>
+		</View>
   )
 }
 
