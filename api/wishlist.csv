@@ -1,0 +1,6 @@
+"id","difficulty","publicTransit","dogFriendly","camping","rating","trailTitle"
+"eb1b19de149911eeac7a50eb7124d145","Easy","FALSE","TRUE","TRUE",5,"Falls Lake"
+"eb17061b149911eeac7a50eb7124d145","Easy","FALSE","TRUE","FALSE",5,"Cliff Gilker Park"
+"eb152d93149911eeac7a50eb7124d145","Easy","FALSE","TRUE","FALSE",5,"Burnett Falls"
+"eb1164b9149911eeac7a50eb7124d145","Difficult","FALSE","FALSE","TRUE",4.79,"Black Tusk"
+"eb185d36149911eeac7a50eb7124d145","Difficult","TRUE","FALSE","FALSE",4.69,"Crown Mountain"
