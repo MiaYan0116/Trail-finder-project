@@ -6,10 +6,14 @@ import TopTrailsItem from './TopTrailsItem';
 import { db, auth } from '../firebase/firebaseSetup'
 import { getUserByUserAuthId } from '../firebase/firestore';
 import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
+import colors from "../helper/colors";
+import fontSizes from "../helper/fontSizes";
 
+
+// Top five trails and recommendation button are shown in the HomeScreen
 const Stack = createNativeStackNavigator();
 const HomeScreen = ({ navigation, route }) => {
-  console.log("home: ", auth.currentUser);
+  //console.log("home: ", auth.currentUser);
 
   const [topTrails, setTopTrails] = useState([]);
   const [userId, setUserId] = useState("");
@@ -41,6 +45,7 @@ const HomeScreen = ({ navigation, route }) => {
     fetchTopTrails();
   }, []);
 
+  // user can navigate to Details screen by pressing on the image of any trail. 
   const detailsHandler = (pressedItem) => {
 		navigation.navigate('Details', {pressedItem});
 	}
@@ -49,6 +54,9 @@ const HomeScreen = ({ navigation, route }) => {
     <TopTrailsItem item={item} itemPressHandle={detailsHandler} />
   );
 
+  // user can navigate to Recommendation screen by pressing the image on the bottom of the screen.
+  // if the wishlist is empty, an alert will appear.
+  // if the user is not logged in, he/she will be directed to login first.
   const tailorPressedHandle = async () => {
     if (auth.currentUser) {
       const user = await getUserByUserAuthId(auth.currentUser.uid);
@@ -61,7 +69,6 @@ const HomeScreen = ({ navigation, route }) => {
     } else {
       Alert.alert("You need to login first");
       navigation.navigate('Profile', {screen: 'ProfileScreen'});
-      // navigation.replace('Login');
     }
   }
 
@@ -101,7 +108,7 @@ const HomeScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
 	container:{
 		flex: 1,
-		backgroundColor: 'rgba(255,255,255,0.7)', 
+		backgroundColor: colors.background, 
     width: '100%',
 	},
 	image: {
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   listTitle: {
-    fontSize: 20,
+    fontSize: fontSizes.median,
     marginLeft:15,
     marginBottom: 8,
     textAlign: 'left'
@@ -139,8 +146,8 @@ const styles = StyleSheet.create({
     right: 32,
   },
   tailorText:{
-    fontSize: 35,
-    color: 'white',
+    fontSize: fontSizes.extralarge,
+    color: colors.white,
     fontWeight: 'bold',
   }
 

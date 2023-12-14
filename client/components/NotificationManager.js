@@ -1,8 +1,9 @@
-import { Pressable, View, Text, Button, Alert } from "react-native";
+//The NotificationManager is responsible for managing notifications related to a trail visit.
+
+import { Pressable, View, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
-import { format } from 'date-fns-tz';
-import { themeBackgroundColor } from '../styles';
+import colors from "../helper/colors";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function NotificationManager({ selectedDate, trailName, isLiked, changedHandler, selectedTime }) {
@@ -38,6 +39,8 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
 
   }
 
+  // Validate user's permission 
+  // and if the permission is granted, request permission
   const verifyPermission = async () => {
     const status = await Notifications.getPermissionsAsync();
     if (status.granted) {
@@ -75,29 +78,6 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
     return () => clearInterval(timer);
   }, [selectedDate]);
 
-
-  /** 
-  const scheduleNotificationHandler = async () => {
-    try {
-      const hasPermission = await verifyPermission();
-      if (!hasPermission) {
-        Alert.alert("You need to give permission to send notification");
-        return;
-      }
-      Notifications.scheduleNotificationAsync({
-        content: {
-          title: "visit notification",
-          body: `Remember to visit ${trailName} today!`,
-        },
-        trigger: { seconds: timeDifference },
-      });
-
-    } catch (err) {
-      console.log("schedule notification error ", err);
-    }
-  };
-*/
-
   return (
     <View>
       {isLiked && 
@@ -106,7 +86,7 @@ export default function NotificationManager({ selectedDate, trailName, isLiked, 
               <Icon
                name={'calendar'}
                size={25}
-               color={pressed ? 'gray' : themeBackgroundColor}
+               color={pressed ? 'gray' : colors.themeBackgroundColor}
                style={{marginLeft: 15, marginTop: 7}}
              />
             )}

@@ -1,3 +1,5 @@
+// The LocationManager is responsible for managing and displaying location-related information.
+
 import {  Alert, View, Button, StyleSheet, Image, Dimensions } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";

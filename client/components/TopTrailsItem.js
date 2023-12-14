@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Image, Text, View, StyleSheet, Pressable } from 'react-native'
-import {themeBackgroundColor, buttonborderRadius, themeTintColor, buttonFontSize, buttonInactiveColor } from '../styles'
-
 import  RatingStars from './RatingStars';
 
 export const TopTrailsItem = (props) => {

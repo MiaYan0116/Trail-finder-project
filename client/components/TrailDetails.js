@@ -1,7 +1,12 @@
+/*
+TrailDetail is one reusable component that is used for both HomeScreen, WishlistScreen, ResultScreen and RecommendationScreen.
+*/
 import React, { useEffect, useState } from 'react'
 import { Modal, Pressable, Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
-import { themeBackgroundColor } from '../styles';
+import colors from "../helper/colors";
+import fontSizes from "../helper/fontSizes";
+import paddings from "../helper/paddings";
 import RatingStars from './RatingStars';
 import { format } from 'date-fns-tz';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -69,6 +74,9 @@ const TrailDetails = ({ navigation, route }) => {
     fetchUserData();
   }, []);
 
+
+
+  // If the like button is hit, update the wishlist and users collections accordingly
   const handleIsLiked = () => {
     setIsLiked((prevIsLiked) => {
       const newIsLiked = !prevIsLiked;
@@ -121,6 +129,25 @@ const TrailDetails = ({ navigation, route }) => {
     setIsFullMapVisible(true);
   };
 
+
+    // Because the layouts of each detail items are similar, we here store the layout as a reusable function DetailItem
+  // the parameters are: name of the icon, value of the text input, and style of the useState of the detail item.
+  function DetailItem( {iconName, textInput, itemState} ) {
+    return (
+      <View style={styles.listItem}>
+        <View style={styles.iconContainer}>
+          <Icon name={iconName} size={20} color={colors.themeBackgroundColor} />
+        </View>
+        <View>
+          <Text style={styles.label}>{textInput}</Text>
+          <Text>{itemState}</Text>
+        </View>
+      </View>
+    )
+  }
+
+
+
   return (
     <ScrollView style={styles.container}>
 			<Image
@@ -137,13 +164,11 @@ const TrailDetails = ({ navigation, route }) => {
       >
         <View style={styles.modalView}>
           <Calendar
-            // ... 日历组件的其它属性
             onDayPress={handleSelectDate}
             markedDates={{
               [selectedDate]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
             }}
           />
-          {/* 添加一个按钮来关闭模态框 */}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => setIsCalendarVisible(!isCalendarVisible)}
@@ -153,15 +178,6 @@ const TrailDetails = ({ navigation, route }) => {
         </View>
       </Modal>
 
-       {/* {isCalendarVisible && (
-            <View style={styles.calendarPopup}>
-              <Calendar onDayPress={handleSelectDate}
-                        markedDates={{
-                          [selectedDate]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
-                        }}
-              />
-            </View>
-          )} */}
       <View>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>{item.trailTitle}</Text>
@@ -170,7 +186,7 @@ const TrailDetails = ({ navigation, route }) => {
               <Icon
                 name={isLiked ? 'heart' : 'heart-o'}
                 size={25}
-                color={pressed ? 'gray' : themeBackgroundColor}
+                color={pressed ? 'gray' : colors.themeBackgroundColor}
                 style={{marginTop: 7}}
               />
             )}
@@ -181,49 +197,17 @@ const TrailDetails = ({ navigation, route }) => {
         <View style={styles.infoContainer}>
           <View style={styles.listItem}>
             <View style={styles.iconContainer}>
-              <Icon name='star' size={20} color={themeBackgroundColor} />
+              <Icon name='star' size={20} color={colors.themeBackgroundColor} />
             </View>
             <View>
               <Text style={styles.label}>Rating</Text>
               <Text>{RatingStars({ rate })}</Text>
             </View>
           </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='bus' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Public Transit</Text>
-              <Text>{publicTransit}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='paw' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Dog Friendly</Text>
-              <Text>{dogFriendly}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='wrench' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Difficulty</Text>
-              <Text>{item.difficulty}</Text>
-            </View>
-          </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconContainer}>
-              <Icon name='fire' size={20} color={themeBackgroundColor} />
-            </View>
-            <View>
-              <Text style={styles.label}>Camping</Text>
-              <Text>{camping}</Text>
-            </View>
-          </View>
+          <DetailItem iconName='bus' textInput='Public Transit' itemState={publicTransit} />
+          <DetailItem iconName='paw' textInput='Dog Friendly' itemState={dogFriendly} />
+          <DetailItem iconName='wrench' textInput='Difficulty' itemState={item.difficulty} />
+          <DetailItem iconName='fire' textInput='Camping' itemState={camping} />
         </View>
       </View>
       <Pressable onPress={handleMapPress}>
@@ -273,7 +257,7 @@ const TrailDetails = ({ navigation, route }) => {
 const styles = StyleSheet.create({
 	container:{
 		flex: 1,
-		backgroundColor: 'rgba(255,255,255,0.7)', 
+		backgroundColor: colors.background, 
     width: '100%',
 	},
 	image: {
@@ -287,15 +271,15 @@ const styles = StyleSheet.create({
   titleContainer:{
 		width: '100%',
     height: 50,
-    paddingHorizontal: 15,
+    paddingHorizontal: paddings.small,
 		marginLeft: 35,
     flexDirection: "row",
     
 	},
 	titleText: {
-		fontSize: 30,
+		fontSize: fontSizes.large,
 		fontWeight: 'bold',
-		color: themeBackgroundColor,
+		color: colors.themeBackgroundColor,
     marginRight: 25,
 	},
 
@@ -307,7 +291,7 @@ const styles = StyleSheet.create({
   },
   calendarPopup: {
     position: 'absolute',
-    backgroundColor: '#C89D7C',
+    backgroundColor: colors.calendarBackgroundColor,
     width: '100%',
     height: '60%',
     alignItems: 'center',
@@ -321,8 +305,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginLeft: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: paddings.medium,
+    paddingVertical: paddings.extrasmall,
   },
   listItem: {
     flexDirection: 'row',
@@ -334,8 +318,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: 'bold',
-    fontSize: 17,
-    color: themeBackgroundColor
+    fontSize: fontSizes.extrasmall,
+    color: colors.themeBackgroundColor
   },
   fullMapView: {
     position: 'absolute',
@@ -343,14 +327,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   modalView: {
     marginTop: 300,
     marginHorizontal: 20,
-    backgroundColor: "white",
+    backgroundColor: colors.white,
     borderRadius: 20,
-    padding: 35,
+    padding: paddings.large,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -363,14 +347,14 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
-    padding: 10,
+    padding: paddings.extrasmall,
     elevation: 2
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: colors.buttonCloseColor,
   },
   textStyle: {
-    color: "white",
+    color: colors.white,
     fontWeight: "bold",
     textAlign: "center"
   },

@@ -29,6 +29,10 @@ const WishlistScreen = ({ navigation, route }) => {
 		navigation.navigate('Details', {pressedItem});
 	}
 
+  
+  // Since the wishlist should always be up-to-date lists based on user's actions, 
+  // the following code is to listen for realtime updates on Firestore
+
   useEffect(() => {
     console.log(userid);
     const q = query(
@@ -53,6 +57,8 @@ const WishlistScreen = ({ navigation, route }) => {
         console.log(err);
       }
     );
+
+     // Return the unsubscribe function for clean up
     return () => {
       unsubscribe();
     };

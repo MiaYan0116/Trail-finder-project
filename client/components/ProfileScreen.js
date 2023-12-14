@@ -1,13 +1,17 @@
+//The ProfileScreen displays the profile page, and enables a user to upload an avatar image or edit the description and username.
+
 import React, { useState, useEffect } from 'react'
 import { Pressable, Image, TextInput, StyleSheet, View, Text, Button } from 'react-native'
 import { db, auth } from '../firebase/firebaseSetup';
-import { container, themeBackgroundColor } from '../styles'
+import { container } from '../styles'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { LogOut, getUserByUserAuthId, updateUser } from '../firebase/firestore';
 import ImageManager from './ImageManager';
 import { storage } from '../firebase/firebaseSetup';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import SingleButton from './SingleButton';
+import colors from "../helper/colors";
+import paddings from '../helper/paddings';
+import fontSizes from "../helper/fontSizes";
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -107,7 +111,7 @@ const ProfileScreen = ({ navigation }) => {
         </View>
         <View style={styles.infoContainer}>
           <Icon name="envelope" size={20} color="#777" style={styles.icon} />
-          <Text style={{fontSize: 18}}>{user.email}</Text>
+          <Text style={{fontSize: fontSizes.small}}>{user.email}</Text>
         </View>
         <View style={styles.infoContainer}>
           <Icon name="pencil" size={20} color="#777" style={styles.icon} />
@@ -147,12 +151,12 @@ const styles = StyleSheet.create({
   },
   
   usernameInput:{
-    fontSize: 30,
+    fontSize: fontSizes.large,
     fontWeight: 'bold',
-    color: themeBackgroundColor,
-    borderColor: themeBackgroundColor,
+    color: colors.themeBackgroundColor,
+    borderColor: colors.themeBackgroundColor,
     borderBottomWidth: 1,
-    padding: 5,
+    padding: paddings.extremesmall,
   },
   infoContainer:{
     flexDirection: 'row',
@@ -166,14 +170,14 @@ const styles = StyleSheet.create({
   },
   icon: { 
     marginRight: 10, 
-    color: themeBackgroundColor 
+    color: colors.themeBackgroundColor 
   },
   descriptionInput:{
-    fontSize: 18,
+    fontSize: fontSizes.small,
     width: 130,
-    borderColor: themeBackgroundColor,
+    borderColor: colors.themeBackgroundColor,
     borderBottomWidth: 1,
-    padding: 5,
+    padding: paddings.extremesmall,
   }
 })
 

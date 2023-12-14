@@ -1,3 +1,5 @@
+// The recommendation screen displays the result from the recommendation engine Python script.
+
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, FlatList, Alert, Text } from 'react-native'
 import axios from 'axios';

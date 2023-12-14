@@ -1,3 +1,5 @@
+// This defines a HomeStack component with multiple screens which serves as a container for the navigation stack.
+
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import TrailDetails from './TrailDetails';
@@ -41,27 +43,6 @@ const HomeStack = () => {
     	    headerTitle: 'Recommendation',
     	  })}
     	/>
-		{/* <Stack.Screen
-			name='Login'
-			component={Login}
-			options={() => ({
-				headerTitle: 'Login',
-			})}
-		/>
-		<Stack.Screen
-				name='Signup'
-				component={Signup}
-				options={() => ({
-					headerTitle: 'Signup',
-				})}
-		/>
-		<Stack.Screen
-				name='ProfileScreen'
-				component={ProfileScreen}
-				options={() => ({
-					headerTitle: 'Profile',
-				})}
-		/> */}
 		<Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   )

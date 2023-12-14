@@ -1,3 +1,6 @@
+// The ResultsScreen displays the search page for user to select the trail features they want to have. 
+// When the user hit the search button, a result screen will be navigated to.
+
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, FlatList, Text } from 'react-native'
 import ListSingleTrailItem from './ListSingleTrailItem';

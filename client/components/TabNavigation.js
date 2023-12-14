@@ -1,8 +1,11 @@
+// This Defines the TabNavigation component, which serves as the root navigation container with bottom tabs.
+
 import React from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { iconSize, themeBackgroundColor, themeTintColor, buttonActiveColor, buttonInactiveColor } from '../styles';
+import { iconSize } from '../styles';
+import colors from "../helper/colors";
 import SearchStack from './SearchStack';
 import HomeStack from './HomeStack';
 import ProfileStack from './ProfileStack';
@@ -15,12 +18,12 @@ const TabNavigation = () => {
     <Tab.Navigator 
       screenOptions={({route}) => ({
 				headerStyle: {
-          backgroundColor: themeBackgroundColor
+          backgroundColor: colors.themeBackgroundColor
         },
-        headerTintColor: themeTintColor,
+        headerTintColor: colors.themeTintColor,
 				tabBarIcon: ({ focused }) => {
 					let iconName;
-					let tabIconColor = focused ? buttonActiveColor : buttonInactiveColor;
+					let tabIconColor = focused ? colors.buttonActiveColor : colors.buttonInactiveColor;
 		
 					if (route.name === 'Home') {
 						iconName = 'home'; 
@@ -32,9 +35,9 @@ const TabNavigation = () => {
 		
 					return <FontAwesome name={iconName} size={iconSize} color={tabIconColor} />;
 				},
-				tabBarActiveTintColor: buttonActiveColor,
-				tabBarInactiveTintColor: themeTintColor,
-				tabBarStyle: { backgroundColor: themeBackgroundColor },
+				tabBarActiveTintColor: colors.buttonActiveColor,
+				tabBarInactiveTintColor: colors.themeTintColor,
+				tabBarStyle: { backgroundColor: colors.themeBackgroundColor },
 			})}
   	>
       <Tab.Screen 

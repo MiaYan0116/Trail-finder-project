@@ -1,8 +1,11 @@
+// The ImageManager provides functionality for capturing images using the device camera.
+
 import { Pressable, View, Image, Button, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { container, themeBackgroundColor } from '../styles'
 import * as ImagePicker from "expo-image-picker";
+import colors from "../helper/colors";
+import paddings from "../helper/paddings";
 
 
 export default function ImageManager({ setPassImageUri }) {
@@ -40,7 +43,7 @@ export default function ImageManager({ setPassImageUri }) {
           <Icon
             name="camera"
             size={24}
-            color={pressed ? 'red' : themeBackgroundColor}
+            color={pressed ? 'red' : colors.themeBackgroundColor}
             style={styles.cameraIcon}
           />
         )}
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
     bottom: 2,
     right: 30,
     backgroundColor: 'transparent', // Make the background transparent
-    padding: 10,
+    padding: paddings.extrasmall,
   },
   image: {
     width: 100,

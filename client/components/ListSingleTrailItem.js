@@ -1,7 +1,7 @@
+// The ListSingleTrailItem represents a single item in a list of trails, which ensure the modularity of the app.
 import React, { useState, useEffect } from 'react'
 import { Image, Text, View, StyleSheet, Pressable } from 'react-native'
-import {themeBackgroundColor, buttonborderRadius, themeTintColor, buttonFontSize, buttonInactiveColor } from '../styles'
-
+import colors from "../helper/colors";
 import RatingStars from './RatingStars';
 
 const ListSingleTrailItem = (props) => {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 		padding: 7,
 		fontSize: 22,
 		fontWeight: 'bold',
-		color: themeBackgroundColor
+		color: colors.themeBackgroundColor
 	},
 	starsContainer: {
     position: 'absolute', 

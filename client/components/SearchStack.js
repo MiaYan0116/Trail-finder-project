@@ -1,3 +1,5 @@
+// This defines a SearchStack component with multiple screens which serves as a container for the navigation stack.
+
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import TrailDetails from './TrailDetails';
