@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { StyleSheet, View, Text, ImageBackground } from 'react-native'
 import { SingleButton } from './SingleButton'
 import { backGroundImage } from '../styles';
 import { addInitialDataToFirestore } from "../firebase/firestore";
 import data from './traillist.json';
 import { imageAPIKey, mapAPIKey } from '@env';
+import { Animated } from 'react-native';
 
   
   // async function fetchTrailGeo(name){
@@ -43,7 +44,25 @@ import { imageAPIKey, mapAPIKey } from '@env';
   // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const StartScreen = ({ navigation }) => {
-    console.log(data);
+    
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const slideAnim = useRef(new Animated.Value(200)).current;
+
+    useEffect(() => {
+      Animated.timing(fadeAnim, {
+        toValue: 1, // Final value of opacity: 1
+        duration: 1000, // Animation duration
+        useNativeDriver: true, // Use native driver for better performance
+      }).start();
+    }, [fadeAnim]);
+    useEffect(() => {
+      Animated.timing(slideAnim, {
+        toValue: 0, // Final value for Y-axis: 0
+        duration: 1000, // Animation duration
+        useNativeDriver: true, // Use native driver for better performance
+      }).start();
+    }, [slideAnim]);
+    
     // We are not using External API at this moment
     // useEffect(() => {
     //   const addInitialData = async (batchSize) => {
@@ -107,20 +126,23 @@ import { imageAPIKey, mapAPIKey } from '@env';
       style={backGroundImage}
     >
       <View style={styles.container}>
-        <Text style={styles.title}>Trail Finder</Text>
+      <Animated.Text style={[styles.title, { opacity: fadeAnim }]}>
+        Trail Finder
+      </Animated.Text>
+        {/* <Text style={styles.title}>Trail Finder</Text> */}
         <View style={styles.welcomeContainer}>
-          <Text style={styles.welcomeText}>Discover and explore the best trails in the Great Vancouver Area!</Text>
+          <Animated.Text style={[styles.welcomeText, { opacity: fadeAnim }]}>Discover and explore the best trails in the Great Vancouver Area!</Animated.Text>
         </View>
-        <View style={styles.buttonContainer}>
+        <Animated.View style={[styles.buttonContainer, { transform: [{ translateY: slideAnim }] }]}>
           <SingleButton text={'START'} handlefunc={startHandler}/>
-        </View>
+        </Animated.View>
+
         
       </View>
     </ImageBackground>
   )
 }
 const styles = StyleSheet.create({
-   
   container: {
     backgroundColor: 'rgba(255,255,255,0)', 
     flex: 1,
