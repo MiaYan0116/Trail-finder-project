@@ -82,8 +82,6 @@ import { Animated } from 'react-native';
           useNativeDriver: false
         });
       });
-  
-      
       Animated.stagger(100, animations).start(); 
     }, []);
   

@@ -46,7 +46,12 @@ export default function LocationManager({ locationList }) {
     }
   }
   const chooseLocationHandler = () => {
-    navigation.navigate("Map", locationList);
+    try{
+      navigation.navigate("Map", locationList);
+    }catch(err){
+      console.log(err);
+    }
+    
   };
   return (
     <View>

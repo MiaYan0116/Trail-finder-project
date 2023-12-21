@@ -3,12 +3,15 @@ import { Button } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
 export default function Map({ navigation, route }) {
+  
   const [selectedLocation, setSelectedLocation] = useState(null);
   const locationList = route.params;
     
   function confirmLocationHandler() {
     navigation.navigate("Wishlist", { selectedCoord: selectedLocation });
   }
+
+  console.log("map: ", locationList);
   return (
     <>
       <MapView
@@ -26,7 +29,7 @@ export default function Map({ navigation, route }) {
           });
         }}
       >
-        <Marker coordinate={selectedLocation} />
+        {selectedLocation && <Marker coordinate={selectedLocation} />}
         {locationList.map((location, index) => (
             <Marker
                 key={index} // Make sure to include a unique key for each Marker

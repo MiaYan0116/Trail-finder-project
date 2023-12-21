@@ -12,7 +12,6 @@ import { getWishlistByUserAuthId, getTrailItemByTrailTitle, getUserByUserAuthId 
 import LocationManager from './LocationManager';
 
 const WishlistScreen = ({ navigation, route }) => {
-
   const userCid = auth.currentUser.uid;
   const [wishList, setWishList] = useState([]);
   const [trailList, setTrailList] = useState([]);

@@ -51,6 +51,9 @@ const ProfileScreen = ({ navigation }) => {
   }
 
   async function uploadImageToStorage() {
+    if(userImageUri === 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png') {
+      return userImageUri; // Return the current URI if no new image has been uploaded
+    }
     try {
       if(userImageUri === 'https://assets.stickpng.com/images/5a9fbf489fc609199d0ff158.png') return;
       const response = await fetch(userImageUri);
@@ -132,7 +135,6 @@ const ProfileScreen = ({ navigation }) => {
             <Button title="Wishlist" onPress={wishListHandler} />
           </View>
         </View>
-
       </View>}
     </View>
   )
